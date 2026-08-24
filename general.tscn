@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ywnh0ryva4bo"]
+
+[ext_resource type="Script" uid="uid://cr5oprfthj5ns" path="res://General.gd" id="1_bg0mc"]
+[ext_resource type="PackedScene" uid="uid://blrc2v3uci8t5" path="res://scenes/character_pieces.tscn" id="2_g3laj"]
+
+[node name="General" type="Node" unique_id=1687633554]
+script = ExtResource("1_bg0mc")
+metadata/_custom_type_script = "uid://cr5oprfthj5ns"
+
+[node name="CharacterPieces" parent="." unique_id=993495228 instance=ExtResource("2_g3laj")]
