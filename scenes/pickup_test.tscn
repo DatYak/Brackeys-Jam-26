@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cn7ngjpir7u27"]
 
 [ext_resource type="PackedScene" uid="uid://by4hahqc0135s" path="res://scenes/cursor.tscn" id="1_qro6l"]
+[ext_resource type="PackedScene" uid="uid://cdo7qi0gm8d4q" path="res://scenes/pickup_target.tscn" id="2_p31i2"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ce7nk"]
 
@@ -26,3 +27,6 @@ mesh = SubResource("PlaneMesh_ce7nk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1135112903]
 transform = Transform3D(2000, 0, 0, 0, 2000, 0, 0, 0, 2000, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_qro6l")
+
+[node name="pickup_target" parent="." unique_id=300074426 instance=ExtResource("2_p31i2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.33304, 0.4999981, -5.8913383)
