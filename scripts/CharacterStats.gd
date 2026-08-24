@@ -2,10 +2,12 @@ class_name CharacterStats extends Node
 
 const MAX_HEALTH = 10
 const MAX_SANITY = 10
+const MAX_LOYALTY = 10
 
 # Variables
 var health = 10
 var sanity = 10
+var loyalty = 10
 
 # Events
 signal took_damage(amount)
@@ -17,6 +19,11 @@ signal lost_sanity(amount)
 signal restored_sanity(amount)
 signal sanity_updated(old_sanity, new_sanity)
 signal lost_all_sanity
+
+signal lost_loyalty(amount)
+signal gained_loyalty(amount)
+signal loyalty_updated(old_loyalty, new_loyalty)
+signal lost_all_loyalty
 
 # Health Functions
 
@@ -59,3 +66,25 @@ func _set_sanity(_new_sanity: int) -> void:
 	
 	if sanity <= 0:
 		lost_all_sanity.emit()
+
+
+# Loyalty Functions
+# I decided to just copy paste for easy bespoke events, but I would compartmentalize if it wasn't a game jam
+
+func lose_loyalty(_loyalty_lost: int) -> void:
+	took_damage.emit(_loyalty_lost)
+	_set_loyalty(loyalty - _loyalty_lost)
+
+func gain_loyalty(_loyalty_gained: int) -> void:
+	gained_loyalty.emit(_loyalty_gained)
+	_set_loyalty(loyalty + _loyalty_gained)
+
+func _set_loyalty(_new_loyalty: int) -> void:
+	if (_new_loyalty > MAX_LOYALTY):
+		_new_loyalty = MAX_LOYALTY
+	
+	loyalty_updated.emit(loyalty, _new_loyalty)
+	loyalty = _new_loyalty
+	
+	if loyalty <= 0:
+		lost_all_loyalty.emit()
