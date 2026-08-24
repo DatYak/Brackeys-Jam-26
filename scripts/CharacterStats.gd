@@ -26,7 +26,6 @@ signal loyalty_updated(old_loyalty, new_loyalty)
 signal lost_all_loyalty
 
 # Health Functions
-
 func take_damage(_damage: int) -> void:
 	took_damage.emit(_damage)
 	_set_health(health - _damage)

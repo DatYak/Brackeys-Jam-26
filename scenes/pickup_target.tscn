@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cdo7qi0gm8d4q"]
+
+[ext_resource type="Script" uid="uid://di30fu2xkd2or" path="res://scripts/pickup_target.gd" id="1_6al4r"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_2qlwl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujqf1"]
+shading_mode = 0
+billboard_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ce7nk"]
+
+[node name="pickup_target" type="Node3D" unique_id=300074426 groups=["Interactables"]]
+script = ExtResource("1_6al4r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1025050091]
+mesh = SubResource("QuadMesh_2qlwl")
+surface_material_override/0 = SubResource("StandardMaterial3D_ujqf1")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1798022253]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2042170996]
+shape = SubResource("BoxShape3D_ce7nk")
+
+[connection signal="mouse_entered" from="Area3D" to="." method="_hover"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_hover_end"]

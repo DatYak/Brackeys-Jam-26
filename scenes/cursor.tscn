@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://by4hahqc0135s"]
+
+[ext_resource type="Script" uid="uid://csilfu5p2raxp" path="res://scripts/cursor.gd" id="1_1eco6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1eco6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1eco6"]
+shading_mode = 0
+albedo_color = Color(1, 0.61960787, 0.05882353, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Cursor" type="Node3D" unique_id=12422246]
+script = ExtResource("1_1eco6")
+
+[node name="Model" type="MeshInstance3D" parent="." unique_id=281723036]
+mesh = SubResource("SphereMesh_1eco6")
+surface_material_override/0 = SubResource("StandardMaterial3D_1eco6")
