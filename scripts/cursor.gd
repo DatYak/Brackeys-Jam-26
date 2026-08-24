@@ -3,6 +3,7 @@ extends Node3D
 @onready var camera:= get_parent() as Camera3D
 @export_range(1, 1000) var hover_height:float = 2.0
 @export_range(1, 1000) var lowered_height:float = -1.5
+@export_range(0.0, 1.0) var pickup_time:float = 0.13
 
 const RAY_LENGTH = 1000.0
 
@@ -28,6 +29,18 @@ func _process(_delta: float) -> void:
 	
 	global_position = cursor_position
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == 1:
+		
+		if event.is_pressed():
+			_lower()
+		if event.is_released():
+			_raise()
+
 func _lower() -> void:
 	var tween = get_tree().create_tween()
-	tween.tween_property($Model, "position", Vector3(0,0,0), 0.25)
+	tween.tween_property($Model, "position", Vector3(0,lowered_height,0), pickup_time)
+	
+func _raise() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property($Model, "position", Vector3(0,0,0), pickup_time)

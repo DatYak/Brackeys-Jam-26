@@ -21,3 +21,6 @@ shape = SubResource("BoxShape3D_ce7nk")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1025050091]
 mesh = SubResource("QuadMesh_2qlwl")
 surface_material_override/0 = SubResource("StandardMaterial3D_ujqf1")
+
+[connection signal="mouse_entered" from="Area3D" to="." method="_hover"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_hover_end"]
