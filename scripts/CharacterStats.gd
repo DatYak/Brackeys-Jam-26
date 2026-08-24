@@ -1,13 +1,13 @@
 class_name CharacterStats extends Node
 
-const MAX_HEALTH = 10
-const MAX_SANITY = 10
+const MAX_HEALTH = 2
+const MAX_SANITY = 4
 const MAX_LOYALTY = 10
 
 # Variables
-var health = 10
-var sanity = 10
-var loyalty = 10
+var health = MAX_HEALTH
+var sanity = MAX_SANITY
+var loyalty = MAX_LOYALTY
 
 # Events
 signal took_damage(amount)
