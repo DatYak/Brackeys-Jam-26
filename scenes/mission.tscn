@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b873m63bjf1k7" path="res://scenes/dropoff_region.tscn" id="1_01qru"]
 [ext_resource type="Script" uid="uid://cbxlxkmdcqs6h" path="res://scripts/Mission.gd" id="1_v3nvf"]
+[ext_resource type="Script" uid="uid://16u18spi6mjk" path="res://scripts/dropoff_mission.gd" id="3_cv0tx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_01qru"]
 
@@ -14,6 +15,7 @@ albedo_color = Color(1, 0.48235294, 0, 1)
 script = ExtResource("1_v3nvf")
 
 [node name="DropoffRegion" parent="." unique_id=1476246399 instance=ExtResource("1_01qru")]
+script = ExtResource("3_cv0tx")
 interact_type = 2
 
 [node name="CollisionShape3D" parent="DropoffRegion/Area3D" parent_id_path=PackedInt32Array(1476246399, 356656927) index="0" unique_id=1934983508 groups=["Dropoff"]]

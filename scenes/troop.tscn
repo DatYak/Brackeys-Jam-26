@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b3ntb3gynko8h"]
 
-[ext_resource type="Script" uid="uid://b6pryvrpr5t1h" path="res://Troop.gd" id="1_6da2i"]
+[ext_resource type="Script" uid="uid://b6pryvrpr5t1h" path="res://scripts/Troop.gd" id="1_6da2i"]
 [ext_resource type="PackedScene" uid="uid://blrc2v3uci8t5" path="res://scenes/character_pieces.tscn" id="2_37opx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbcxd"]

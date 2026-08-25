@@ -5,7 +5,7 @@ class_name PickupTarget extends Node3D
 ## Alters the pickup behaviour so that an indicator of the target is moved
 ## instead of the actual node.
 @export var is_moved_as_indicator:bool = false
-@onready var parent:Node = self.get_parent().get_parent()
+@onready var parent:Node = self.get_parent().get_parent().get_parent()
 @onready var ui:UnitUI = $"../../CharacterStats/UnitInspectUi"
 @onready var indicator:Node3D = $Indicator
 
@@ -68,8 +68,7 @@ func on_place(interact_control:Cursor.CursorTarget) -> void:
 		if area.is_in_group("Dropoff"):
 			var dropoff = area.get_parent() as Dropoff
 			if dropoff.interact_type == interact_control:
-				dropoff._drop_entity(self)
-				dropped = true
+				dropped = dropoff._drop_entity(self)
 				break
 	if not dropped:
 		# No drop off point found...
