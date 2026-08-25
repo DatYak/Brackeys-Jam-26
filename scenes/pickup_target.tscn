@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cdo7qi0gm8d4q"]
 
 [ext_resource type="Script" uid="uid://di30fu2xkd2or" path="res://scripts/pickup_target.gd" id="1_6al4r"]
-[ext_resource type="PackedScene" uid="uid://b4qil3k5eqjrc" path="res://scenes/unit_inspect_UI.tscn" id="2_b1ytf"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_b1ytf"]
 size = Vector2(1, 2)
@@ -37,9 +36,6 @@ shape = SubResource("SphereShape3D_ce7nk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2042170996]
 shape = SubResource("BoxShape3D_ce7nk")
-
-[node name="UnitInspectUi" parent="." unique_id=553661356 instance=ExtResource("2_b1ytf")]
-visible = false
 
 [connection signal="mouse_entered" from="Area3D" to="." method="_hover"]
 [connection signal="mouse_exited" from="Area3D" to="." method="_hover_end"]
