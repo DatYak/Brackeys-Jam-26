@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cn7ngjpir7u27"]
 
-[ext_resource type="PackedScene" uid="uid://by4hahqc0135s" path="res://scenes/cursor.tscn" id="1_qro6l"]
+[ext_resource type="PackedScene" uid="uid://bx0klj2a3og8x" path="res://scenes/camera.tscn" id="1_r1emx"]
 [ext_resource type="PackedScene" uid="uid://b3ntb3gynko8h" path="res://scenes/troop.tscn" id="2_p31i2"]
 [ext_resource type="PackedScene" uid="uid://ywnh0ryva4bo" path="res://scenes/general.tscn" id="3_njvli"]
 [ext_resource type="PackedScene" uid="uid://bvsomrqngq6t3" path="res://scenes/mission.tscn" id="4_r1emx"]
@@ -11,10 +11,8 @@
 
 [node name="PickupTest" type="Node3D" unique_id=1606861051]
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=57025286]
-transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.5, 0, -0.5, 0.86602545, 0, 10.300932, 14.242641)
-
-[node name="Cursor" parent="Camera3D" unique_id=12422246 instance=ExtResource("1_qro6l")]
+[node name="Camera3D" parent="." unique_id=2076793452 instance=ExtResource("1_r1emx")]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 10.300932, 14.242641)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=671609549]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)

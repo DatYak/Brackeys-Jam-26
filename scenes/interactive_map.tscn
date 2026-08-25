@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cnv4c6hshyklt"]
+
+[ext_resource type="PackedScene" uid="uid://bx0klj2a3og8x" path="res://scenes/camera.tscn" id="1_x3wbd"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gpgns"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_dvmqr"]
+
+[node name="InteractiveMap" type="Node" unique_id=1772888486]
+
+[node name="Map" type="StaticBody3D" parent="." unique_id=716470939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.536743e-07, -9.536743e-07)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map" unique_id=1291352632]
+transform = Transform3D(90, 0, 0, 0, 90.00001, 0, 0, 0, 90.00001, 0, 0, 0)
+mesh = SubResource("PlaneMesh_gpgns")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map" unique_id=996497350]
+transform = Transform3D(2000, 0, 0, 0, 2000, 0, 0, 0, 2000, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_dvmqr")
+
+[node name="Camera3D" parent="." unique_id=2076793452 instance=ExtResource("1_x3wbd")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.7071068, 0, -0.7071068, 0.70710677, 0, 15, 10)

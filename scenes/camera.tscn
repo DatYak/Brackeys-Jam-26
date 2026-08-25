@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bx0klj2a3og8x"]
+
+[ext_resource type="PackedScene" uid="uid://by4hahqc0135s" path="res://scenes/cursor.tscn" id="1_a3ute"]
+
+[node name="Camera3D" type="Camera3D" unique_id=2076793452]
+
+[node name="Cursor" parent="." unique_id=12422246 instance=ExtResource("1_a3ute")]

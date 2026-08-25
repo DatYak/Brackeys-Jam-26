@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://bsv4m0cpdk7m0"]
 
 [ext_resource type="Script" uid="uid://7bf36ahbvr48" path="res://scripts/Game.gd" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://cnv4c6hshyklt" path="res://scenes/interactive_map.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node" unique_id=1124580399]
 script = ExtResource("1_uwrxv")
 metadata/_custom_type_script = "uid://7bf36ahbvr48"
+
+[node name="InteractiveMap" parent="." unique_id=1772888486 instance=ExtResource("2_yqjtg")]

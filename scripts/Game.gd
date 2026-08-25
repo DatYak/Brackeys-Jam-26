@@ -57,6 +57,7 @@ func spawn_troops(amount : int, statsToDistribute : int, minStatsPerTroop: int, 
 		
 		add_child(troop)
 		troop.movement.position.x = i
+		troop.movement.position.y = 1
 	
 	for i in range(statsToDistribute - (minStatsPerTroop * amount)):
 		var randomIndex = randi() % amount
@@ -79,7 +80,7 @@ func spawn_generals() -> void:
 		var general = generalScene.instantiate()
 		allGenerals.append(general)	
 		add_child(general)
-		general.movement.position = Vector3(i * 3, 0, 5)
+		general.movement.position = Vector3(i * 3, 1, 5)
 	
 	assign_stats_and_loyalty(allGenerals[0], LOYAL_GENERAL_STATS, LOYAL_GENERAL_LOYALTY)
 	assign_stats_and_loyalty(allGenerals[1], SKILLED_GENERAL_STATS, SKILLED_GENERAL_LOYALTY)
