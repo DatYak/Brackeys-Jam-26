@@ -99,7 +99,7 @@ func lose_loyalty(_loyalty_lost: int) -> void:
 	lost_loyalty.emit(_loyalty_lost)
 	_set_loyalty(loyalty - _loyalty_lost)
 
-func gain_loyalty(_loyalty_gained: int) -> void:
+func gain_loyalty(_loyalty_gained: int) -> void:	
 	gained_loyalty.emit(_loyalty_gained)
 	_set_loyalty(loyalty + _loyalty_gained)
 
