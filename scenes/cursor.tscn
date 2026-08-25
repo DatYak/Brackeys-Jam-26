@@ -14,6 +14,7 @@ particles_anim_loop = false
 
 [node name="Cursor" type="Node3D" unique_id=12422246]
 script = ExtResource("1_1eco6")
+lowered_height = -1.0
 
 [node name="Model" type="MeshInstance3D" parent="." unique_id=281723036]
 mesh = SubResource("SphereMesh_1eco6")

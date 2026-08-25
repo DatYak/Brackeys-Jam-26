@@ -2,7 +2,7 @@ class_name Cursor extends Node3D
 
 @onready var camera:= get_parent() as Camera3D
 @export_range(1, 1000) var hover_height:float = 2.0
-@export_range(1, 1000) var lowered_height:float = -1.5
+@export_range(-2, 2) var lowered_height:float = -1.5
 @export_range(0.0, 1.0) var pickup_time:float = 0.15
 
 # The total time the cursor shakes with no target
@@ -30,7 +30,10 @@ func _process(_delta: float) -> void:
 	var space_state = get_world_3d().direct_space_state
 	
 	var query = PhysicsRayQueryParameters3D.create(from, to)
-	query.exclude = [self]
+	var exclude = [self]
+	if (held_node != null):
+		exclude.append(held_node.get_parent())
+	query.exclude = exclude
 	var result = space_state.intersect_ray(query)
 	
 	if result:
@@ -65,6 +68,7 @@ func drop(target:PickupTarget) -> void:
 	has_target = true
 	held_node = target
 	var tween = get_tree().create_tween()
+	
 	lower(tween, detatch)
 	raise(tween)
 
