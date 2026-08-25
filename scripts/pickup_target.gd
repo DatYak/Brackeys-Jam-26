@@ -16,6 +16,8 @@ var follow_target:Node3D
 ## what is actually moved by the cursor
 var dragged_element:Node3D
 
+var last_position:Vector3
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ui.visible = false
@@ -37,9 +39,9 @@ func _hover_end() -> void:
 func interact(cursor: Cursor, interact_control:Cursor.CursorTarget) -> void:
 	if hover_target:
 		if interact_type == interact_control:
+				last_position = global_position
 				cursor.pick_up(self)
 				on_pick_up(interact_type)
-				
 
 func on_pick_up(interact_control:Cursor.CursorTarget)->void:
 	for area:Node in $Area3D.get_overlapping_areas():
@@ -50,12 +52,18 @@ func on_pick_up(interact_control:Cursor.CursorTarget)->void:
 				break;
 
 func on_place(interact_control:Cursor.CursorTarget) -> void:
+	var dropped:bool = false
 	for area in $Area3D.get_overlapping_areas():
 		if area.is_in_group("Dropoff"):
 			var dropoff = area.get_parent() as Dropoff
 			if dropoff.interact_type == interact_control:
 				dropoff._drop_entity(self)
+				dropped = true
 				break
+	if not dropped:
+		# No drop off point found...
+		var tween = get_tree().create_tween()
+		tween.tween_property(dragged_element, "global_position", last_position, 0.6)
 
 func _process(_delta: float) -> void:
 	if dragging and follow_target:
