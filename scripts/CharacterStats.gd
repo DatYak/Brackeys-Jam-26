@@ -1,5 +1,11 @@
 class_name CharacterStats extends Node
 
+enum SkillType {
+	MIGHT,
+	GUILE,
+	FAVOR
+}
+
 const MAX_HEALTH = 2
 const MAX_SANITY = 4
 const MAX_LOYALTY = 10
@@ -34,6 +40,15 @@ func set_stats(_might, _guile, _favor, _loyalty):
 	guile = _guile
 	favor = _favor
 	loyalty = _loyalty
+
+func get_skill(skillType : SkillType):
+	match skillType:
+		SkillType.MIGHT:
+			return might
+		SkillType.GUILE:
+			return guile
+		SkillType.FAVOR:
+			return loyalty
 
 # Health Functions
 func take_damage(_damage: int) -> void:
