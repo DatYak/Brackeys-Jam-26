@@ -23,7 +23,10 @@ func float_array_to_Vector2Array(coords : Array) -> PackedVector2Array:
 	return array
 
 func _ready():
-	
+	display_stats(stats)
+
+func display_stats(new_stats:Array):
+	stats = new_stats
 	var angle:float= 0
 	for i in range(len(stats)):
 		var stat_value = stats[i] / max_stat
