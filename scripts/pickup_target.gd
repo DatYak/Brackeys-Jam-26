@@ -2,6 +2,7 @@ class_name PickupTarget extends Node3D
 
 @export var pickup_phase:int = 0
 @onready var parent:Node = self.get_parent().get_parent()
+@onready var ui:Control = $UnitInspectUi
 
 var hover_target:bool = false
 var dragging:bool= false
@@ -9,14 +10,16 @@ var follow_target:Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	ui.visible = false
 
 func _hover() -> void:
 	# print("Hovering:" + get_parent().get_parent().name)
 	hover_target = true
+	ui.visible = true
 
 func _hover_end() -> void:
 	hover_target = false
+	ui.visible = false
 
 func interact(cursor: Cursor, interact_phase: int) -> void:
 	if hover_target:

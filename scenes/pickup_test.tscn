@@ -44,9 +44,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.947898, 1, -6.059907)
 [node name="CharacterMovement" parent="General/CharacterPieces" parent_id_path=PackedInt32Array(1687633554, 993495228) index="0" unique_id=433720663]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.970256, 1.0000019, -10.45636)
 
-[node name="DropoffRegion" parent="General/CharacterPieces/CharacterMovement" index="2" unique_id=1476246399]
-interact_phase = null
-
 [editable path="Troop"]
 [editable path="Troop/CharacterPieces"]
 [editable path="Troop/CharacterPieces/CharacterMovement/pickup_target"]
