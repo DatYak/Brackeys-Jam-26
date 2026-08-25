@@ -5,8 +5,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oe4dw"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_hgkml"]
-
 [node name="CharacterPieces" type="Node" unique_id=993495228]
 
 [node name="CharacterMovement" type="CharacterBody3D" parent="." unique_id=433720663]
@@ -15,9 +13,6 @@ metadata/_custom_type_script = "uid://osv2dteh7ecs"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterMovement" unique_id=589097342]
 shape = SubResource("CapsuleShape3D_oe4dw")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterMovement" unique_id=600736410]
-mesh = SubResource("CapsuleMesh_hgkml")
 
 [node name="CharacterStats" type="Node" parent="." unique_id=2023364737]
 script = ExtResource("2_x6vh2")
