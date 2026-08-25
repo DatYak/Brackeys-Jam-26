@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://osv2dteh7ecs" path="res://scripts/CharacterMovement.gd" id="1_4ou60"]
 [ext_resource type="PackedScene" uid="uid://cdo7qi0gm8d4q" path="res://scenes/pickup_target.tscn" id="2_iddmo"]
 [ext_resource type="Script" uid="uid://bqakgxmpo7avk" path="res://scripts/CharacterStats.gd" id="2_x6vh2"]
+[ext_resource type="PackedScene" uid="uid://b4qil3k5eqjrc" path="res://scenes/unit_inspect_UI.tscn" id="4_6u7cp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oe4dw"]
 
@@ -20,3 +21,6 @@ shape = SubResource("CapsuleShape3D_oe4dw")
 [node name="CharacterStats" type="Node" parent="." unique_id=2023364737]
 script = ExtResource("2_x6vh2")
 metadata/_custom_type_script = "uid://bqakgxmpo7avk"
+
+[node name="UnitInspectUi" parent="CharacterStats" unique_id=553661356 instance=ExtResource("4_6u7cp")]
+visible = false

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b4qil3k5eqjrc"]
 
 [ext_resource type="Script" uid="uid://c57x0vko4e776" path="res://scripts/stat_graph.gd" id="1_83xus"]
+[ext_resource type="Script" uid="uid://c61wj8mksjrql" path="res://scripts/unit_inspect_ui.gd" id="1_ybm2m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_83xus"]
 font_color = Color(1, 0.105882354, 0.14901961, 1)
@@ -19,20 +20,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_ybm2m")
 
-[node name="Panel" type="Panel" parent="." unique_id=1694667917]
+[node name="Background" type="Panel" parent="." unique_id=1694667917]
 layout_mode = 0
 offset_right = 386.0
 offset_bottom = 211.0
 
-[node name="Nameplate" type="Panel" parent="Panel" unique_id=2100218571]
+[node name="Nameplate" type="Panel" parent="Background" unique_id=2100218571]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 30.0
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="Panel/Nameplate" unique_id=293027759]
+[node name="Label" type="Label" parent="Background/Nameplate" unique_id=293027759]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +45,7 @@ text = "UNIT NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Disposition" type="Panel" parent="Panel" unique_id=1648289464]
+[node name="Disposition" type="Panel" parent="Background" unique_id=1648289464]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -53,7 +55,7 @@ offset_top = -30.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="Panel/Disposition" unique_id=235477852]
+[node name="Label" type="Label" parent="Background/Disposition" unique_id=235477852]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,7 +66,7 @@ text = "greets you as a true friend."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PolyStat" type="Panel" parent="Panel" unique_id=1720955825]
+[node name="PolyStat" type="Panel" parent="Background" unique_id=1720955825]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -78,7 +80,7 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StatGraph" type="Control" parent="Panel/PolyStat" unique_id=448983802]
+[node name="StatGraph" type="Control" parent="Background/PolyStat" unique_id=448983802]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -90,7 +92,7 @@ grow_vertical = 2
 script = ExtResource("1_83xus")
 stats = [0, 2, 1]
 
-[node name="Label" type="Label" parent="Panel/PolyStat" unique_id=1868877777]
+[node name="Label" type="Label" parent="Background/PolyStat" unique_id=1868877777]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -105,7 +107,7 @@ label_settings = SubResource("LabelSettings_83xus")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="Panel/PolyStat" unique_id=1987106322]
+[node name="Label2" type="Label" parent="Background/PolyStat" unique_id=1987106322]
 layout_mode = 0
 offset_left = 102.0
 offset_top = 75.5
@@ -115,7 +117,7 @@ text = "Guile"
 label_settings = SubResource("LabelSettings_ybm2m")
 vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="Panel/PolyStat" unique_id=2076343311]
+[node name="Label3" type="Label" parent="Background/PolyStat" unique_id=2076343311]
 layout_mode = 0
 offset_left = -65.0
 offset_top = 73.5

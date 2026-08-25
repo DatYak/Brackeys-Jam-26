@@ -6,7 +6,7 @@ class_name PickupTarget extends Node3D
 ## instead of the actual node.
 @export var is_moved_as_indicator:bool = false
 @onready var parent:Node = self.get_parent().get_parent()
-@onready var ui:Control = $UnitInspectUi
+@onready var ui:UnitUI = $"../../CharacterStats/UnitInspectUi"
 @onready var indicator:Node3D = $Indicator
 
 var hover_target:bool = false
@@ -30,6 +30,7 @@ func _ready() -> void:
 func _hover() -> void:
 	# print("Hovering:" + get_parent().get_parent().name)
 	hover_target = true
+	ui.display()
 	ui.visible = true
 
 func _hover_end() -> void:
