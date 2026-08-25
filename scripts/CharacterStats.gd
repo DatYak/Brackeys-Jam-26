@@ -5,9 +5,13 @@ const MAX_SANITY = 4
 const MAX_LOYALTY = 10
 
 # Variables
-var health = MAX_HEALTH
-var sanity = MAX_SANITY
-var loyalty = MAX_LOYALTY
+@export var health = MAX_HEALTH
+@export var sanity = MAX_SANITY
+@export var loyalty = MAX_LOYALTY
+
+@export var might = 0
+@export var guile = 0
+@export var favor = 0
 
 # Events
 signal took_damage(amount)
@@ -24,6 +28,12 @@ signal lost_loyalty(amount)
 signal gained_loyalty(amount)
 signal loyalty_updated(old_loyalty, new_loyalty)
 signal lost_all_loyalty
+
+func set_stats(_might, _guile, _favor, _loyalty):
+	might = _might
+	guile = _guile
+	favor = _favor
+	loyalty = _loyalty
 
 # Health Functions
 func take_damage(_damage: int) -> void:
@@ -49,7 +59,7 @@ func _set_health(_new_health: int) -> void:
 # I decided to just copy paste for easy bespoke events, but I would compartmentalize if it wasn't a game jam
 
 func lose_sanity(_sanity_lost: int) -> void:
-	took_damage.emit(_sanity_lost)
+	lost_sanity.emit(_sanity_lost)
 	_set_sanity(sanity - _sanity_lost)
 
 func restore_sanity(_restoration: int) -> void:
@@ -71,7 +81,7 @@ func _set_sanity(_new_sanity: int) -> void:
 # I decided to just copy paste for easy bespoke events, but I would compartmentalize if it wasn't a game jam
 
 func lose_loyalty(_loyalty_lost: int) -> void:
-	took_damage.emit(_loyalty_lost)
+	lost_loyalty.emit(_loyalty_lost)
 	_set_loyalty(loyalty - _loyalty_lost)
 
 func gain_loyalty(_loyalty_gained: int) -> void:
