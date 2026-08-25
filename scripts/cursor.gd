@@ -18,11 +18,6 @@ const RAY_LENGTH = 1000.0
 
 var cursor_position:Vector3
 
-# What phase of interaction are we on.
-# 0 = Assign troops to generals
-# 1 = Assign generals to missions
-var interact_phase:int = 0
-
 func _ready() -> void:
 	global_rotation =  Vector3(0,0,0)
 
@@ -44,10 +39,15 @@ func _process(_delta: float) -> void:
 	global_position = cursor_position
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == 1:
+	if event is InputEventMouseButton:
+		var control_type:CursorTarget = CursorTarget.NONE
+		if event.button_index == 1:
+			control_type = CursorTarget.TROOP
+		if event.button_index == 2:
+			control_type = CursorTarget.GENERAL
 		if event.is_pressed():
 			has_target=false
-			get_tree().call_group("Interactables", "interact", self, interact_phase)
+			get_tree().call_group("Interactables", "interact", self, control_type)
 			if not has_target:
 				shake()
 		if event.is_released():
@@ -75,7 +75,7 @@ func attatch() -> void:
 func detatch() -> void:
 	held_node.dragging = false
 	held_node.follow_target = null
-	held_node.on_place(interact_phase)
+	held_node.on_place(held_node.interact_type)
 
 func lower(tween:Tween, callback:Callable = do_nothing) -> void:
 	tween.tween_property($Model, "position", Vector3(0,lowered_height,0), pickup_time)
@@ -85,7 +85,7 @@ func raise(tween:Tween, callback:Callable = do_nothing) -> void:
 	tween.tween_property($Model, "position", Vector3(0,0,0), pickup_time)
 	tween.tween_callback(callback)
 
-func do_nothing(args) -> void:
+func do_nothing(_args) -> void:
 	pass
 
 func shake() -> void:
@@ -93,3 +93,9 @@ func shake() -> void:
 	tween.tween_property($Model, "position", Vector3(shake_tween_distance,0,0), shake_tween_time/3)
 	tween.tween_property($Model, "position", Vector3(-shake_tween_distance,0,0), shake_tween_time/3)
 	tween.tween_property($Model, "position", Vector3(0,0,0), shake_tween_time/3)
+
+enum CursorTarget{
+	NONE,
+	TROOP,
+	GENERAL,
+}

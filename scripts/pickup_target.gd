@@ -1,16 +1,29 @@
 class_name PickupTarget extends Node3D
 
-@export var pickup_phase:int = 0
+@export var interact_type:Cursor.CursorTarget
+
+## Alters the pickup behaviour so that an indicator of the target is moved
+## instead of the actual node.
+@export var is_moved_as_indicator:bool = false
 @onready var parent:Node = self.get_parent().get_parent()
 @onready var ui:Control = $UnitInspectUi
+@onready var indicator:Node3D = $Indicator
 
 var hover_target:bool = false
 var dragging:bool= false
+## What dragged_element will move to follow (typically the cursor)
 var follow_target:Node3D
+## what is actually moved by the cursor
+var dragged_element:Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ui.visible = false
+	if is_moved_as_indicator:
+		dragged_element = indicator
+	else:
+		dragged_element =  get_parent_node_3d()
+		indicator.visible = false
 
 func _hover() -> void:
 	# print("Hovering:" + get_parent().get_parent().name)
@@ -21,28 +34,29 @@ func _hover_end() -> void:
 	hover_target = false
 	ui.visible = false
 
-func interact(cursor: Cursor, interact_phase: int) -> void:
+func interact(cursor: Cursor, interact_control:Cursor.CursorTarget) -> void:
 	if hover_target:
-		if interact_phase == pickup_phase:
-			cursor.pick_up(self)
-			on_pick_up(interact_phase)
+		if interact_type == interact_control:
+				cursor.pick_up(self)
+				on_pick_up(interact_type)
+				
 
-func on_pick_up(interact_phase:int)->void:
+func on_pick_up(interact_control:Cursor.CursorTarget)->void:
 	for area:Node in $Area3D.get_overlapping_areas():
 		if area.is_in_group("Dropoff"):
 			var dropoff = area.get_parent() as Dropoff
-			if dropoff.interact_phase == interact_phase:
+			if dropoff.interact_type == interact_control:
 				dropoff._remove_entity(self)
 				break;
 
-func on_place(interact_phase:int) -> void:
+func on_place(interact_control:Cursor.CursorTarget) -> void:
 	for area in $Area3D.get_overlapping_areas():
 		if area.is_in_group("Dropoff"):
 			var dropoff = area.get_parent() as Dropoff
-			if dropoff.interact_phase == interact_phase:
+			if dropoff.interact_type == interact_control:
 				dropoff._drop_entity(self)
 				break
 
 func _process(_delta: float) -> void:
 	if dragging and follow_target:
-		get_parent_node_3d().global_position = follow_target.global_position
+		dragged_element.global_position = follow_target.global_position

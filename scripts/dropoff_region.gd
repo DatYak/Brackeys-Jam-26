@@ -1,6 +1,6 @@
 class_name Dropoff extends Node3D
 
-@export var interact_phase:int = 0
+@export var interact_type:Cursor.CursorTarget
 
 func _drop_entity(entity:PickupTarget) -> void:
 	pass
