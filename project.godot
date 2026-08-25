@@ -23,6 +23,7 @@ window/stretch/aspect="expand"
 [global_group]
 
 Interactables="Entities that can be interacted with."
+Dropoff="An area that an interactable can be placed within."
 
 [input]
 

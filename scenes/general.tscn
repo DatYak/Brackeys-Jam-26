@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ywnh0ryva4bo"]
+
+[ext_resource type="Script" uid="uid://cr5oprfthj5ns" path="res://General.gd" id="1_bg0mc"]
+[ext_resource type="PackedScene" uid="uid://blrc2v3uci8t5" path="res://scenes/character_pieces.tscn" id="2_g3laj"]
+[ext_resource type="PackedScene" uid="uid://b873m63bjf1k7" path="res://scenes/dropoff_region.tscn" id="3_pduxd"]
+[ext_resource type="Script" uid="uid://btongdmvtqc0g" path="res://scripts/dropoff_general.gd" id="4_1aar8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2p8t7"]
+shading_mode = 0
+albedo_color = Color(0.8745098, 0.2901961, 0.24705882, 1)
+billboard_mode = 2
+
+[node name="General" type="Node" unique_id=1687633554]
+script = ExtResource("1_bg0mc")
+metadata/_custom_type_script = "uid://cr5oprfthj5ns"
+
+[node name="CharacterPieces" parent="." unique_id=993495228 instance=ExtResource("2_g3laj")]
+
+[node name="pickup_target" parent="CharacterPieces/CharacterMovement" parent_id_path=PackedInt32Array(993495228, 433720663) index="1" unique_id=300074426]
+pickup_phase = 1
+
+[node name="MeshInstance3D" parent="CharacterPieces/CharacterMovement/pickup_target" index="0" unique_id=1025050091]
+surface_material_override/0 = SubResource("StandardMaterial3D_2p8t7")
+
+[node name="DropoffRegion" parent="CharacterPieces/CharacterMovement" parent_id_path=PackedInt32Array(993495228, 433720663) index="2" unique_id=1476246399 node_paths=PackedStringArray("general") instance=ExtResource("3_pduxd")]
+script = ExtResource("4_1aar8")
+general = NodePath("../../..")
+
+[editable path="CharacterPieces"]
+[editable path="CharacterPieces/CharacterMovement/pickup_target"]

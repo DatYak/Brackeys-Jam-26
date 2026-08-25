@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cn7ngjpir7u27"]
 
 [ext_resource type="PackedScene" uid="uid://by4hahqc0135s" path="res://scenes/cursor.tscn" id="1_qro6l"]
-[ext_resource type="PackedScene" uid="uid://cdo7qi0gm8d4q" path="res://scenes/pickup_target.tscn" id="2_p31i2"]
+[ext_resource type="PackedScene" uid="uid://b3ntb3gynko8h" path="res://scenes/troop.tscn" id="2_p31i2"]
+[ext_resource type="PackedScene" uid="uid://ywnh0ryva4bo" path="res://scenes/general.tscn" id="3_njvli"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ce7nk"]
 
@@ -28,5 +29,30 @@ mesh = SubResource("PlaneMesh_ce7nk")
 transform = Transform3D(2000, 0, 0, 0, 2000, 0, 0, 0, 2000, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_qro6l")
 
-[node name="pickup_target" parent="." unique_id=300074426 instance=ExtResource("2_p31i2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.33304, 0.4999981, -5.8913383)
+[node name="Troop" parent="." unique_id=1482538922 instance=ExtResource("2_p31i2")]
+
+[node name="CharacterMovement" parent="Troop/CharacterPieces" parent_id_path=PackedInt32Array(1482538922, 993495228) index="0" unique_id=433720663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8515687, 1, -8.521336)
+
+[node name="Troop2" parent="." unique_id=2143718236 instance=ExtResource("2_p31i2")]
+
+[node name="CharacterMovement" parent="Troop2/CharacterPieces" parent_id_path=PackedInt32Array(2143718236, 993495228) index="0" unique_id=433720663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.947898, 1, -6.059907)
+
+[node name="General" parent="." unique_id=1687633554 instance=ExtResource("3_njvli")]
+
+[node name="CharacterMovement" parent="General/CharacterPieces" parent_id_path=PackedInt32Array(1687633554, 993495228) index="0" unique_id=433720663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.970256, 1.0000019, -10.45636)
+
+[node name="DropoffRegion" parent="General/CharacterPieces/CharacterMovement" index="2" unique_id=1476246399]
+interact_phase = null
+
+[editable path="Troop"]
+[editable path="Troop/CharacterPieces"]
+[editable path="Troop/CharacterPieces/CharacterMovement/pickup_target"]
+[editable path="Troop2"]
+[editable path="Troop2/CharacterPieces"]
+[editable path="Troop2/CharacterPieces/CharacterMovement/pickup_target"]
+[editable path="General"]
+[editable path="General/CharacterPieces"]
+[editable path="General/CharacterPieces/CharacterMovement/pickup_target"]

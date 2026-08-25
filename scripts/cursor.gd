@@ -18,6 +18,11 @@ const RAY_LENGTH = 1000.0
 
 var cursor_position:Vector3
 
+# What phase of interaction are we on.
+# 0 = Assign troops to generals
+# 1 = Assign generals to missions
+var interact_phase:int = 0
+
 func _ready() -> void:
 	global_rotation =  Vector3(0,0,0)
 
@@ -42,7 +47,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == 1:
 		if event.is_pressed():
 			has_target=false
-			get_tree().call_group("Interactables", "interact", self)
+			get_tree().call_group("Interactables", "interact", self, interact_phase)
 			if not has_target:
 				shake()
 		if event.is_released():
@@ -62,7 +67,7 @@ func drop(target:PickupTarget) -> void:
 	var tween = get_tree().create_tween()
 	lower(tween, detatch)
 	raise(tween)
-	
+
 func attatch() -> void:
 	held_node.dragging = true
 	held_node.follow_target = $Model
@@ -70,6 +75,7 @@ func attatch() -> void:
 func detatch() -> void:
 	held_node.dragging = false
 	held_node.follow_target = null
+	held_node.on_place(interact_phase)
 
 func lower(tween:Tween, callback:Callable = do_nothing) -> void:
 	tween.tween_property($Model, "position", Vector3(0,lowered_height,0), pickup_time)

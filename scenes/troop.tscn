@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b3ntb3gynko8h"]
+
+[ext_resource type="Script" uid="uid://b6pryvrpr5t1h" path="res://Troop.gd" id="1_6da2i"]
+[ext_resource type="PackedScene" uid="uid://blrc2v3uci8t5" path="res://scenes/character_pieces.tscn" id="2_37opx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbcxd"]
+shading_mode = 0
+albedo_color = Color(0, 0.7254902, 1, 1)
+billboard_mode = 2
+
+[node name="Troop" type="Node" unique_id=1482538922]
+script = ExtResource("1_6da2i")
+metadata/_custom_type_script = "uid://b6pryvrpr5t1h"
+
+[node name="CharacterPieces" parent="." unique_id=993495228 instance=ExtResource("2_37opx")]
+
+[node name="MeshInstance3D" parent="CharacterPieces/CharacterMovement/pickup_target" parent_id_path=PackedInt32Array(993495228, 300074426) index="0" unique_id=1025050091]
+surface_material_override/0 = SubResource("StandardMaterial3D_pbcxd")
+
+[editable path="CharacterPieces"]
+[editable path="CharacterPieces/CharacterMovement/pickup_target"]

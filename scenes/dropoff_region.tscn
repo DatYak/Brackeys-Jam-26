@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b873m63bjf1k7"]
+
+[ext_resource type="Script" uid="uid://cuvgstp4asmye" path="res://scripts/dropoff_region.gd" id="1_bvqvs"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ce7nk"]
+
+[node name="DropoffRegion" type="Node3D" unique_id=1476246399 groups=["Dropoff"]]
+script = ExtResource("1_bvqvs")
+interact_phase = null
+
+[node name="Area3D" type="Area3D" parent="." unique_id=356656927 groups=["Dropoff"]]
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1934983508]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+shape = SubResource("SphereShape3D_ce7nk")

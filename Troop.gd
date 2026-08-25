@@ -1,1 +1,1 @@
-class_name Troop extends Node
+class_name Troop extends Character

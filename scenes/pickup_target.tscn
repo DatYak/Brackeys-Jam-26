@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://di30fu2xkd2or" path="res://scripts/pickup_target.gd" id="1_6al4r"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_2qlwl"]
+size = Vector2(1, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujqf1"]
 shading_mode = 0
@@ -17,7 +18,7 @@ script = ExtResource("1_6al4r")
 mesh = SubResource("QuadMesh_2qlwl")
 surface_material_override/0 = SubResource("StandardMaterial3D_ujqf1")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=1798022253]
+[node name="Area3D" type="Area3D" parent="." unique_id=1798022253 groups=["Interactables"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2042170996]
 shape = SubResource("BoxShape3D_ce7nk")
