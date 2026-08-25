@@ -29,10 +29,11 @@ signal gained_loyalty(amount)
 signal loyalty_updated(old_loyalty, new_loyalty)
 signal lost_all_loyalty
 
-func set_stats(_might, _guile, _favor):
+func set_stats(_might, _guile, _favor, _loyalty):
 	might = _might
 	guile = _guile
 	favor = _favor
+	loyalty = _loyalty
 
 # Health Functions
 func take_damage(_damage: int) -> void:
