@@ -58,7 +58,7 @@ func _set_health(_new_health: int) -> void:
 # I decided to just copy paste for easy bespoke events, but I would compartmentalize if it wasn't a game jam
 
 func lose_sanity(_sanity_lost: int) -> void:
-	took_damage.emit(_sanity_lost)
+	lost_sanity.emit(_sanity_lost)
 	_set_sanity(sanity - _sanity_lost)
 
 func restore_sanity(_restoration: int) -> void:
@@ -80,7 +80,7 @@ func _set_sanity(_new_sanity: int) -> void:
 # I decided to just copy paste for easy bespoke events, but I would compartmentalize if it wasn't a game jam
 
 func lose_loyalty(_loyalty_lost: int) -> void:
-	took_damage.emit(_loyalty_lost)
+	lost_loyalty.emit(_loyalty_lost)
 	_set_loyalty(loyalty - _loyalty_lost)
 
 func gain_loyalty(_loyalty_gained: int) -> void:
