@@ -1,7 +1,7 @@
 class_name Character extends Node
 
-@onready var stats : CharacterStats = $CharacterStats
-@onready var movement : CharacterMovement = $CharacterMovement
+@onready var stats : CharacterStats = $CharacterPieces/CharacterStats
+@onready var movement : CharacterMovement = $CharacterPieces/CharacterMovement
 
 var character_name = ""
 

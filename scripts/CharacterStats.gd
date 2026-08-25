@@ -5,9 +5,13 @@ const MAX_SANITY = 4
 const MAX_LOYALTY = 10
 
 # Variables
-var health = MAX_HEALTH
-var sanity = MAX_SANITY
-var loyalty = MAX_LOYALTY
+@export var health = MAX_HEALTH
+@export var sanity = MAX_SANITY
+@export var loyalty = MAX_LOYALTY
+
+@export var might = 0
+@export var guile = 0
+@export var favor = 0
 
 # Events
 signal took_damage(amount)
@@ -24,6 +28,11 @@ signal lost_loyalty(amount)
 signal gained_loyalty(amount)
 signal loyalty_updated(old_loyalty, new_loyalty)
 signal lost_all_loyalty
+
+func set_stats(_might, _guile, _favor):
+	might = _might
+	guile = _guile
+	favor = _favor
 
 # Health Functions
 func take_damage(_damage: int) -> void:
