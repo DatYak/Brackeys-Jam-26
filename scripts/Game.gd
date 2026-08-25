@@ -1,11 +1,11 @@
 class_name Game extends Node
 
 const AMOUNT_OF_TROOPS = 9
-const STATS_TO_DISTRIBUTE = 100
+const STATS_TO_DISTRIBUTE = 50
 const MIN_STATS_PER_TROOP = 6
 
-const MIN_STAT_VALUE = 1
-const MAX_STAT_VALUE = 5
+const MIN_STAT_VALUE = 0
+const MAX_STAT_VALUE = 4
 const STAT_COUNT = 3
 
 const LOYALTY_TO_DISTRIBUTE = 65
