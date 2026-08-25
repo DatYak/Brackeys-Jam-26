@@ -22,13 +22,16 @@ const DISLOYAL_GENERAL_LOYALTY = 0
 
 var troopScene = preload("res://scenes/troop.tscn")
 var generalScene = preload("res://scenes/general.tscn")
+var missionScene = preload("res://scenes/mission.tscn")
 var allTroops : Array[Troop] = []
 var allGenerals: Array[General] = []
+var allMissions: Array[Mission] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_troops(AMOUNT_OF_TROOPS, STATS_TO_DISTRIBUTE, MIN_STATS_PER_TROOP, LOYALTY_TO_DISTRIBUTE, MIN_LOYALTY_PER_TROOP)
 	spawn_generals()
+	spawn_missions()
 
 func spawn_troops(amount : int, statsToDistribute : int, minStatsPerTroop: int, loyaltyToDistribute : int, minLoyaltyPerTroop : int):
 	if statsToDistribute < minStatsPerTroop * amount:
@@ -85,6 +88,13 @@ func spawn_generals() -> void:
 	assign_stats_and_loyalty(allGenerals[0], LOYAL_GENERAL_STATS, LOYAL_GENERAL_LOYALTY)
 	assign_stats_and_loyalty(allGenerals[1], SKILLED_GENERAL_STATS, SKILLED_GENERAL_LOYALTY)
 	assign_stats_and_loyalty(allGenerals[2], DISLOYAL_GENERAL_STATS, DISLOYAL_GENERAL_LOYALTY)
+
+func spawn_missions() -> void:
+	for i in range(4):
+		var mission : Mission = missionScene.instantiate() as Mission
+		allMissions.append(mission)
+		mission.global_position = Vector3 (i * 4, 0, -5)
+		add_child(mission)
 
 func assign_stats_and_loyalty(character : Character, totalStats: int, loyalty: int):
 	if totalStats > MAX_STAT_VALUE * STAT_COUNT:

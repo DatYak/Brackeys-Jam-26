@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bvsomrqngq6t3"]
 
 [ext_resource type="PackedScene" uid="uid://b873m63bjf1k7" path="res://scenes/dropoff_region.tscn" id="1_01qru"]
+[ext_resource type="Script" uid="uid://cbxlxkmdcqs6h" path="res://scripts/Mission.gd" id="1_v3nvf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_01qru"]
 
@@ -10,6 +11,7 @@
 albedo_color = Color(1, 0.48235294, 0, 1)
 
 [node name="Mission" type="Node3D" unique_id=1013019993]
+script = ExtResource("1_v3nvf")
 
 [node name="DropoffRegion" parent="." unique_id=1476246399 instance=ExtResource("1_01qru")]
 interact_type = 2
