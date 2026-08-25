@@ -13,6 +13,8 @@ billboard_mode = 2
 [sub_resource type="QuadMesh" id="QuadMesh_2qlwl"]
 center_offset = Vector3(0, 1.5, 0)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ce7nk"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ce7nk"]
 
 [node name="pickup_target" type="Node3D" unique_id=300074426 groups=["Interactables"]]
@@ -25,6 +27,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ujqf1")
 [node name="Indicator" type="MeshInstance3D" parent="." unique_id=75477495]
 mesh = SubResource("QuadMesh_2qlwl")
 surface_material_override/0 = SubResource("StandardMaterial3D_ujqf1")
+
+[node name="Area3D" type="Area3D" parent="Indicator" unique_id=2130231492]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Indicator/Area3D" unique_id=1830406912]
+shape = SubResource("SphereShape3D_ce7nk")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1798022253 groups=["Interactables"]]
 

@@ -44,7 +44,12 @@ func interact(cursor: Cursor, interact_control:Cursor.CursorTarget) -> void:
 				on_pick_up(interact_type)
 
 func on_pick_up(interact_control:Cursor.CursorTarget)->void:
-	for area:Node in $Area3D.get_overlapping_areas():
+	var area3d:Area3D
+	if is_moved_as_indicator:
+		area3d = indicator.get_node("Area3D")
+	else:
+		area3d = $Area3D
+	for area in area3d.get_overlapping_areas():
 		if area.is_in_group("Dropoff"):
 			var dropoff = area.get_parent() as Dropoff
 			if dropoff.interact_type == interact_control:
@@ -53,7 +58,12 @@ func on_pick_up(interact_control:Cursor.CursorTarget)->void:
 
 func on_place(interact_control:Cursor.CursorTarget) -> void:
 	var dropped:bool = false
-	for area in $Area3D.get_overlapping_areas():
+	var area3d:Area3D
+	if is_moved_as_indicator:
+		area3d = indicator.get_node("Area3D")
+	else:
+		area3d = $Area3D
+	for area in area3d.get_overlapping_areas():
 		if area.is_in_group("Dropoff"):
 			var dropoff = area.get_parent() as Dropoff
 			if dropoff.interact_type == interact_control:
