@@ -23,20 +23,24 @@ const DISLOYAL_GENERAL_LOYALTY = 0
 var troopScene = preload("res://scenes/troop.tscn")
 var generalScene = preload("res://scenes/general.tscn")
 var missionScene = preload("res://scenes/mission.tscn")
+var player_scene = preload("res://scenes/player.tscn")
+
 var allTroops : Array[Troop] = []
 var allGenerals: Array[General] = []
 var allMissions: Array[Mission] = []
+var player:Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_troops(AMOUNT_OF_TROOPS, STATS_TO_DISTRIBUTE, MIN_STATS_PER_TROOP, LOYALTY_TO_DISTRIBUTE, MIN_LOYALTY_PER_TROOP)
 	spawn_generals()
 	spawn_missions()
+	player = player_scene.instantiate() as Player
+	add_child(player)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("next_turn"):
 		process_turn()
-
 
 func process_turn()-> void:
 	for mission:Mission in allMissions:
@@ -50,6 +54,13 @@ func process_turn()-> void:
 		
 	for troop:Character in allGenerals:
 		troop.movement.pickup.reset_position()
+	
+	# Do this last, technically the start of next turn.
+	player.expend_turn_supplies(self)
+
+## Get the number of units (troops + generals)
+func get_unit_count() -> int:
+	return len(allGenerals) + len(allTroops)
 
 func spawn_troops(amount : int, statsToDistribute : int, minStatsPerTroop: int, loyaltyToDistribute : int, minLoyaltyPerTroop : int):
 	if statsToDistribute < minStatsPerTroop * amount:
@@ -113,8 +124,8 @@ func spawn_missions() -> void:
 	for i in range(4):
 		var mission : Mission = missionScene.instantiate() as Mission
 		allMissions.append(mission)
+		add_child(mission) 
 		mission.global_position = Vector3 (i * 4, 0, -5)
-		add_child(mission)
 
 func assign_stats_and_loyalty(character : Character, totalStats: int, loyalty: int):
 	if totalStats > MAX_STAT_VALUE * STAT_COUNT:
@@ -134,3 +145,7 @@ func assign_stats_and_loyalty(character : Character, totalStats: int, loyalty: i
 		stats[stat] += 1
 	
 	character.stats.set_stats(stats[0], stats[1], stats[2], loyalty)
+
+func on_supplies_empty() ->void:
+	#LOSE
+	print("Game OVER!")
