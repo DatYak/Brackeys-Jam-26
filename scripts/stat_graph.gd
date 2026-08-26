@@ -40,7 +40,7 @@ func display_stats(new_stats:Array):
 	polygon = float_array_to_Vector2Array(points);
  	
 func _draw() -> void:
-	var red : Color = Color("ff1b26ff")
-	var blue : Color = Color("2fcb69ff")
-	var green : Color = Color("7787ffff")
+	var red : Color = Color("D95F02")
+	var blue : Color = Color("4DAF4A")
+	var green : Color = Color("3A8EBA")
 	draw_polygon(polygon, [ red, blue, green ])

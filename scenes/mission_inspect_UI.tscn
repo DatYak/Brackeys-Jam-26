@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://c1g0eb5h3gg13"]
+
+[ext_resource type="Script" uid="uid://c61wj8mksjrql" path="res://scripts/unit_inspect_ui.gd" id="1_aeerv"]
+
+[node name="UnitInspectUi" type="Control" unique_id=553661356]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_aeerv")
+
+[node name="Background" type="Panel" parent="." unique_id=1694667917]
+layout_mode = 0
+offset_right = 386.0
+offset_bottom = 211.0
+
+[node name="Nameplate" type="Panel" parent="Background" unique_id=2100218571]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Background/Nameplate" unique_id=293027759]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "The Most Dangerous Mission"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Disposition" type="Panel" parent="Background" unique_id=1648289464]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Background/Disposition" unique_id=235477852]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "greets you as a true friend."
+horizontal_alignment = 1
+vertical_alignment = 1
