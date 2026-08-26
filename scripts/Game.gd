@@ -20,6 +20,8 @@ const LOYAL_GENERAL_LOYALTY = 10
 const SKILLED_GENERAL_LOYALTY = 5
 const DISLOYAL_GENERAL_LOYALTY = 0
 
+const FAVOR_PER_BOON = 3
+
 var troopScene = preload("res://scenes/troop.tscn")
 var generalScene = preload("res://scenes/general.tscn")
 var missionScene = preload("res://scenes/mission.tscn")
@@ -30,7 +32,9 @@ var allGenerals: Array[General] = []
 var allMissions: Array[Mission] = []
 var player:Player
 
-signal _on_supplies_found (supplies:int)
+signal _on_supplies_found (supplies: int)
+signal _on_favor_earned (favor: int)
+signal _on_boon_earned
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,8 +43,10 @@ func _ready() -> void:
 	spawn_missions()
 	player = player_scene.instantiate() as Player
 	add_child(player)
+	player.game = self
 	
 	_on_supplies_found.connect(player.add_supplies)
+	_on_favor_earned.connect(player.add_favor)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("next_turn"):
@@ -60,7 +66,7 @@ func process_turn()-> void:
 		troop.movement.pickup.reset_position()
 	
 	# Do this last, technically the start of next turn.
-	player.expend_turn_supplies(self)
+	player.expend_turn_supplies()
 
 ## Get the number of units (troops + generals)
 func get_unit_count() -> int:
@@ -150,6 +156,9 @@ func assign_stats_and_loyalty(character : Character, totalStats: int, loyalty: i
 	
 	character.stats.set_stats(stats[0], stats[1], stats[2], loyalty)
 
-func on_supplies_empty() ->void:
+func on_boon_earned() -> void:
+	print ("Boon earned")
+
+func on_supplies_empty() -> void:
 	#LOSE
 	print("Game OVER!")

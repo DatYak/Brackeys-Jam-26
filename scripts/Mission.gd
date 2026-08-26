@@ -47,6 +47,8 @@ func perform_mission(game:Game, general : General, party : Array[Troop]):
 			var supplies_rewarded = lerp(MIN_SUPPLIES, MAX_SUPPLIES, difficulty_percent())
 			supplies_rewarded = ceili(supplies_rewarded)
 			game._on_supplies_found.emit(supplies_rewarded)
+			if rewardType == MissionRewardType.VICTORY_POINTS:
+				game._on_favor_earned.emit(1)
 	else:
 		harm_troops(party)
 	spreadLoyalty(general, party)
@@ -92,7 +94,7 @@ func harm_troops(troops:Array[Troop]) -> void:
 			harm_troop(troop)
 
 func harm_troop(troop:Troop):
-	print("HARMED TROOP")
+	print("harmed troop")
 	if penaltyType == MissionPenaltyType.HEALTH:
 		troop.stats.take_damage(1)
 	if penaltyType == MissionPenaltyType.SANITY:
