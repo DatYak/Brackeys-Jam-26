@@ -2,6 +2,10 @@ class_name PickupTarget extends Node3D
 
 @export var interact_type:Cursor.CursorTarget
 
+## Minimum distance this entity can be from another. [br]
+## Used to prevent overlaps.
+@export var clearance:float = 1
+
 ## Alters the pickup behaviour so that an indicator of the target is moved
 ## instead of the actual node.
 @export var is_moved_as_indicator:bool = false

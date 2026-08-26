@@ -102,7 +102,7 @@ func spawn_generals() -> void:
 		var general:General = generalScene.instantiate()
 		allGenerals.append(general)	
 		add_child(general)
-		general.movement.position = Vector3(i * 3, 1, 5)
+		general.movement.position = Vector3(i * 5, 1, 5)
 		general.movement.set_initial_position() 
 	
 	assign_stats_and_loyalty(allGenerals[0], LOYAL_GENERAL_STATS, LOYAL_GENERAL_LOYALTY)

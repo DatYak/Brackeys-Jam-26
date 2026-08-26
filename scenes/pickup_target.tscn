@@ -14,7 +14,8 @@ center_offset = Vector3(0, 1.5, 0)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ce7nk"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ce7nk"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_6al4r"]
+radius = 1.0
 
 [node name="pickup_target" type="Node3D" unique_id=300074426 groups=["Interactables"]]
 script = ExtResource("1_6al4r")
@@ -35,7 +36,7 @@ shape = SubResource("SphereShape3D_ce7nk")
 [node name="Area3D" type="Area3D" parent="." unique_id=1798022253 groups=["Interactables"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2042170996]
-shape = SubResource("BoxShape3D_ce7nk")
+shape = SubResource("SphereShape3D_6al4r")
 
 [connection signal="mouse_entered" from="Area3D" to="." method="_hover"]
 [connection signal="mouse_exited" from="Area3D" to="." method="_hover_end"]
