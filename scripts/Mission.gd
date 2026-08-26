@@ -9,6 +9,15 @@ const IDEAL_TROOP_COUNT = 2.75
 
 const GENERAL_LOYALTY_WEIGHT = 5.0
 
+const MAX_SKILL_CHECK = 20
+const MIN_SKILL_CHECK = 1
+
+const MAX_SUPPLIES = 100
+const MIN_SUPPLIES = 20
+
+const MIN_PENALTY_CHANCE = 0.2
+const MAX_PENALTY_CHANCE = 0.8
+
 enum MissionRewardType {
 	SUPPLIES,
 	LOYALTY,
@@ -28,7 +37,22 @@ enum MissionPenaltyType {
 
 @onready var dropoff:MissionDropoff = $DropoffRegion as MissionDropoff
 
-func generateOutcome(general : General, party : Array[Troop]):
+func difficulty_percent() -> float:
+	return inverse_lerp(MIN_SKILL_CHECK, MAX_SKILL_CHECK, skillCheck)
+
+func perform_mission(game:Game, general : General, party : Array[Troop]):
+	var success:bool = generateOutcome(general, party)
+	if success:
+		if rewardType == MissionRewardType.SUPPLIES:
+			var supplies_rewarded = lerp(MIN_SUPPLIES, MAX_SUPPLIES, difficulty_percent())
+			supplies_rewarded = ceili(supplies_rewarded)
+			game._on_supplies_found.emit(supplies_rewarded)
+	else:
+		harm_troops(party)
+	spreadLoyalty(general, party)
+	
+
+func generateOutcome(general : General, party : Array[Troop]) -> bool:
 	var rng = RandomNumberGenerator.new()
 	var randomMult = randf_range(MIN_RANDOM_MULT, MAX_RANDOM_MULT)
 	
@@ -42,6 +66,8 @@ func generateOutcome(general : General, party : Array[Troop]):
 	
 	var outcome = randomMult * (generalFactor + (troopSizeFactor * troopSummation))
 	print("Outcome value: " + str(outcome) + " Skill Check: " + str(skillCheck))
+	return outcome > skillCheck
+
 
 func spreadLoyalty(general : General, party : Array[Troop]):
 	var maxLoyalty = CharacterStats.MAX_LOYALTY
@@ -61,3 +87,16 @@ func spreadLoyalty(general : General, party : Array[Troop]):
 
 func calculateLoyaltyMult(character : Character) -> float:
 	return MIN_LOYALTY_MULT + ((MAX_LOYALTY_MULT - MIN_LOYALTY_MULT) * (character.stats.loyalty / CharacterStats.MAX_LOYALTY))
+
+func harm_troops(troops:Array[Troop]) -> void:
+	var penalty_chance = lerp(MIN_PENALTY_CHANCE, MAX_PENALTY_CHANCE, difficulty_percent())
+	for troop in troops:
+		if randf() < penalty_chance:
+			harm_troop(troop)
+
+func harm_troop(troop:Troop):
+	print("HARMED TROOP")
+	if penaltyType == MissionPenaltyType.HEALTH:
+		troop.stats.take_damage(1)
+	if penaltyType == MissionPenaltyType.SANITY:
+		troop.stats.lose_sanity(1)

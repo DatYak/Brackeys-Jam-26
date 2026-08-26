@@ -8,6 +8,9 @@ const UNIT_SUPPLY_COST:int = 2
 
 var supply_cost:int = 0
 
+func add_supplies(amnt:int) -> void:
+	current_supplies +=amnt
+
 func expend_turn_supplies(game:Game) -> void:
 	var unit_count = game.get_unit_count()
 	supply_cost = unit_count * UNIT_SUPPLY_COST

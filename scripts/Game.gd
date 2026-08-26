@@ -30,6 +30,8 @@ var allGenerals: Array[General] = []
 var allMissions: Array[Mission] = []
 var player:Player
 
+signal _on_supplies_found (supplies:int)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_troops(AMOUNT_OF_TROOPS, STATS_TO_DISTRIBUTE, MIN_STATS_PER_TROOP, LOYALTY_TO_DISTRIBUTE, MIN_LOYALTY_PER_TROOP)
@@ -37,6 +39,8 @@ func _ready() -> void:
 	spawn_missions()
 	player = player_scene.instantiate() as Player
 	add_child(player)
+	
+	_on_supplies_found.connect(player.add_supplies)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("next_turn"):
@@ -47,7 +51,7 @@ func process_turn()-> void:
 		if not mission.dropoff.is_occupied():
 			continue
 		var general = mission.dropoff.assigned_general
-		mission.generateOutcome(general, general.party)
+		mission.perform_mission(self, general, general.party)
 	
 	for troop:Character in allTroops:
 		troop.movement.pickup.reset_position()
