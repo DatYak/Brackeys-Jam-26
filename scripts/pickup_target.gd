@@ -16,6 +16,11 @@ var follow_target:Node3D
 ## what is actually moved by the cursor
 var dragged_element:Node3D
 
+## Where the entity started, and where to return to for the start
+## of next turn.
+var first_position:Vector3
+
+## Where the entity was last, and where to return on a failed drop.
 var last_position:Vector3
 
 # Called when the node enters the scene tree for the first time.
@@ -26,6 +31,9 @@ func _ready() -> void:
 	else:
 		dragged_element =  get_parent_node_3d()
 		indicator.visible = false
+
+func set_initial_position() -> void:
+	first_position = dragged_element.global_position
 
 func _hover() -> void:
 	# print("Hovering:" + get_parent().get_parent().name)
@@ -78,3 +86,8 @@ func on_place(interact_control:Cursor.CursorTarget) -> void:
 func _process(_delta: float) -> void:
 	if dragging and follow_target:
 		dragged_element.global_position = follow_target.global_position
+
+func reset_position() ->void:
+	on_pick_up(interact_type)
+	var tween = get_tree().create_tween()
+	tween.tween_property(dragged_element, "global_position", first_position, 0.6)

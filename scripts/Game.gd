@@ -45,6 +45,11 @@ func process_turn()-> void:
 		var general = mission.dropoff.assigned_general
 		mission.generateOutcome(general, general.party)
 	
+	for troop:Character in allTroops:
+		troop.movement.pickup.reset_position()
+		
+	for troop:Character in allGenerals:
+		troop.movement.pickup.reset_position()
 
 func spawn_troops(amount : int, statsToDistribute : int, minStatsPerTroop: int, loyaltyToDistribute : int, minLoyaltyPerTroop : int):
 	if statsToDistribute < minStatsPerTroop * amount:
@@ -66,7 +71,7 @@ func spawn_troops(amount : int, statsToDistribute : int, minStatsPerTroop: int, 
 	var loyaltyPerTroop : Array[int] = []
 	
 	for i in range(amount):
-		var troop = troopScene.instantiate()
+		var troop:Troop = troopScene.instantiate()
 		allTroops.append(troop)
 		statsPerTroop.append(minStatsPerTroop)
 		loyaltyPerTroop.append(minLoyaltyPerTroop)
@@ -74,6 +79,7 @@ func spawn_troops(amount : int, statsToDistribute : int, minStatsPerTroop: int, 
 		add_child(troop)
 		troop.movement.position.x = i
 		troop.movement.position.y = 1
+		troop.movement.set_initial_position()
 	
 	for i in range(statsToDistribute - (minStatsPerTroop * amount)):
 		var randomIndex = randi() % amount
@@ -93,10 +99,11 @@ func spawn_troops(amount : int, statsToDistribute : int, minStatsPerTroop: int, 
 func spawn_generals() -> void:
 	
 	for i in range(3):
-		var general = generalScene.instantiate()
+		var general:General = generalScene.instantiate()
 		allGenerals.append(general)	
 		add_child(general)
 		general.movement.position = Vector3(i * 3, 1, 5)
+		general.movement.set_initial_position() 
 	
 	assign_stats_and_loyalty(allGenerals[0], LOYAL_GENERAL_STATS, LOYAL_GENERAL_LOYALTY)
 	assign_stats_and_loyalty(allGenerals[1], SKILLED_GENERAL_STATS, SKILLED_GENERAL_LOYALTY)

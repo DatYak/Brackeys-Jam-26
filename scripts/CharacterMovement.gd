@@ -1,5 +1,9 @@
 class_name CharacterMovement extends CharacterBody3D
 
+@onready var pickup:PickupTarget = $pickup_target
+
+func set_initial_position() -> void:
+	pickup.set_initial_position()
 
 #const SPEED = 5.0
 #const JUMP_VELOCITY = 4.5
