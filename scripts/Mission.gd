@@ -29,7 +29,6 @@ enum MissionPenaltyType {
 @onready var dropoff:MissionDropoff = $DropoffRegion as MissionDropoff
 
 func generateOutcome(general : General, party : Array[Troop]):
-	var rng = RandomNumberGenerator.new()
 	var randomMult = randf_range(MIN_RANDOM_MULT, MAX_RANDOM_MULT)
 	
 	var generalFactor = general.stats.get_skill(skillRequired) * GENERAL_OUTCOME_WEIGHT * calculateLoyaltyMult(general)
@@ -43,9 +42,7 @@ func generateOutcome(general : General, party : Array[Troop]):
 	var outcome = randomMult * (generalFactor + (troopSizeFactor * troopSummation))
 	print("Outcome value: " + str(outcome) + " Skill Check: " + str(skillCheck))
 
-func spreadLoyalty(general : General, party : Array[Troop]):
-	var maxLoyalty = CharacterStats.MAX_LOYALTY
-	
+func spreadLoyalty(general : General, party : Array[Troop]):	
 	var totalLoyalty = (general.stats.loyalty * GENERAL_LOYALTY_WEIGHT)
 	for troop in party:
 		totalLoyalty += troop.stats.loyalty
@@ -60,4 +57,4 @@ func spreadLoyalty(general : General, party : Array[Troop]):
 			troop.stats.lose_loyalty(round(impact))	
 
 func calculateLoyaltyMult(character : Character) -> float:
-	return MIN_LOYALTY_MULT + ((MAX_LOYALTY_MULT - MIN_LOYALTY_MULT) * (character.stats.loyalty / CharacterStats.MAX_LOYALTY))
+	return MIN_LOYALTY_MULT + ((MAX_LOYALTY_MULT - MIN_LOYALTY_MULT) * (character.stats.loyalty as float / CharacterStats.MAX_LOYALTY))
