@@ -28,10 +28,12 @@ offset_right = 386.0
 offset_bottom = 211.0
 
 [node name="Nameplate" type="Panel" parent="Background" unique_id=2100218571]
+propagate_maximum_size = true
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = -1
 anchor_right = 1.0
-offset_bottom = 30.0
+anchor_bottom = 0.142
+offset_bottom = 0.0379982
 grow_horizontal = 2
 
 [node name="Label" type="Label" parent="Background/Nameplate" unique_id=293027759]
@@ -44,6 +46,7 @@ grow_vertical = 2
 text = "UNIT NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
+justification_flags = 35
 
 [node name="Disposition" type="Panel" parent="Background" unique_id=1648289464]
 layout_mode = 1
