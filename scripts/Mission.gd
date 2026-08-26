@@ -26,6 +26,8 @@ enum MissionPenaltyType {
 @export var skillRequired : CharacterStats.SkillType
 #@export var statWeights : Dictionary[MissionSkillType, int] = {0:0, 1:0, 2:0}
 
+@onready var dropoff:MissionDropoff = $DropoffRegion as MissionDropoff
+
 func generateOutcome(general : General, party : Array[Troop]):
 	var rng = RandomNumberGenerator.new()
 	var randomMult = randf_range(MIN_RANDOM_MULT, MAX_RANDOM_MULT)
@@ -36,10 +38,10 @@ func generateOutcome(general : General, party : Array[Troop]):
 	
 	var troopSummation = 0.0
 	for troop in party:		
-		troopSummation += troop.stats.getStat(skillRequired) * calculateLoyaltyMult(troop)
+		troopSummation += troop.stats.get_skill(skillRequired) * calculateLoyaltyMult(troop)
 	
 	var outcome = randomMult * (generalFactor + (troopSizeFactor * troopSummation))
-	print("Outcome value: " + outcome + " Skill Check: " + skillCheck)
+	print("Outcome value: " + str(outcome) + " Skill Check: " + str(skillCheck))
 
 func spreadLoyalty(general : General, party : Array[Troop]):
 	var maxLoyalty = CharacterStats.MAX_LOYALTY

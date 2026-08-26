@@ -33,6 +33,19 @@ func _ready() -> void:
 	spawn_generals()
 	spawn_missions()
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("next_turn"):
+		process_turn()
+
+
+func process_turn()-> void:
+	for mission:Mission in allMissions:
+		if not mission.dropoff.is_occupied():
+			continue
+		var general = mission.dropoff.assigned_general
+		mission.generateOutcome(general, general.party)
+	
+
 func spawn_troops(amount : int, statsToDistribute : int, minStatsPerTroop: int, loyaltyToDistribute : int, minLoyaltyPerTroop : int):
 	if statsToDistribute < minStatsPerTroop * amount:
 		print("Can't meet min stats per troop with requested variables.")

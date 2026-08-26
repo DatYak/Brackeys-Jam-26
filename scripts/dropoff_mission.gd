@@ -15,7 +15,6 @@ func _drop_entity(entity:PickupTarget) -> bool:
 		
 	assigned_general = entity.parent as General
 	return true
-	
 
 func _remove_entity(entity:PickupTarget) -> void:
 	assigned_general = null
