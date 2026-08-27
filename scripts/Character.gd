@@ -13,9 +13,9 @@ func _ready() -> void:
 func tween_global_position(target_position : Vector3, travel_time : float) -> Tween:
 	var tween = get_tree().create_tween()
 	tween.tween_property(movement, "global_position", target_position, travel_time)
+	tween.tween_callback(pickupTarget.set_initial_position)
 	return tween
 
 func assign_image(image:Texture2D) -> void:
 	character_image = image
 	pickupTarget.mesh.get_active_material(0).set("albedo_texture", image)
-	

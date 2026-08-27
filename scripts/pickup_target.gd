@@ -28,7 +28,7 @@ var first_position:Vector3
 ## Where the entity was last, and where to return on a failed drop.
 var last_position:Vector3
 
-var collision_height:int = 0
+var collision_height:float = 0
 
 var area3d:Area3D
 
@@ -42,8 +42,25 @@ func _ready() -> void:
 		dragged_element =  mesh
 		area3d = $Area
 		indicator.visible = false
-		
+
+func _input(_event: InputEvent) -> void:
+	if not hover_target:
+		return
 	
+	if not interact_type == Cursor.CursorTarget.TROOP:
+		return
+	#
+	#if Input.is_action_just_pressed("assign_1"):
+		#
+	#if Input.is_action_just_pressed("assign_2"):
+#
+	#if Input.is_action_just_pressed("assign_3"):
+	#
+	if Input.is_action_just_pressed("unassign"):
+		on_pick_up(interact_type)
+		reset_position()
+		
+
 
 func set_initial_position() -> void:
 	first_position = dragged_element.global_position
@@ -70,7 +87,7 @@ func on_pick_up(interact_control:Cursor.CursorTarget)->void:
 	for area in area3d.get_overlapping_areas():
 		if area.is_in_group("Dropoff"):
 			var dropoff = area.get_parent() as Dropoff
-			if dropoff.interact_type == interact_control:
+			if dropoff.interact_type == interact_type:
 				dropoff._remove_entity(self)
 				break;
 
@@ -104,3 +121,6 @@ func reset_position() ->void:
 func reset() -> void:
 	dragged_element.global_position = last_position
 	area3d.global_position = last_position
+
+func assign_to_dropoff(dropoff:Dropoff) -> void:
+	pass
