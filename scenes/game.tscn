@@ -9,7 +9,7 @@
 
 [node name="Game" type="Node" unique_id=1124580399]
 script = ExtResource("1_uwrxv")
-general_icons = [ExtResource("2_iywne"), ExtResource("3_p57ef"), ExtResource("4_u5sy4")]
+general_icons = Array[Texture2D]([ExtResource("2_iywne"), ExtResource("3_p57ef"), ExtResource("4_u5sy4")])
 troop_icon = ExtResource("5_p57ef")
 metadata/_custom_type_script = "uid://7bf36ahbvr48"
 

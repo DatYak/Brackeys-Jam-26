@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://cmv1uxy85kael" path="res://shaders/M_Land.tres" id="3_y1iwg"]
 [ext_resource type="PackedScene" uid="uid://dxdfke80qnatm" path="res://scenes/BaseCampCollection.tscn" id="4_dubcs"]
 [ext_resource type="Material" uid="uid://bojubut13x7ud" path="res://shaders/M_LandSkirt.tres" id="4_ltgke"]
-[ext_resource type="Shader" uid="uid://dn6xs4jqcwjdp" path="res://shaders/M_Water.tres" id="4_y1iwg"]
+[ext_resource type="Shader" uid="uid://dn6xs4jqcwjdp" path="res://shaders/M_water.tres" id="4_y1iwg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gpgns"]
 

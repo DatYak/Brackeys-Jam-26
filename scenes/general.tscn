@@ -10,7 +10,7 @@
 size = Vector2(3, 3)
 orientation = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdh1j"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gy7hs"]
 resource_local_to_scene = true
 render_priority = 1
 transparency = 1
@@ -41,7 +41,7 @@ is_moved_as_indicator = true
 [node name="Mesh" parent="CharacterPieces/CharacterMovement/pickup_target" index="0" unique_id=1025050091]
 transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 0, 0)
 mesh = SubResource("PlaneMesh_j7drb")
-surface_material_override/0 = SubResource("StandardMaterial3D_fdh1j")
+surface_material_override/0 = SubResource("StandardMaterial3D_gy7hs")
 
 [node name="Indicator" parent="CharacterPieces/CharacterMovement/pickup_target" index="1" unique_id=75477495]
 surface_material_override/0 = SubResource("StandardMaterial3D_2p8t7")

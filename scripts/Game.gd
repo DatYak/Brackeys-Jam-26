@@ -98,11 +98,12 @@ func on_missions_completed() -> void:
 		troop.pickupTarget.reset()
 		
 	for troop:Character in allGenerals:
-			troop.pickupTarget.reset()
+		troop.pickupTarget.reset()
 	
-	are_missions_active = false
 	
 	# start next turn
+	are_missions_active = false
+
 	player.expend_turn_supplies()
 	move_to_new_base_camp()
 

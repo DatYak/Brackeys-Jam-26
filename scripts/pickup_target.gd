@@ -102,5 +102,13 @@ func reset_position() ->void:
 	area3d.global_position = first_position
 
 func reset() -> void:
-	dragged_element.global_position = last_position
+	#last_position = global_position
+	
+	on_pick_up(interact_type)
+	var tween = get_tree().create_tween()
+	tween.tween_property(dragged_element, "global_position", last_position, 0.3)
 	area3d.global_position = last_position
+
+
+func set_last_position() -> void:
+	last_position = global_position

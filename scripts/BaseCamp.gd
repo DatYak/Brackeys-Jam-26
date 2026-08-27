@@ -48,12 +48,16 @@ func send_to_camp(_generals : Array[General], troops : Array[Troop]):
 	for i in range(troops.size()):
 		var new_location = troopDefaultLocation.global_position
 		new_location.x += i * troop_distance_apart
-		troops[i].tween_global_position(new_location, travel_time)
+		var tween = troops[i].tween_global_position(new_location, travel_time)
+		tween.tween_callback(troops[i].pickupTarget.set_last_position)
+		tween.tween_callback(troops[i].pickupTarget.reset)
 
 	for i in range(_generals.size()):
 		var new_location = generalDefaultLocation.global_position
 		new_location.x += i * general_distance_apart
-		_generals[i].tween_global_position(new_location, travel_time)
+		var tween = _generals[i].tween_global_position(new_location, travel_time)
+		tween.tween_callback(_generals[i].pickupTarget.set_last_position)
+		tween.tween_callback(_generals[i].pickupTarget.reset)
 
 func are_all_generals_assigned(_generalCount : int) -> bool:
 	var generalsAssigned = 0
@@ -77,6 +81,9 @@ func travel_to_mission(mission : Mission, general : General):
 	var general_starting_position : Vector3 = general.movement.global_position
 	
 	general.tween_global_position(mission.global_position, travel_time)
+	var tween = get_tree().create_tween()
+	tween.tween_property(general.pickupTarget.indicator, "global_position", general.pickupTarget.indicator.global_position, travel_time)
+	
 	for troop in general.party:
 		troop.tween_global_position(mission.global_position + (troop.movement.global_position - general_starting_position), travel_time)
 	
