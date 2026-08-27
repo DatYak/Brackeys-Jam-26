@@ -23,6 +23,10 @@ font_color = Color(0.3019608, 0.6862745, 0.2901961, 1)
 font = ExtResource("4_kxpto")
 font_color = Color(0.22745098, 0.5568628, 0.7294118, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ce7nk"]
+font = ExtResource("4_kxpto")
+font_color = Color(0.93333334, 0.4, 0.46666667, 1)
+
 [node name="UnitInspectUi" type="Control" unique_id=553661356]
 layout_mode = 3
 anchors_preset = 15
@@ -90,9 +94,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = -50.0
+offset_top = -56.5
 offset_right = 50.0
-offset_bottom = 50.0
+offset_bottom = 43.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -142,4 +146,22 @@ offset_bottom = 96.5
 text = "Nerve"
 label_settings = SubResource("LabelSettings_2vseu")
 horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Background" unique_id=222967038]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -58.0
+offset_right = 20.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Uninjured"
+label_settings = SubResource("LabelSettings_ce7nk")
+horizontal_alignment = 1
 vertical_alignment = 1

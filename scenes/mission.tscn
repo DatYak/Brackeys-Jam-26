@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b873m63bjf1k7" path="res://scenes/dropoff_region.tscn" id="1_01qru"]
 [ext_resource type="Script" uid="uid://cbxlxkmdcqs6h" path="res://scripts/Mission.gd" id="1_v3nvf"]
 [ext_resource type="Script" uid="uid://16u18spi6mjk" path="res://scripts/dropoff_mission.gd" id="3_cv0tx"]
+[ext_resource type="PackedScene" uid="uid://c1g0eb5h3gg13" path="res://scenes/mission_inspect_UI.tscn" id="4_0mvd2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_01qru"]
 
@@ -25,5 +26,10 @@ shape = SubResource("SphereShape3D_01qru")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=515275423]
 mesh = SubResource("SphereMesh_ce7nk")
 surface_material_override/0 = SubResource("StandardMaterial3D_01qru")
+
+[node name="MissionInspectUi" parent="." unique_id=553661356 instance=ExtResource("4_0mvd2")]
+
+[connection signal="mouse_entered" from="DropoffRegion/Area3D" to="DropoffRegion" method="_hover"]
+[connection signal="mouse_exited" from="DropoffRegion/Area3D" to="DropoffRegion" method="_hover_end"]
 
 [editable path="DropoffRegion"]
