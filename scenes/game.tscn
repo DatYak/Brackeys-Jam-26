@@ -1,10 +1,16 @@
 [gd_scene format=3 uid="uid://bsv4m0cpdk7m0"]
 
 [ext_resource type="Script" uid="uid://7bf36ahbvr48" path="res://scripts/Game.gd" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://b5d0pb5xhj763" path="res://textures/Head1.png" id="2_iywne"]
 [ext_resource type="PackedScene" uid="uid://cnv4c6hshyklt" path="res://scenes/interactive_map.tscn" id="2_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://dsndoimafyv0q" path="res://textures/Head2.png" id="3_p57ef"]
+[ext_resource type="Texture2D" uid="uid://stkuw0f2byxt" path="res://textures/Head3.png" id="4_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://bt1smf277uhoh" path="res://textures/Soldier.png" id="5_p57ef"]
 
 [node name="Game" type="Node" unique_id=1124580399]
 script = ExtResource("1_uwrxv")
+general_icons = [ExtResource("2_iywne"), ExtResource("3_p57ef"), ExtResource("4_u5sy4")]
+troop_icon = ExtResource("5_p57ef")
 metadata/_custom_type_script = "uid://7bf36ahbvr48"
 
 [node name="InteractiveMap" parent="." unique_id=1772888486 instance=ExtResource("2_yqjtg")]

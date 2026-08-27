@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://csilfu5p2raxp" path="res://scripts/cursor.gd" id="1_1eco6"]
 [ext_resource type="Texture2D" uid="uid://ccjdqmfrhpsfe" path="res://textures/Hand.png" id="2_s0nli"]
+[ext_resource type="Texture2D" uid="uid://by8tk8q7wflmh" path="res://textures/T_Shadow.png" id="3_ndevg"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_1eco6"]
 
@@ -15,16 +16,20 @@ particles_anim_loop = false
 
 [node name="Cursor" type="Node3D" unique_id=12422246]
 script = ExtResource("1_1eco6")
+hover_height = 3.0
 lowered_height = -1.0
 
-[node name="Model" type="MeshInstance3D" parent="." unique_id=281723036]
+[node name="Model_OLD" type="MeshInstance3D" parent="." unique_id=281723036]
 visible = false
 mesh = SubResource("SphereMesh_1eco6")
 surface_material_override/0 = SubResource("StandardMaterial3D_1eco6")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1326565046]
+[node name="Model" type="Sprite3D" parent="." unique_id=1326565046]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 billboard = 1
 texture_filter = 1
 render_priority = 1
 texture = ExtResource("2_s0nli")
+
+[node name="Shadow" type="Decal" parent="." unique_id=1380111611]
+texture_albedo = ExtResource("3_ndevg")

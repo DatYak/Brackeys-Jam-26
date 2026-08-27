@@ -5,9 +5,9 @@ signal _on_missions_completed
 @onready var missionsParent : Node = $MissionLocations
 @onready var generalDefaultLocation: Node3D = $GeneralsLocation
 @onready var troopDefaultLocation : Node3D = $TroopsLocation
-@export var troop_distance_apart = 2
-@export var general_distance_apart = 4
-@export var travel_time = 2
+@export var troop_distance_apart : float = 2
+@export var general_distance_apart : float = 4
+@export var travel_time : float = 2
 
 var missionScene = preload("res://scenes/mission.tscn")
 var missionLocations : Array[Node3D] = []
@@ -61,6 +61,7 @@ func are_all_generals_assigned(_generalCount : int) -> bool:
 	for mission in missions:
 		if (mission.dropoff.assigned_general != null):
 			generalsAssigned += 1
+	
 	
 	return generalsAssigned == _generalCount
 

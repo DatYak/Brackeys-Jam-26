@@ -1,6 +1,9 @@
 class_name Cursor extends Node3D
 
 @onready var camera:= get_parent() as Camera3D
+
+@onready var shadow:= $Shadow
+
 @export_range(1, 1000) var hover_height:float = 2.0
 @export_range(-2, 2) var lowered_height:float = -1.5
 @export_range(0.0, 1.0) var pickup_time:float = 0.15
@@ -20,6 +23,7 @@ var cursor_position:Vector3
 
 func _ready() -> void:
 	global_rotation =  Vector3(0,0,0)
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -38,6 +42,7 @@ func _process(_delta: float) -> void:
 	
 	if result:
 		cursor_position = result.position + Vector3(0, hover_height, 0)
+		shadow.global_position = result.position
 	
 	global_position = cursor_position
 
@@ -60,17 +65,12 @@ func _input(event: InputEvent) -> void:
 func pick_up(target:PickupTarget) -> void:
 	has_target = true
 	held_node = target
-	var tween = get_tree().create_tween()
-	lower(tween, attatch)
-	raise(tween)
+	attatch()
 
 func drop(target:PickupTarget) -> void:
 	has_target = true
 	held_node = target
-	var tween = get_tree().create_tween()
-	
-	lower(tween, detatch)
-	raise(tween)
+	detatch()
 
 func attatch() -> void:
 	held_node.dragging = true
@@ -81,13 +81,13 @@ func detatch() -> void:
 	held_node.follow_target = null
 	held_node.on_place(held_node.interact_type)
 
-func lower(tween:Tween, callback:Callable = do_nothing) -> void:
-	tween.tween_property($Model, "position", Vector3(0,lowered_height,0), pickup_time)
-	tween.tween_callback(callback)
+#func lower(tween:Tween, callback:Callable = do_nothing) -> void:
+	#tween.tween_property(Model, "position", Vector3(0,lowered_height,0), pickup_time)
+	#tween.tween_callback(callback)
 
-func raise(tween:Tween, callback:Callable = do_nothing) -> void:
-	tween.tween_property($Model, "position", Vector3(0,0,0), pickup_time)
-	tween.tween_callback(callback)
+#func raise(tween:Tween, callback:Callable = do_nothing) -> void:
+	#tween.tween_property($Model, "position", Vector3(0,0,0), pickup_time)
+	#tween.tween_callback(callback)
 
 func do_nothing(_args) -> void:
 	pass

@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://c3x8d8b0l2qwe" path="res://fonts/CWDRKAGE.TTF" id="2_2vseu"]
 [ext_resource type="Texture2D" uid="uid://b1nanxa0s1ogg" path="res://textures/UI_Polygraph_Background.png" id="3_tapif"]
 [ext_resource type="FontFile" uid="uid://dftf8lag84jc4" path="res://fonts/Cinzel-Regular.otf" id="4_kxpto"]
+[ext_resource type="Texture2D" uid="uid://bt1smf277uhoh" path="res://textures/Soldier.png" id="6_wckq4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f2jij"]
 font = ExtResource("2_2vseu")
@@ -94,9 +95,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
+offset_left = 38.0
 offset_top = -56.5
-offset_right = 50.0
+offset_right = 138.0
 offset_bottom = 43.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -151,16 +152,16 @@ label_settings = SubResource("LabelSettings_2vseu")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="Background" unique_id=222967038]
+[node name="Health" type="Label" parent="Background" unique_id=222967038]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
+offset_left = -164.0
 offset_top = -58.0
-offset_right = 20.0
+offset_right = -74.0
 offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -168,3 +169,13 @@ text = "Uninjured"
 label_settings = SubResource("LabelSettings_ce7nk")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Image" type="TextureRect" parent="Background" unique_id=1407626540]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 43.0
+offset_right = 125.0
+offset_bottom = 149.0
+texture = ExtResource("6_wckq4")
+expand_mode = 1
+stretch_mode = 5

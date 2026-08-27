@@ -13,7 +13,7 @@ func is_occupied() -> bool:
 func _drop_entity(entity:PickupTarget) -> bool:
 	if is_occupied():
 		return false
-		
+	
 	assigned_general = entity.parent as General
 	return true
 
