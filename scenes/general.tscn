@@ -55,9 +55,6 @@ general = NodePath("../../..")
 troop_distance = 2.0
 interact_type = 1
 
-[node name="Area3D" parent="CharacterPieces/CharacterMovement/DropoffRegion" index="0" unique_id=356656927]
-input_ray_pickable = false
-
 [editable path="CharacterPieces"]
 [editable path="CharacterPieces/CharacterMovement/pickup_target"]
 [editable path="CharacterPieces/CharacterMovement/DropoffRegion"]

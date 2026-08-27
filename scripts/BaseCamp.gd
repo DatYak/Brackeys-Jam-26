@@ -1,5 +1,7 @@
 class_name BaseCamp extends Node3D
 
+const TROOP_RADIUS = 1.8
+
 signal _on_missions_completed
 
 @onready var missionsParent : Node = $MissionLocations
@@ -45,10 +47,15 @@ func exit_camp():
 	missions.clear()
 	
 func send_to_camp(_generals : Array[General], troops : Array[Troop]):	
+	var num_troops = len(troops)
+	var angle_inc = 360.0 / num_troops as float
+	var angle = 0
 	for i in range(troops.size()):
+		var location_offset = Vector3(TROOP_RADIUS,1,0).rotated(Vector3.UP, deg_to_rad(angle))
 		var new_location = troopDefaultLocation.global_position
-		new_location.x += i * troop_distance_apart
+		new_location+= location_offset
 		troops[i].tween_global_position(new_location, travel_time)
+		angle += angle_inc
 
 	for i in range(_generals.size()):
 		var new_location = generalDefaultLocation.global_position
