@@ -35,8 +35,6 @@ func spawn_missions(missionsToSpawn : Array[MissionData]):
 		
 		mission.skillCheck = data.skill_check
 		
-	for mission in missions:
-		print(mission.mission_name)
 		
 func exit_camp():
 	for mission in missions:
