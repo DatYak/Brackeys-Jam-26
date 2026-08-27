@@ -3,13 +3,14 @@
 [ext_resource type="Script" uid="uid://di30fu2xkd2or" path="res://scripts/pickup_target.gd" id="1_6al4r"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_b1ytf"]
-size = Vector2(1, 2)
+size = Vector2(0.75, 1.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujqf1"]
 shading_mode = 0
 billboard_mode = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_2qlwl"]
+size = Vector2(0.5, 0.5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6al4r"]
 radius = 1.0
