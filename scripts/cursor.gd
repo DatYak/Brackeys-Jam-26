@@ -23,6 +23,7 @@ var cursor_position:Vector3
 
 func _ready() -> void:
 	global_rotation =  Vector3(0,0,0)
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
