@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://pm63ut13bk4b"
+
+[deps]
+
+files=["res://text/Odyssey Jam - Missions - Sheet1.Skill Used.translation", "res://text/Odyssey Jam - Missions - Sheet1.Success Reward.translation", "res://text/Odyssey Jam - Missions - Sheet1.Failure Penalty.translation", "res://text/Odyssey Jam - Missions - Sheet1.Mission Name & Description by Difficulty.translation"]
+
+source_file="res://text/Odyssey Jam - Missions - Sheet1.csv"
+dest_files=["res://text/Odyssey Jam - Missions - Sheet1.Skill Used.translation", "res://text/Odyssey Jam - Missions - Sheet1.Success Reward.translation", "res://text/Odyssey Jam - Missions - Sheet1.Failure Penalty.translation", "res://text/Odyssey Jam - Missions - Sheet1.Mission Name & Description by Difficulty.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

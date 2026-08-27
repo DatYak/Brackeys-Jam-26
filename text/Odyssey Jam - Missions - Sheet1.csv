@@ -1,0 +1,21 @@
+Mission Type,Skill Used,Success Reward,Failure Penalty,Mission Name & Description by Difficulty,,,,,
+,,,,1,,2,,3,
+,,,,Name,Description,Name,Description,Name,Description
+Raid,Might,Supplies,Health,Camp,Pilfer supplies from other travelers.,Thorp,These farmers have plenty to spare.,Village,Kill if you must. Take to survive.
+Pillage,Might,Supplies,Sanity,Settlement,Take as much as you can carry.,Town,Let nothing stop you.,City,Leave nothing but salted earth.
+Sparring,Might,Loyalty,Health,Wrestling,Train the troops in hand-to-hand battle.,Spear,Drill the troops in spear formations.,Sword,Train the troops to kill with the sword.
+Training,Might,Loyalty,Sanity,Running,Build the troops' speed and stamina.,Climbing,The troops must learn to carry their weight.,Swimming,In case someone heeds the sirens' call.
+Battle,Might,Favor,Health,Bandits,,Pirates,,Misthophoroi ,
+Conquest,Might,Favor,Sanity,Trojans,,Laestrygonians,Escape the maws of giant cannibals.,Vrykolakas,Repel the dead at the edge of Oceanus.
+Hunt,Guile,Supplies,Health,Deer,,Boar,,Lion,
+Monstrosity,Guile,Supplies,Sanity,,,,,,
+Maneuver,Guile,Loyalty,Health,,,,,,
+Trick,Guile,Loyalty,Sanity,,,,,Polyphemus,
+,Guile,Favor,Health,,,,,,
+,Guile,Favor,Sanity,,,,,,
+Trade,Nerve,Supplies,Health,,,,,,
+Rescue,Nerve,Supplies,Sanity,,,Lotophages,Resist the urge to forget.,Circe,
+,Nerve,Loyalty,Health,,,,,,
+,Nerve,Loyalty,Sanity,,,,,,
+Ritual,Nerve,Favor,Health,,,,,,
+Rite,Nerve,Favor,Sanity,,,,,,

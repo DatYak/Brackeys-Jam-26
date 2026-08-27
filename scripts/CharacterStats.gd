@@ -3,7 +3,7 @@ class_name CharacterStats extends Node
 enum SkillType {
 	MIGHT,
 	GUILE,
-	FAVOR
+	NERVE
 }
 
 const MAX_HEALTH = 2
@@ -17,7 +17,7 @@ const MAX_LOYALTY = 9
 
 @export var might = 0
 @export var guile = 0
-@export var favor = 0
+@export var nerve = 0
 
 # Events
 signal took_damage(amount)
@@ -35,10 +35,10 @@ signal gained_loyalty(amount)
 signal loyalty_updated(old_loyalty, new_loyalty)
 signal lost_all_loyalty
 
-func set_stats(_might, _guile, _favor, _loyalty):
+func set_stats(_might, _guile, _nerve, _loyalty):
 	might = _might
 	guile = _guile
-	favor = _favor
+	nerve = _nerve
 	loyalty = _loyalty
 
 func get_skill(skillType : SkillType):
@@ -47,8 +47,8 @@ func get_skill(skillType : SkillType):
 			return might
 		SkillType.GUILE:
 			return guile
-		SkillType.FAVOR:
-			return loyalty
+		SkillType.NERVE:
+			return nerve
 
 # Health Functions
 func take_damage(_damage: int) -> void:

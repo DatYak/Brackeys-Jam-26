@@ -54,9 +54,14 @@ signal _on_supplies_found (supplies: int)
 signal _on_favor_earned (favor: int)
 signal _on_boon_earned
 var boon_earned_last_mission = false
+
+var missionDatabase : MissionCSVParser
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	instance = self
+	
+	missionDatabase = MissionCSVParser.new()
+	missionDatabase.loadData()
 	
 	spawn_troops(AMOUNT_OF_TROOPS, STATS_TO_DISTRIBUTE, MIN_STATS_PER_TROOP, LOYALTY_TO_DISTRIBUTE, MIN_LOYALTY_PER_TROOP)
 	spawn_generals()
@@ -122,9 +127,31 @@ func move_to_new_base_camp() -> void:
 	
 	activeBaseCamp = baseCampCollectionsByBoon[boons].contents[currentBaseCampIndex]
 	activeBaseCamp._on_missions_completed.connect(on_missions_completed)
-	activeBaseCamp.spawn_missions(NUM_MISSIONS_PRESENTED, AVERAGE_MISSION_DIFFICULTY)
+	
+	activeBaseCamp.spawn_missions(getNewMissionData())
 	activeBaseCamp.send_to_camp(allGenerals, allTroops)
 	camera.center_on_point(activeBaseCamp.position)
+
+func getNewMissionData() -> Array[MissionData]:
+	
+	var missionData : Array[MissionData] = []
+	
+	var total_difficulty:int = ceili((NUM_MISSIONS_PRESENTED * AVERAGE_MISSION_DIFFICULTY) * Mission.MAX_SKILL_CHECK)
+	var max_diff = Mission.MAX_SKILL_CHECK
+	var min_diff = Mission.MIN_SKILL_CHECK
+	
+	for i in range(NUM_MISSIONS_PRESENTED):
+		var skillCheck = randi_range(min_diff, max_diff)
+		
+		var difficultyConversion = ceili(3 * (skillCheck-min_diff ) as float / (max_diff-min_diff) as float) - 1 #converts to an int: 0, 1, 2
+		var newMissionData = missionDatabase.get_random_mission_by_difficulty(difficultyConversion)
+		
+		newMissionData.skill_check = skillCheck
+		missionData.append(newMissionData)
+		total_difficulty -= skillCheck
+		max_diff = max(max_diff, total_difficulty)
+		
+	return missionData
 
 ## Get the number of units (troops + generals)
 func get_unit_count() -> int:
