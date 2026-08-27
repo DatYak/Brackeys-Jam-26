@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://dro6i7tcu6xgu"]
 
 [ext_resource type="Script" uid="uid://btsbhtatpsmc0" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="FontFile" uid="uid://1xwmh56r4a37" path="res://fonts/CinzelDecorative-Black.otf" id="2_g2els"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sxtsd"]
+font = ExtResource("2_g2els")
+font_color = Color(0.8, 0.73333335, 0.26666668, 1)
 
 [node name="Player" type="Node" unique_id=1233535754]
 script = ExtResource("1_3vyb7")
@@ -31,4 +36,5 @@ offset_left = 10.0
 offset_right = 310.0
 grow_vertical = 2
 text = "Supplies: 200 (-24)"
+label_settings = SubResource("LabelSettings_sxtsd")
 vertical_alignment = 1

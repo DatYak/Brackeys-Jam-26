@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://duduix8w60bgs"]
+
+[ext_resource type="Texture2D" uid="uid://ppj0f2kx535p" path="res://textures/UI_Notification.png" id="1_qgdpc"]
+[ext_resource type="Script" uid="uid://cduj58s0bbjyp" path="res://scripts/fading_notif.gd" id="1_y04pk"]
+[ext_resource type="FontFile" uid="uid://c3x8d8b0l2qwe" path="res://fonts/CWDRKAGE.TTF" id="2_6w1aj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qgdpc"]
+font = ExtResource("2_6w1aj")
+font_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" unique_id=554222310]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y04pk")
+
+[node name="Panel" type="TextureRect" parent="." unique_id=391853585]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -226.0
+offset_top = -27.0
+offset_right = 226.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_qgdpc")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Panel" unique_id=1585054170]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Victory at MISSION: +Supplies"
+label_settings = SubResource("LabelSettings_qgdpc")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -11,6 +11,7 @@ signal _on_missions_completed
 @export var troop_distance_apart : float = 2
 @export var general_distance_apart : float = 4
 @export var travel_time : float = 2
+@export var mission_feedback_time : float = 2
 
 var missionScene = preload("res://scenes/mission.tscn")
 var missionLocations : Array[Node3D] = []
@@ -87,6 +88,10 @@ func process_missions():
 		var general = mission.dropoff.assigned_general
 		if (general != null):
 			travel_to_mission(mission, general)
+			
+	
+	await get_tree().create_timer(travel_time).timeout
+	perform_missions()
 	
 	pass
 
@@ -101,20 +106,21 @@ func travel_to_mission(mission : Mission, general : General):
 	for troop in general.party:
 		troop.tween_global_position(mission.global_position + (troop.movement.global_position - general_starting_position), travel_time)
 	
-	await get_tree().create_timer(travel_time).timeout
-	
-	general.tween_global_position(general_starting_position, travel_time)
-	for troop in general.party:
-		troop.tween_global_position(general_starting_position + (troop.movement.global_position - general.movement.global_position), travel_time)
-	
-	perform_missions()
-	await get_tree().create_timer(travel_time).timeout
-	
-	_on_missions_completed.emit()
+	#await get_tree().create_timer(travel_time).timeout
+	#
+	#general.tween_global_position(general_starting_position, travel_time)
+	#for troop in general.party:
+		#troop.tween_global_position(general_starting_position + (troop.movement.global_position - general.movement.global_position), travel_time)
+	#
 
 func perform_missions():
 	for mission:Mission in missions:
 		if not mission.dropoff.is_occupied():
 			continue
+		
 		var general = mission.dropoff.assigned_general
 		mission.perform_mission(general, general.party)
+		await get_tree().create_timer(mission_feedback_time).timeout
+		
+	
+	_on_missions_completed.emit()
