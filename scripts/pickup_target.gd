@@ -132,7 +132,7 @@ func reset() -> void:
 func assign_to_dropoff(index:int) -> void:
 	var general = Game.instance.allGenerals[index]
 	on_pick_up(interact_type)
-	area3d.global_position = general.movement.global_position11
+	area3d.global_position = general.movement.global_position
 	var tween = get_tree().create_tween()
 	tween.tween_property(dragged_element, "global_position", general.movement.global_position, 0.6)
 	tween.tween_callback(on_place.bind(interact_type))
