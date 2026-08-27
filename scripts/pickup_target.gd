@@ -49,13 +49,16 @@ func _input(_event: InputEvent) -> void:
 	
 	if not interact_type == Cursor.CursorTarget.TROOP:
 		return
-	#
-	#if Input.is_action_just_pressed("assign_1"):
-		#
-	#if Input.is_action_just_pressed("assign_2"):
-#
-	#if Input.is_action_just_pressed("assign_3"):
-	#
+	
+	if Input.is_action_just_pressed("assign_1"):
+		assign_to_dropoff(0)
+		
+	if Input.is_action_just_pressed("assign_2"):
+		assign_to_dropoff(1)
+		
+	if Input.is_action_just_pressed("assign_3"):
+		assign_to_dropoff(2)
+	
 	if Input.is_action_just_pressed("unassign"):
 		on_pick_up(interact_type)
 		reset_position()
@@ -122,5 +125,10 @@ func reset() -> void:
 	dragged_element.global_position = last_position
 	area3d.global_position = last_position
 
-func assign_to_dropoff(dropoff:Dropoff) -> void:
-	pass
+func assign_to_dropoff(index:int) -> void:
+	var general = Game.instance.allGenerals[index]
+	on_pick_up(interact_type)
+	area3d.global_position = general.movement.global_position11
+	var tween = get_tree().create_tween()
+	tween.tween_property(dragged_element, "global_position", general.movement.global_position, 0.6)
+	tween.tween_callback(on_place.bind(interact_type))
