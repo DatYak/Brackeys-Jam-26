@@ -22,7 +22,7 @@ func spawn_missions(missionCount : int, averageDifficulty : int) -> Array[Missio
 		var mission : Mission = missionScene.instantiate() as Mission
 		missions.append(mission)
 		add_child(mission) 
-		mission.position = missionLocations[i].position
+		mission.global_position = missionLocations[i].global_position
 	
 	var total_difficulty:int = ceili((missionCount * averageDifficulty) * Mission.MAX_SKILL_CHECK)
 	var max_diff = Mission.MAX_SKILL_CHECK

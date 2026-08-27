@@ -5,8 +5,9 @@
 
 [node name="Camera3D" type="Camera3D" unique_id=510139522]
 script = ExtResource("1_kod1s")
-speed = 8
-radius = 20
+speed = 10.0
+radius = 15.0
+zoom_speed = 25.0
 metadata/_custom_type_script = "uid://s6yxjjpblerw"
 
 [node name="Cursor" parent="." unique_id=12422246 instance=ExtResource("1_a3ute")]
