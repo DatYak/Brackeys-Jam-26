@@ -3,11 +3,11 @@ class_name UnitUI extends Control
 const HEALTH_DESCRIPTIONS = ["Dead", "Inured", "Healthy"]
 
 const UNIT_DISPOSITIONS = [
-	["is gone.", "has been lashed to the mast."], ["has been confined below deck.", "is no longer fit for duty.", "has been relieved."],
+	["is gone.", "has been lashed to the mast.", "has been confined below deck.", "is no longer fit for duty.", "has been relieved."],
 	["hungers for your flesh.", "won't stop staring at you.", "has stopped speaking entirely.", "shakes uncontrollably.", "wails with manic fervor." ],
 	["thirsts for your blood.", "is sowing dissent.", "is struggling to hold it together.", "looks a little worse for wear.", "grins a little too broadly."],
 	["spits at your feet.", "scoffs in indignation.", "is having some doubts.", "stands at attention.", "is quite enthusiastic."],
-	["whispers behind your back.", "eyes you with disdain.", "won't meet your eyes.", "salutes dutifully.",  "greets you as a true friend."],
+	["whispers behind your back.", "eyes you with disdain.", "won't meet your eyes.", "salutes dutifully.",  "greets you as a true friend."]
 ]
 
 @onready var stats:CharacterStats = $".."
