@@ -6,12 +6,21 @@ const UNIT_SUPPLY_COST:int = 2
 @onready var current_supplies:int = STARTING_SUPPLIES
 @onready var label:Label = $UI/Supplies
 
+var current_favor:int = 0
 var supply_cost:int = 0
 
-func add_supplies(amnt:int) -> void:
-	current_supplies +=amnt
+var game:Game
 
-func expend_turn_supplies(game:Game) -> void:
+func add_supplies(amnt:int) -> void:
+	current_supplies += amnt
+
+func add_favor(favor:int):
+	current_favor += favor
+	if current_favor > game.FAVOR_PER_BOON:
+		current_favor -= game.FAVOR_PER_BOON
+		game._on_boon_earned.emit()
+
+func expend_turn_supplies() -> void:
 	var unit_count = game.get_unit_count()
 	supply_cost = unit_count * UNIT_SUPPLY_COST
 	current_supplies -= supply_cost
