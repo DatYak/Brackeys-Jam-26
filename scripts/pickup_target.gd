@@ -100,3 +100,7 @@ func reset_position() ->void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(dragged_element, "global_position", first_position, 0.6)
 	area3d.global_position = first_position
+
+func reset() -> void:
+	dragged_element.global_position = last_position
+	area3d.global_position = last_position

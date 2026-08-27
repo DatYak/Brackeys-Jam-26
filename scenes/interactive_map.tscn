@@ -60,9 +60,6 @@ transform = Transform3D(1, 0, 0, 0, 0.4435283, 0.8962605, 0, -0.8962605, 0.44352
 
 [node name="BaseCamp" parent="BaseCampCollections/BaseCampCollection" index="0" unique_id=977315488]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.204447, 1.3529654, 0)
-troop_distance_apart = null
-general_distance_apart = null
-travel_time = null
 
 [node name="Node3D" parent="BaseCampCollections/BaseCampCollection/BaseCamp/MissionLocations" parent_id_path=PackedInt32Array(1991588896, 1914927519) index="0" unique_id=712478372]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.501, 1, -9.359)
@@ -78,9 +75,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.344, 1, -14.106)
 
 [node name="BaseCamp2" parent="BaseCampCollections/BaseCampCollection" index="1" unique_id=1105519655]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.67857, 1.689064, -17.71349)
-troop_distance_apart = null
-general_distance_apart = null
-travel_time = null
 
 [node name="Node3D" parent="BaseCampCollections/BaseCampCollection/BaseCamp2/MissionLocations" parent_id_path=PackedInt32Array(1991588896, 1190793787) index="0" unique_id=301976440]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.812637, 1, -25.625927)
@@ -93,9 +87,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.856302, 1, -19.70151)
 
 [node name="BaseCamp3" parent="BaseCampCollections/BaseCampCollection" index="2" unique_id=2091435887]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.631004, 1.5489044, -21.650005)
-troop_distance_apart = null
-general_distance_apart = null
-travel_time = null
 
 [node name="Node3D" parent="BaseCampCollections/BaseCampCollection/BaseCamp3/MissionLocations" parent_id_path=PackedInt32Array(1991588896, 2046263147) index="0" unique_id=699638474]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.635418, 1, -30.422264)

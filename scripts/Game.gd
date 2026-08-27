@@ -13,15 +13,14 @@ const STAT_COUNT = 3
 
 const LOYALTY_TO_DISTRIBUTE = 65
 const MIN_LOYALTY_PER_TROOP = 3
-const MAX_LOYALTY_PER_TROOP = 10
 
 const NUM_GENERALS = 3
 const LOYAL_GENERAL_STATS = 2
 const SKILLED_GENERAL_STATS = 10
 const DISLOYAL_GENERAL_STATS = 6
 
-const LOYAL_GENERAL_LOYALTY = 10
-const SKILLED_GENERAL_LOYALTY = 5
+const LOYAL_GENERAL_LOYALTY = CharacterStats.MAX_LOYALTY
+const SKILLED_GENERAL_LOYALTY = 4
 const DISLOYAL_GENERAL_LOYALTY = 0
 
 const NUM_MISSIONS_PRESENTED = 3
@@ -35,7 +34,6 @@ var player_scene = preload("res://scenes/player.tscn")
 
 var allTroops : Array[Troop] = []
 var allGenerals: Array[General] = []
-var allMissions : Array[Mission]
 var player:Player
 
 @export var general_icons:Array[Texture2D]
@@ -50,6 +48,7 @@ static var instance : Game = self
 var baseCampCollectionsByBoon : Array[BaseCampCollection] = []
 var currentBaseCampIndex = 0
 var activeBaseCamp : BaseCamp
+var are_missions_active = false
 
 signal _on_supplies_found (supplies: int)
 signal _on_favor_earned (favor: int)
@@ -76,11 +75,12 @@ func _ready() -> void:
 	move_to_new_base_camp()
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("next_turn"):
+	if Input.is_action_just_pressed("next_turn") and not are_missions_active:
 		process_turn()
 
 func process_turn()-> void:
 	
+	are_missions_active = true
 	#Check if all generals are assigned...
 	if (not activeBaseCamp.are_all_generals_assigned(NUM_GENERALS)):
 		print("Must assign all generals first.")
@@ -92,12 +92,15 @@ func process_turn()-> void:
 
 # Called via signal from activeBaseCamp
 func on_missions_completed() -> void:
+	
 	#cleanup
 	for troop:Character in allTroops:
-		troop.pickupTarget.reset_position()
+		troop.pickupTarget.reset()
 		
 	for troop:Character in allGenerals:
-		troop.pickupTarget.reset_position()
+			troop.pickupTarget.reset()
+	
+	are_missions_active = false
 	
 	# start next turn
 	player.expend_turn_supplies()
@@ -118,7 +121,7 @@ func move_to_new_base_camp() -> void:
 	
 	activeBaseCamp = baseCampCollectionsByBoon[boons].contents[currentBaseCampIndex]
 	activeBaseCamp._on_missions_completed.connect(on_missions_completed)
-	allMissions = activeBaseCamp.spawn_missions(NUM_MISSIONS_PRESENTED, AVERAGE_MISSION_DIFFICULTY)
+	activeBaseCamp.spawn_missions(NUM_MISSIONS_PRESENTED, AVERAGE_MISSION_DIFFICULTY)
 	activeBaseCamp.send_to_camp(allGenerals, allTroops)
 	camera.center_on_point(activeBaseCamp.position)
 
@@ -138,7 +141,7 @@ func spawn_troops(amount : int, statsToDistribute : int, minStatsPerTroop: int, 
 	if loyaltyToDistribute < minLoyaltyPerTroop * amount:
 		print("Can't meet min loyalty per troop with requested variables.")
 	
-	if (loyaltyToDistribute > MAX_LOYALTY_PER_TROOP * amount):
+	if (loyaltyToDistribute > CharacterStats.MAX_LOYALTY * amount):
 		print("Too much loyalty to distribute. Aborting spawn to prevent loop.")
 		return
 	
@@ -164,7 +167,7 @@ func spawn_troops(amount : int, statsToDistribute : int, minStatsPerTroop: int, 
 	
 	for i in range(loyaltyToDistribute - (minLoyaltyPerTroop * amount)):
 		var randomIndex = randi() % amount
-		while (loyaltyPerTroop[randomIndex] >= MAX_LOYALTY_PER_TROOP):
+		while (loyaltyPerTroop[randomIndex] >= CharacterStats.MAX_LOYALTY):
 			randomIndex = randi() % amount
 		loyaltyPerTroop[randomIndex] += 1
 	
@@ -173,17 +176,22 @@ func spawn_troops(amount : int, statsToDistribute : int, minStatsPerTroop: int, 
 
 func spawn_generals() -> void:
 	
-	for i in range(3):
+	var stats = [LOYAL_GENERAL_STATS, SKILLED_GENERAL_STATS, DISLOYAL_GENERAL_STATS]
+	var loyalty = [LOYAL_GENERAL_LOYALTY, SKILLED_GENERAL_LOYALTY, DISLOYAL_GENERAL_LOYALTY]
+	
+	for i in range(NUM_GENERALS):
 		var general:General = generalScene.instantiate()
 		allGenerals.append(general)	
 		add_child(general)
 		general.movement.position = Vector3(i * 5, 1, 5)
 		general.pickupTarget.set_initial_position() 
 		general.assign_image(general_icons[i])
-	
-	assign_stats_and_loyalty(allGenerals[0], LOYAL_GENERAL_STATS, LOYAL_GENERAL_LOYALTY)
-	assign_stats_and_loyalty(allGenerals[1], SKILLED_GENERAL_STATS, SKILLED_GENERAL_LOYALTY)
-	assign_stats_and_loyalty(allGenerals[2], DISLOYAL_GENERAL_STATS, DISLOYAL_GENERAL_LOYALTY)
+		
+		var random = randi() % stats.size()
+		assign_stats_and_loyalty(general, stats[random], loyalty[random])
+		stats.remove_at(random)
+		loyalty.remove_at(random)
+		
 
 func assign_stats_and_loyalty(character : Character, totalStats: int, loyalty: int):
 	if totalStats > MAX_STAT_VALUE * STAT_COUNT:

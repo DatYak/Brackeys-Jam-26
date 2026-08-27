@@ -18,7 +18,7 @@ func _ready() -> void:
 		if node is Node3D:
 			missionLocations.append(node as Node3D)
 			
-func spawn_missions(missionCount : int, averageDifficulty : int) -> Array[Mission]:
+func spawn_missions(missionCount : int, averageDifficulty : int):
 	
 	for i in range(missionCount):
 		var mission : Mission = missionScene.instantiate() as Mission
@@ -37,8 +37,7 @@ func spawn_missions(missionCount : int, averageDifficulty : int) -> Array[Missio
 		mission.rewardType = Mission.MissionRewardType.values().pick_random()
 		mission.penaltyType = Mission.MissionPenaltyType.values().pick_random()
 	
-	return missions
-
+	
 func exit_camp():
 	for mission in missions:
 		mission.queue_free()
@@ -61,8 +60,7 @@ func are_all_generals_assigned(_generalCount : int) -> bool:
 	for mission in missions:
 		if (mission.dropoff.assigned_general != null):
 			generalsAssigned += 1
-	
-	
+			
 	return generalsAssigned == _generalCount
 
 func process_missions():
@@ -80,13 +78,13 @@ func travel_to_mission(mission : Mission, general : General):
 	
 	general.tween_global_position(mission.global_position, travel_time)
 	for troop in general.party:
-		troop.tween_global_position(mission.global_position + (general_starting_position - troop.movement.global_position), travel_time)
+		troop.tween_global_position(mission.global_position + (troop.movement.global_position - general_starting_position), travel_time)
 	
 	await get_tree().create_timer(travel_time).timeout
 	
 	general.tween_global_position(general_starting_position, travel_time)
 	for troop in general.party:
-		troop.tween_global_position(general_starting_position + (general.movement.global_position - troop.movement.global_position), travel_time)
+		troop.tween_global_position(general_starting_position + (troop.movement.global_position - general.movement.global_position), travel_time)
 	
 	perform_missions()
 	await get_tree().create_timer(travel_time).timeout

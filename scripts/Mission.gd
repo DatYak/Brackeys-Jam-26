@@ -71,7 +71,7 @@ func generateOutcome(general : General, party : Array[Troop]) -> bool:
 	var troopSizeFactor = 1.0 / (1.0 + abs(party.size() - IDEAL_TROOP_COUNT))
 	
 	var troopSummation = 0.0
-	for troop in party:		
+	for troop in party:
 		troopSummation += troop.stats.get_skill(skillRequired) * calculateLoyaltyMult(troop)
 	
 	var outcome = randomMult * (generalFactor + (troopSizeFactor * troopSummation))
@@ -88,9 +88,9 @@ func spreadLoyalty(general : General, party : Array[Troop]):
 	
 	for troop in party:
 		var impact = (averageLoyalty - troop.stats.loyalty) / 2
-		if (impact >= 0.5):
+		if (impact > 0.5):
 			troop.stats.gain_loyalty(round(impact))
-		if (impact <= 0.5):
+		if (impact < 0.5):
 			troop.stats.lose_loyalty(round(impact))	
 
 func calculateLoyaltyMult(character : Character) -> float:
