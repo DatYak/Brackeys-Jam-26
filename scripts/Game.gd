@@ -79,14 +79,14 @@ func _process(delta: float) -> void:
 		process_turn()
 
 func process_turn()-> void:
-	
-	are_missions_active = true
+
 	#Check if all generals are assigned...
 	if (not activeBaseCamp.are_all_generals_assigned(NUM_GENERALS)):
 		print("Must assign all generals first.")
 		_attempted_turn_process_without_assigned_generals.emit()
 		return
 	
+	are_missions_active = true
 	# Process Missions
 	activeBaseCamp.process_missions()
 
@@ -98,11 +98,12 @@ func on_missions_completed() -> void:
 		troop.pickupTarget.reset()
 		
 	for troop:Character in allGenerals:
-			troop.pickupTarget.reset()
+		troop.pickupTarget.reset()
 	
-	are_missions_active = false
 	
 	# start next turn
+	are_missions_active = false
+
 	player.expend_turn_supplies()
 	move_to_new_base_camp()
 
