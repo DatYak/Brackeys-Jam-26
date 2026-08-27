@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c57x0vko4e776" path="res://scripts/stat_graph.gd" id="1_83xus"]
 [ext_resource type="Script" uid="uid://c61wj8mksjrql" path="res://scripts/unit_inspect_ui.gd" id="1_ybm2m"]
 [ext_resource type="FontFile" uid="uid://c3x8d8b0l2qwe" path="res://fonts/CWDRKAGE.TTF" id="2_2vseu"]
+[ext_resource type="Texture2D" uid="uid://b1nanxa0s1ogg" path="res://textures/UI_Polygraph_Background.png" id="3_tapif"]
 [ext_resource type="FontFile" uid="uid://dftf8lag84jc4" path="res://fonts/Cinzel-Regular.otf" id="4_kxpto"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f2jij"]
@@ -86,7 +87,7 @@ label_settings = SubResource("LabelSettings_kxpto")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PolyStat" type="Panel" parent="Background" unique_id=1720955825]
+[node name="PolyStat" type="TextureRect" parent="Background" unique_id=511520427]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -99,6 +100,8 @@ offset_right = 50.0
 offset_bottom = 43.5
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_tapif")
+expand_mode = 1
 
 [node name="StatGraph" type="Control" parent="Background/PolyStat" unique_id=448983802]
 layout_mode = 1
@@ -130,9 +133,9 @@ vertical_alignment = 1
 [node name="Label2" type="Label" parent="Background/PolyStat" unique_id=1987106322]
 layout_mode = 0
 offset_left = 102.0
-offset_top = 75.5
+offset_top = 65.0
 offset_right = 166.0
-offset_bottom = 98.5
+offset_bottom = 88.0
 text = "Guile"
 label_settings = SubResource("LabelSettings_ybm2m")
 vertical_alignment = 1
@@ -140,9 +143,9 @@ vertical_alignment = 1
 [node name="Label3" type="Label" parent="Background/PolyStat" unique_id=2076343311]
 layout_mode = 0
 offset_left = -65.0
-offset_top = 73.5
+offset_top = 63.0
 offset_right = -1.0
-offset_bottom = 96.5
+offset_bottom = 86.0
 text = "Nerve"
 label_settings = SubResource("LabelSettings_2vseu")
 horizontal_alignment = 2
