@@ -22,6 +22,6 @@ func arrange_troops() -> void:
 	var angle = 0
 	for troop:Troop in general.party:
 		var location = Vector3(troop_distance,1,0).rotated(Vector3.UP, deg_to_rad(angle))
-		troop.movement.pickup.dragged_element.global_position = general.movement.global_position + location
+		troop.pickupTarget.dragged_element.global_position = general.movement.global_position + location
 		angle += angle_inc
 	

@@ -29,6 +29,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2p8t7")
 [node name="DropoffRegion" parent="CharacterPieces/CharacterMovement" parent_id_path=PackedInt32Array(993495228, 433720663) index="2" unique_id=1476246399 node_paths=PackedStringArray("general") instance=ExtResource("3_pduxd")]
 script = ExtResource("4_1aar8")
 general = NodePath("../../..")
+troop_distance = 1.5
 interact_type = 1
 
 [editable path="CharacterPieces"]

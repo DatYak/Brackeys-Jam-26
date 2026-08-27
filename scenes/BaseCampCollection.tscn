@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dxdfke80qnatm"]
+
+[ext_resource type="Script" uid="uid://dobdtk3saa76n" path="res://scripts/BaseCampCollection.gd" id="1_kbmp2"]
+[ext_resource type="Script" uid="uid://cxls3h65k77qk" path="res://scripts/BaseCamp.gd" id="2_mugh4"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_hgkml"]
+
+[node name="BaseCampCollection" type="Node" unique_id=1991588896]
+script = ExtResource("1_kbmp2")
+metadata/_custom_type_script = "uid://dobdtk3saa76n"
+
+[node name="BaseCamp" type="Node3D" parent="." unique_id=977315488]
+script = ExtResource("2_mugh4")
+metadata/_custom_type_script = "uid://cxls3h65k77qk"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCamp" unique_id=304699300]
+mesh = SubResource("PrismMesh_hgkml")
+
+[node name="MissionLocations" type="Node" parent="BaseCamp" unique_id=1914927519]
+
+[node name="Node3D" type="Node3D" parent="BaseCamp/MissionLocations" unique_id=712478372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8881273, 0, -6.9762187)
+
+[node name="Node3D2" type="Node3D" parent="BaseCamp/MissionLocations" unique_id=54905556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.29722, 0, -6.725461)
+
+[node name="Node3D3" type="Node3D" parent="BaseCamp/MissionLocations" unique_id=1210916069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.802769, 0, 4.457325)
+
+[node name="Node3D4" type="Node3D" parent="BaseCamp/MissionLocations" unique_id=2021190975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.568383, 0, 1.0644789)
+
+[node name="GeneralsLocation" type="Node3D" parent="BaseCamp" unique_id=1431943929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6990952)
+
+[node name="TroopsLocation" type="Node3D" parent="BaseCamp" unique_id=1385925040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2254946)
+
+[node name="BaseCamp2" type="Node3D" parent="." unique_id=1105519655]
+script = ExtResource("2_mugh4")
+metadata/_custom_type_script = "uid://cxls3h65k77qk"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCamp2" unique_id=733458043]
+mesh = SubResource("PrismMesh_hgkml")
+
+[node name="MissionLocations" type="Node" parent="BaseCamp2" unique_id=1190793787]
+
+[node name="Node3D" type="Node3D" parent="BaseCamp2/MissionLocations" unique_id=301976440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8881273, 0, -6.9762187)
+
+[node name="Node3D2" type="Node3D" parent="BaseCamp2/MissionLocations" unique_id=953993386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.29722, 0, -6.725461)
+
+[node name="Node3D3" type="Node3D" parent="BaseCamp2/MissionLocations" unique_id=1198034518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.802769, 0, 4.457325)
+
+[node name="Node3D4" type="Node3D" parent="BaseCamp2/MissionLocations" unique_id=453114279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.568383, 0, 1.0644789)
+
+[node name="GeneralsLocation" type="Node3D" parent="BaseCamp2" unique_id=658756276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6990952)
+
+[node name="TroopsLocation" type="Node3D" parent="BaseCamp2" unique_id=391561042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2254946)
+
+[node name="BaseCamp3" type="Node3D" parent="." unique_id=2091435887]
+script = ExtResource("2_mugh4")
+metadata/_custom_type_script = "uid://cxls3h65k77qk"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCamp3" unique_id=1591018915]
+mesh = SubResource("PrismMesh_hgkml")
+
+[node name="MissionLocations" type="Node" parent="BaseCamp3" unique_id=2046263147]
+
+[node name="Node3D" type="Node3D" parent="BaseCamp3/MissionLocations" unique_id=699638474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8881273, 0, -6.9762187)
+
+[node name="Node3D2" type="Node3D" parent="BaseCamp3/MissionLocations" unique_id=1869040691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.29722, 0, -6.725461)
+
+[node name="Node3D3" type="Node3D" parent="BaseCamp3/MissionLocations" unique_id=537608675]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.802769, 0, 4.457325)
+
+[node name="Node3D4" type="Node3D" parent="BaseCamp3/MissionLocations" unique_id=194728328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.568383, 0, 1.0644789)
+
+[node name="GeneralsLocation" type="Node3D" parent="BaseCamp3" unique_id=1071918854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6990952)
+
+[node name="TroopsLocation" type="Node3D" parent="BaseCamp3" unique_id=523425297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2254946)

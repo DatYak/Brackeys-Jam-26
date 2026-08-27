@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bx0klj2a3og8x" path="res://scenes/camera.tscn" id="1_x3wbd"]
 [ext_resource type="ArrayMesh" uid="uid://fiqkwm3yjh1c" path="res://meshes/SM_Land.obj" id="2_a5d1k"]
+[ext_resource type="PackedScene" uid="uid://dxdfke80qnatm" path="res://scenes/BaseCampCollection.tscn" id="4_dubcs"]
 [ext_resource type="Shader" uid="uid://dn6xs4jqcwjdp" path="res://shaders/water.tres" id="4_y1iwg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gpgns"]
@@ -52,3 +53,18 @@ environment = SubResource("Environment_y1iwg")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=346729538]
 transform = Transform3D(1, 0, 0, 0, 0.4435283, 0.8962605, 0, -0.8962605, 0.4435283, 0, 0, 0)
+
+[node name="BaseCampCollections" type="Node" parent="." unique_id=1186310622]
+
+[node name="BaseCampCollection" parent="BaseCampCollections" unique_id=1991588896 instance=ExtResource("4_dubcs")]
+
+[node name="BaseCamp" parent="BaseCampCollections/BaseCampCollection" index="0" unique_id=977315488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.204447, 1.3529654, 0)
+
+[node name="BaseCamp2" parent="BaseCampCollections/BaseCampCollection" index="1" unique_id=1105519655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.67857, 1.689064, -17.71349)
+
+[node name="BaseCamp3" parent="BaseCampCollections/BaseCampCollection" index="2" unique_id=2091435887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.631004, 1.5489044, -21.650005)
+
+[editable path="BaseCampCollections/BaseCampCollection"]

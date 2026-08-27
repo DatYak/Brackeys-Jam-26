@@ -24,29 +24,43 @@ const FAVOR_PER_BOON = 3
 
 var troopScene = preload("res://scenes/troop.tscn")
 var generalScene = preload("res://scenes/general.tscn")
-var missionScene = preload("res://scenes/mission.tscn")
 var player_scene = preload("res://scenes/player.tscn")
 
 var allTroops : Array[Troop] = []
 var allGenerals: Array[General] = []
-var allMissions: Array[Mission] = []
+var allMissions : Array[Mission]
 var player:Player
+
+var boons = 0
+
+
+@onready var camera : CameraController = $InteractiveMap/Camera3D
+@onready var baseCampCollectionsParent : Node = $InteractiveMap/BaseCampCollections
+var baseCampCollectionsByBoon : Array[BaseCampCollection] = []
+var currentBaseCampIndex = 0
+var activeBaseCamp : BaseCamp
 
 signal _on_supplies_found (supplies: int)
 signal _on_favor_earned (favor: int)
 signal _on_boon_earned
-
+var boon_earned_last_mission = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_troops(AMOUNT_OF_TROOPS, STATS_TO_DISTRIBUTE, MIN_STATS_PER_TROOP, LOYALTY_TO_DISTRIBUTE, MIN_LOYALTY_PER_TROOP)
 	spawn_generals()
-	spawn_missions()
 	player = player_scene.instantiate() as Player
 	add_child(player)
 	player.game = self
 	
 	_on_supplies_found.connect(player.add_supplies)
 	_on_favor_earned.connect(player.add_favor)
+	
+	for node in baseCampCollectionsParent.get_children():
+		if node is BaseCampCollection:
+			baseCampCollectionsByBoon.append(node as BaseCampCollection)
+	
+	boon_earned_last_mission = true
+	move_to_new_base_camp()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("next_turn"):
@@ -60,13 +74,31 @@ func process_turn()-> void:
 		mission.perform_mission(self, general, general.party)
 	
 	for troop:Character in allTroops:
-		troop.movement.pickup.reset_position()
+		troop.pickupTarget.reset_position()
 		
 	for troop:Character in allGenerals:
-		troop.movement.pickup.reset_position()
+		troop.pickupTarget.reset_position()
 	
 	# Do this last, technically the start of next turn.
 	player.expend_turn_supplies()
+	move_to_new_base_camp()
+
+func move_to_new_base_camp() -> void:
+	
+	if (activeBaseCamp != null):
+		activeBaseCamp.exit_camp()
+	
+	if (boon_earned_last_mission):
+		boon_earned_last_mission = false
+		currentBaseCampIndex = 0
+	else:
+		currentBaseCampIndex += 1
+		currentBaseCampIndex %= baseCampCollectionsByBoon[boons].contents.size()
+	
+	activeBaseCamp = baseCampCollectionsByBoon[boons].contents[currentBaseCampIndex]
+	allMissions = activeBaseCamp.spawn_missions()
+	activeBaseCamp.send_to_camp(allGenerals, allTroops)
+	camera.center_on_point(activeBaseCamp.position)
 
 ## Get the number of units (troops + generals)
 func get_unit_count() -> int:
@@ -100,7 +132,7 @@ func spawn_troops(amount : int, statsToDistribute : int, minStatsPerTroop: int, 
 		add_child(troop)
 		troop.movement.position.x = i
 		troop.movement.position.y = 1
-		troop.movement.set_initial_position()
+		troop.pickupTarget.set_initial_position()
 	
 	for i in range(statsToDistribute - (minStatsPerTroop * amount)):
 		var randomIndex = randi() % amount
@@ -124,18 +156,11 @@ func spawn_generals() -> void:
 		allGenerals.append(general)	
 		add_child(general)
 		general.movement.position = Vector3(i * 5, 1, 5)
-		general.movement.set_initial_position() 
+		general.pickupTarget.set_initial_position() 
 	
 	assign_stats_and_loyalty(allGenerals[0], LOYAL_GENERAL_STATS, LOYAL_GENERAL_LOYALTY)
 	assign_stats_and_loyalty(allGenerals[1], SKILLED_GENERAL_STATS, SKILLED_GENERAL_LOYALTY)
 	assign_stats_and_loyalty(allGenerals[2], DISLOYAL_GENERAL_STATS, DISLOYAL_GENERAL_LOYALTY)
-
-func spawn_missions() -> void:
-	for i in range(4):
-		var mission : Mission = missionScene.instantiate() as Mission
-		allMissions.append(mission)
-		add_child(mission) 
-		mission.global_position = Vector3 (i * 4, 0, -5)
 
 func assign_stats_and_loyalty(character : Character, totalStats: int, loyalty: int):
 	if totalStats > MAX_STAT_VALUE * STAT_COUNT:
@@ -158,6 +183,8 @@ func assign_stats_and_loyalty(character : Character, totalStats: int, loyalty: i
 
 func on_boon_earned() -> void:
 	print ("Boon earned")
+	boons += 1
+	boon_earned_last_mission = true
 
 func on_supplies_empty() -> void:
 	#LOSE

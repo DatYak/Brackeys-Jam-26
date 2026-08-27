@@ -1,20 +1,12 @@
 [gd_scene format=3 uid="uid://blrc2v3uci8t5"]
 
-[ext_resource type="Script" uid="uid://osv2dteh7ecs" path="res://scripts/CharacterMovement.gd" id="1_4ou60"]
 [ext_resource type="PackedScene" uid="uid://cdo7qi0gm8d4q" path="res://scenes/pickup_target.tscn" id="2_iddmo"]
 [ext_resource type="Script" uid="uid://bqakgxmpo7avk" path="res://scripts/CharacterStats.gd" id="2_x6vh2"]
 [ext_resource type="PackedScene" uid="uid://b4qil3k5eqjrc" path="res://scenes/unit_inspect_UI.tscn" id="4_6u7cp"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oe4dw"]
-
 [node name="CharacterPieces" type="Node" unique_id=993495228]
 
-[node name="CharacterMovement" type="CharacterBody3D" parent="." unique_id=433720663]
-script = ExtResource("1_4ou60")
-metadata/_custom_type_script = "uid://osv2dteh7ecs"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterMovement" unique_id=589097342]
-shape = SubResource("CapsuleShape3D_oe4dw")
+[node name="CharacterMovement" type="Node3D" parent="." unique_id=127005788]
 
 [node name="pickup_target" parent="CharacterMovement" unique_id=300074426 instance=ExtResource("2_iddmo")]
 
