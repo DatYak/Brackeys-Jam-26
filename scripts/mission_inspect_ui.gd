@@ -19,6 +19,7 @@ func display():
 		recieve_lbl.label_settings.font_color = Color("ccbb44")
 	if mission.rewardType == Mission.MissionRewardType.LOYALTY:
 		recieve_lbl.text = "+Loyalty"
+		recieve_lbl.label_settings.font_color = Color("FFFFFF")
 	if mission.rewardType == Mission.MissionRewardType.VICTORY_POINTS:
 		recieve_lbl.text = "+Favor"
 		recieve_lbl.label_settings.font_color = Color("2e2585")
