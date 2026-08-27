@@ -31,10 +31,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.802769, 0, 4.457325)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.568383, 0, 1.0644789)
 
 [node name="GeneralsLocation" type="Node3D" parent="BaseCamp" unique_id=1431943929]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6990952)
 
 [node name="TroopsLocation" type="Node3D" parent="BaseCamp" unique_id=1385925040]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2254946)
 
 [node name="BaseCamp2" type="Node3D" parent="." unique_id=1105519655]
 script = ExtResource("2_mugh4")
@@ -58,10 +56,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.802769, 0, 4.457325)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.568383, 0, 1.0644789)
 
 [node name="GeneralsLocation" type="Node3D" parent="BaseCamp2" unique_id=658756276]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6990952)
 
 [node name="TroopsLocation" type="Node3D" parent="BaseCamp2" unique_id=391561042]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2254946)
 
 [node name="BaseCamp3" type="Node3D" parent="." unique_id=2091435887]
 script = ExtResource("2_mugh4")
@@ -85,7 +81,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.802769, 0, 4.457325)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.568383, 0, 1.0644789)
 
 [node name="GeneralsLocation" type="Node3D" parent="BaseCamp3" unique_id=1071918854]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6990952)
 
 [node name="TroopsLocation" type="Node3D" parent="BaseCamp3" unique_id=523425297]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2254946)
