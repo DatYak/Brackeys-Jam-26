@@ -20,6 +20,9 @@ const LOYAL_GENERAL_LOYALTY = 10
 const SKILLED_GENERAL_LOYALTY = 5
 const DISLOYAL_GENERAL_LOYALTY = 0
 
+const NUM_MISSIONS_PRESENTED = 3
+# Missions are on average 60% of max diffuculty
+const AVERAGE_MISSION_DIFFICULTY = .6
 const FAVOR_PER_BOON = 3
 
 var troopScene = preload("res://scenes/troop.tscn")
@@ -131,11 +134,22 @@ func spawn_generals() -> void:
 	assign_stats_and_loyalty(allGenerals[2], DISLOYAL_GENERAL_STATS, DISLOYAL_GENERAL_LOYALTY)
 
 func spawn_missions() -> void:
-	for i in range(4):
+	for i in range(NUM_MISSIONS_PRESENTED):
 		var mission : Mission = missionScene.instantiate() as Mission
 		allMissions.append(mission)
 		add_child(mission) 
 		mission.global_position = Vector3 (i * 4, 0, -5)
+	
+	var total_difficulty:int = ceili((NUM_MISSIONS_PRESENTED * AVERAGE_MISSION_DIFFICULTY) * Mission.MAX_SKILL_CHECK)
+	var max_diff = Mission.MAX_SKILL_CHECK
+	var min_diff = Mission.MIN_SKILL_CHECK
+	for mission in allMissions:
+		var difficulty = randi_range(min_diff, max_diff)
+		mission.skillCheck = difficulty
+		total_difficulty -= difficulty
+		max_diff = max(max_diff, total_difficulty)
+		mission.rewardType = Mission.MissionRewardType.values().pick_random()
+
 
 func assign_stats_and_loyalty(character : Character, totalStats: int, loyalty: int):
 	if totalStats > MAX_STAT_VALUE * STAT_COUNT:

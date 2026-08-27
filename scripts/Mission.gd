@@ -15,6 +15,9 @@ const MIN_SKILL_CHECK = 1
 const MAX_SUPPLIES = 100
 const MIN_SUPPLIES = 20
 
+const MAX_LOYALTY = 3
+const MIN_LOYALTY = 1
+
 const MIN_PENALTY_CHANCE = 0.2
 const MAX_PENALTY_CHANCE = 0.8
 
@@ -50,8 +53,12 @@ func perform_mission(game:Game, general : General, party : Array[Troop]):
 			var supplies_rewarded = lerp(MIN_SUPPLIES, MAX_SUPPLIES, difficulty_percent())
 			supplies_rewarded = ceili(supplies_rewarded)
 			game._on_supplies_found.emit(supplies_rewarded)
-			if rewardType == MissionRewardType.VICTORY_POINTS:
-				game._on_favor_earned.emit(1)
+		if rewardType == MissionRewardType.LOYALTY:
+			var loyalty_reward = floori(lerp(MIN_LOYALTY, MAX_LOYALTY, difficulty_percent()))
+			for troop in game.allTroops:
+				troop.stats.gain_loyalty(loyalty_reward)
+		if rewardType == MissionRewardType.VICTORY_POINTS:
+			game._on_favor_earned.emit(1)
 	else:
 		harm_troops(party)
 	spreadLoyalty(general, party)
