@@ -16,15 +16,26 @@ func _ready() -> void:
 		if node is Node3D:
 			missionLocations.append(node as Node3D)
 			
-func spawn_missions() -> Array[Mission]:
+func spawn_missions(missionCount : int, averageDifficulty : int) -> Array[Mission]:
 	
-	for i in range(4):
+	for i in range(missionCount):
 		var mission : Mission = missionScene.instantiate() as Mission
 		missions.append(mission)
 		add_child(mission) 
 		mission.position = missionLocations[i].position
+	
+	var total_difficulty:int = ceili((missionCount * averageDifficulty) * Mission.MAX_SKILL_CHECK)
+	var max_diff = Mission.MAX_SKILL_CHECK
+	var min_diff = Mission.MIN_SKILL_CHECK
+	for mission in missions:
+		var difficulty = randi_range(min_diff, max_diff)
+		mission.skillCheck = difficulty
+		total_difficulty -= difficulty
+		max_diff = max(max_diff, total_difficulty)
+		mission.rewardType = Mission.MissionRewardType.values().pick_random()
+		mission.penaltyType = Mission.MissionPenaltyType.values().pick_random()
+	
 	return missions
-
 
 func exit_camp():
 	for mission in missions:

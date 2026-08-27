@@ -15,6 +15,9 @@ const MIN_SKILL_CHECK = 1
 const MAX_SUPPLIES = 100
 const MIN_SUPPLIES = 20
 
+const MAX_LOYALTY = 3
+const MIN_LOYALTY = 1
+
 const MIN_PENALTY_CHANCE = 0.2
 const MAX_PENALTY_CHANCE = 0.8
 
@@ -28,6 +31,9 @@ enum MissionPenaltyType {
 	HEALTH,
 	SANITY
 }
+
+@export var mission_name:String = "The Most Dangerous Mission"
+@export var mission_description:String = "LOSE YOUR MIND"
 
 @export var skillCheck : int = 20
 @export var rewardType : MissionRewardType
@@ -47,12 +53,15 @@ func perform_mission(game:Game, general : General, party : Array[Troop]):
 			var supplies_rewarded = lerp(MIN_SUPPLIES, MAX_SUPPLIES, difficulty_percent())
 			supplies_rewarded = ceili(supplies_rewarded)
 			game._on_supplies_found.emit(supplies_rewarded)
-			if rewardType == MissionRewardType.VICTORY_POINTS:
-				game._on_favor_earned.emit(1)
+		if rewardType == MissionRewardType.LOYALTY:
+			var loyalty_reward = floori(lerp(MIN_LOYALTY, MAX_LOYALTY, difficulty_percent()))
+			for troop in game.allTroops:
+				troop.stats.gain_loyalty(loyalty_reward)
+		if rewardType == MissionRewardType.VICTORY_POINTS:
+			game._on_favor_earned.emit(1)
 	else:
 		harm_troops(party)
 	spreadLoyalty(general, party)
-	
 
 func generateOutcome(general : General, party : Array[Troop]) -> bool:
 	var randomMult = randf_range(MIN_RANDOM_MULT, MAX_RANDOM_MULT)

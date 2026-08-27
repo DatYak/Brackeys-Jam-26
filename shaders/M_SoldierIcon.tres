@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dtocm14dy0b2r"]
+
+[ext_resource type="Texture2D" uid="uid://bt1smf277uhoh" path="res://textures/Soldier.png" id="1_tnwmo"]
+
+[resource]
+render_priority = 1
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_tnwmo")
+texture_filter = 1
+texture_repeat = false
+billboard_keep_scale = true

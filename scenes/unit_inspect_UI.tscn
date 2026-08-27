@@ -2,15 +2,31 @@
 
 [ext_resource type="Script" uid="uid://c57x0vko4e776" path="res://scripts/stat_graph.gd" id="1_83xus"]
 [ext_resource type="Script" uid="uid://c61wj8mksjrql" path="res://scripts/unit_inspect_ui.gd" id="1_ybm2m"]
+[ext_resource type="FontFile" uid="uid://c3x8d8b0l2qwe" path="res://fonts/CWDRKAGE.TTF" id="2_2vseu"]
+[ext_resource type="Texture2D" uid="uid://b1nanxa0s1ogg" path="res://textures/UI_Polygraph_Background.png" id="3_tapif"]
+[ext_resource type="FontFile" uid="uid://dftf8lag84jc4" path="res://fonts/Cinzel-Regular.otf" id="4_kxpto"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f2jij"]
+font = ExtResource("2_2vseu")
+
+[sub_resource type="LabelSettings" id="LabelSettings_kxpto"]
+font = ExtResource("2_2vseu")
 
 [sub_resource type="LabelSettings" id="LabelSettings_83xus"]
+font = ExtResource("4_kxpto")
 font_color = Color(0.8509804, 0.37254903, 0.007843138, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ybm2m"]
+font = ExtResource("4_kxpto")
 font_color = Color(0.3019608, 0.6862745, 0.2901961, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2vseu"]
+font = ExtResource("4_kxpto")
 font_color = Color(0.22745098, 0.5568628, 0.7294118, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ce7nk"]
+font = ExtResource("4_kxpto")
+font_color = Color(0.93333334, 0.4, 0.46666667, 1)
 
 [node name="UnitInspectUi" type="Control" unique_id=553661356]
 layout_mode = 3
@@ -44,6 +60,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "UNIT NAME"
+label_settings = SubResource("LabelSettings_f2jij")
 horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 35
@@ -66,10 +83,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "greets you as a true friend."
+label_settings = SubResource("LabelSettings_kxpto")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PolyStat" type="Panel" parent="Background" unique_id=1720955825]
+[node name="PolyStat" type="TextureRect" parent="Background" unique_id=511520427]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -77,11 +95,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = -50.0
+offset_top = -56.5
 offset_right = 50.0
-offset_bottom = 50.0
+offset_bottom = 43.5
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_tapif")
+expand_mode = 1
 
 [node name="StatGraph" type="Control" parent="Background/PolyStat" unique_id=448983802]
 layout_mode = 1
@@ -113,9 +133,9 @@ vertical_alignment = 1
 [node name="Label2" type="Label" parent="Background/PolyStat" unique_id=1987106322]
 layout_mode = 0
 offset_left = 102.0
-offset_top = 75.5
+offset_top = 65.0
 offset_right = 166.0
-offset_bottom = 98.5
+offset_bottom = 88.0
 text = "Guile"
 label_settings = SubResource("LabelSettings_ybm2m")
 vertical_alignment = 1
@@ -123,10 +143,28 @@ vertical_alignment = 1
 [node name="Label3" type="Label" parent="Background/PolyStat" unique_id=2076343311]
 layout_mode = 0
 offset_left = -65.0
-offset_top = 73.5
+offset_top = 63.0
 offset_right = -1.0
-offset_bottom = 96.5
+offset_bottom = 86.0
 text = "Nerve"
 label_settings = SubResource("LabelSettings_2vseu")
 horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Background" unique_id=222967038]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -58.0
+offset_right = 20.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Uninjured"
+label_settings = SubResource("LabelSettings_ce7nk")
+horizontal_alignment = 1
 vertical_alignment = 1

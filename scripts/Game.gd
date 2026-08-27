@@ -20,6 +20,9 @@ const LOYAL_GENERAL_LOYALTY = 10
 const SKILLED_GENERAL_LOYALTY = 5
 const DISLOYAL_GENERAL_LOYALTY = 0
 
+const NUM_MISSIONS_PRESENTED = 3
+# Missions are on average 60% of max diffuculty
+const AVERAGE_MISSION_DIFFICULTY = .6
 const FAVOR_PER_BOON = 3
 
 var troopScene = preload("res://scenes/troop.tscn")
@@ -96,7 +99,7 @@ func move_to_new_base_camp() -> void:
 		currentBaseCampIndex %= baseCampCollectionsByBoon[boons].contents.size()
 	
 	activeBaseCamp = baseCampCollectionsByBoon[boons].contents[currentBaseCampIndex]
-	allMissions = activeBaseCamp.spawn_missions()
+	allMissions = activeBaseCamp.spawn_missions(NUM_MISSIONS_PRESENTED, AVERAGE_MISSION_DIFFICULTY)
 	activeBaseCamp.send_to_camp(allGenerals, allTroops)
 	camera.center_on_point(activeBaseCamp.position)
 
