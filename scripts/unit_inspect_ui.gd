@@ -21,7 +21,7 @@ const UNIT_DISPOSITIONS = [
 
 # Called when the node enters the scene tree for the first time.
 func display() -> void:
-	var stat_array:Array = [stats.might, stats.guile, stats.favor]
+	var stat_array:Array = [stats.might, stats.guile, stats.nerve]
 	stat_graph.display_stats(stat_array)
 	
 	name_label.text = character.character_name

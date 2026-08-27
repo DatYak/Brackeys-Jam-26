@@ -3,6 +3,7 @@ class_name TextFileLoader extends RefCounted
 static func load_text_file(path : String) -> String:
 	var file = FileAccess.open(path, FileAccess.READ)
 	var text = file.get_as_text()
+	text = text.replace("\r", "")
 	file.close()
 	return text
 
