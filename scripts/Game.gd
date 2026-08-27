@@ -79,14 +79,14 @@ func _process(delta: float) -> void:
 		process_turn()
 
 func process_turn()-> void:
-	
-	are_missions_active = true
+
 	#Check if all generals are assigned...
 	if (not activeBaseCamp.are_all_generals_assigned(NUM_GENERALS)):
 		print("Must assign all generals first.")
 		_attempted_turn_process_without_assigned_generals.emit()
 		return
 	
+	are_missions_active = true
 	# Process Missions
 	activeBaseCamp.process_missions()
 
