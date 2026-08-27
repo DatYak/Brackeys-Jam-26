@@ -8,7 +8,7 @@ enum SkillType {
 
 const MAX_HEALTH = 2
 const MAX_SANITY = 4
-const MAX_LOYALTY = 10
+const MAX_LOYALTY = 9
 
 # Variables
 @export var health = MAX_HEALTH
