@@ -12,7 +12,7 @@ class_name PickupTarget extends Node3D
 @onready var parent:Node = self.get_parent().get_parent().get_parent()
 @onready var ui:UnitUI = $"../../CharacterStats/UnitInspectUi"
 @onready var indicator:Node3D = $Indicator
-@onready var mesh:Node3D = $Mesh
+@onready var mesh:MeshInstance3D = $Mesh
 
 var hover_target:bool = false
 var dragging:bool= false

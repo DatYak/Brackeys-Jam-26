@@ -34,8 +34,10 @@ var allGenerals: Array[General] = []
 var allMissions : Array[Mission]
 var player:Player
 
-var boons = 0
+@export var general_icons:Array[Texture2D]
+@export var troop_icon:Texture2D
 
+var boons = 0
 
 @onready var camera : CameraController = $InteractiveMap/Camera3D
 @onready var baseCampCollectionsParent : Node = $InteractiveMap/BaseCampCollections
@@ -160,6 +162,7 @@ func spawn_generals() -> void:
 		add_child(general)
 		general.movement.position = Vector3(i * 5, 1, 5)
 		general.pickupTarget.set_initial_position() 
+		general.assign_image(general_icons[i])
 	
 	assign_stats_and_loyalty(allGenerals[0], LOYAL_GENERAL_STATS, LOYAL_GENERAL_LOYALTY)
 	assign_stats_and_loyalty(allGenerals[1], SKILLED_GENERAL_STATS, SKILLED_GENERAL_LOYALTY)
