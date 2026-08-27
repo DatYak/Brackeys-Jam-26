@@ -4,7 +4,8 @@
 [ext_resource type="ArrayMesh" uid="uid://fiqkwm3yjh1c" path="res://meshes/SM_Land.obj" id="2_a5d1k"]
 [ext_resource type="Material" uid="uid://cmv1uxy85kael" path="res://shaders/M_Land.tres" id="3_y1iwg"]
 [ext_resource type="PackedScene" uid="uid://dxdfke80qnatm" path="res://scenes/BaseCampCollection.tscn" id="4_dubcs"]
-[ext_resource type="Shader" uid="uid://dn6xs4jqcwjdp" path="res://shaders/M_water.tres" id="4_y1iwg"]
+[ext_resource type="Material" uid="uid://bojubut13x7ud" path="res://shaders/M_LandSkirt.tres" id="4_ltgke"]
+[ext_resource type="Shader" uid="uid://dn6xs4jqcwjdp" path="res://shaders/M_Water.tres" id="4_y1iwg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gpgns"]
 
@@ -44,7 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.86549187, 0)
 [node name="Land" type="MeshInstance3D" parent="Terrain" unique_id=1916904293]
 mesh = ExtResource("2_a5d1k")
 surface_material_override/0 = ExtResource("3_y1iwg")
-surface_material_override/1 = ExtResource("3_y1iwg")
+surface_material_override/1 = ExtResource("4_ltgke")
 
 [node name="Water" type="MeshInstance3D" parent="Terrain" unique_id=602717015]
 mesh = SubResource("PlaneMesh_xw8xi")
