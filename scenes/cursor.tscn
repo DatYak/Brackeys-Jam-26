@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://by4hahqc0135s"]
 
 [ext_resource type="Script" uid="uid://csilfu5p2raxp" path="res://scripts/cursor.gd" id="1_1eco6"]
+[ext_resource type="Texture2D" uid="uid://ccjdqmfrhpsfe" path="res://textures/Hand.png" id="2_s0nli"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_1eco6"]
 
@@ -17,5 +18,13 @@ script = ExtResource("1_1eco6")
 lowered_height = -1.0
 
 [node name="Model" type="MeshInstance3D" parent="." unique_id=281723036]
+visible = false
 mesh = SubResource("SphereMesh_1eco6")
 surface_material_override/0 = SubResource("StandardMaterial3D_1eco6")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1326565046]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+billboard = 1
+texture_filter = 1
+render_priority = 1
+texture = ExtResource("2_s0nli")
