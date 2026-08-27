@@ -1,0 +1,10 @@
+MIGHT -> #d95f02
+GUILE -> #4daf4a
+NERVE -> #3a8eba
+
+SUPPLIES -> #ccbb44
+FAVOR/BOON -> #2e2585
+LOYALTY -> #ffffff
+
+HEALTH -> #ee6677
+SANITY -> #4477aa
