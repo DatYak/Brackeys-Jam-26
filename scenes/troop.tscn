@@ -2,11 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6pryvrpr5t1h" path="res://scripts/Troop.gd" id="1_6da2i"]
 [ext_resource type="PackedScene" uid="uid://blrc2v3uci8t5" path="res://scenes/character_pieces.tscn" id="2_37opx"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbcxd"]
-shading_mode = 0
-albedo_color = Color(0, 0.7254902, 1, 1)
-billboard_mode = 2
+[ext_resource type="Material" uid="uid://dtocm14dy0b2r" path="res://shaders/M_SoldierIcon.tres" id="3_1juhj"]
 
 [node name="Troop" type="Node" unique_id=1482538922]
 script = ExtResource("1_6da2i")
@@ -18,7 +14,8 @@ metadata/_custom_type_script = "uid://b6pryvrpr5t1h"
 interact_type = 1
 
 [node name="MeshInstance3D" parent="CharacterPieces/CharacterMovement/pickup_target" index="0" unique_id=1025050091]
-surface_material_override/0 = SubResource("StandardMaterial3D_pbcxd")
+transform = Transform3D(1.25, 0, 0, 0, 0.8809511, 0.6427876, 0, -0.7392057, 0.76604444, 0, 0, 0)
+surface_material_override/0 = ExtResource("3_1juhj")
 
 [editable path="CharacterPieces"]
 [editable path="CharacterPieces/CharacterMovement/pickup_target"]
