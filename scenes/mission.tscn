@@ -5,8 +5,6 @@
 [ext_resource type="Script" uid="uid://16u18spi6mjk" path="res://scripts/dropoff_mission.gd" id="3_cv0tx"]
 [ext_resource type="PackedScene" uid="uid://c1g0eb5h3gg13" path="res://scenes/mission_inspect_UI.tscn" id="4_0mvd2"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_01qru"]
-
 [sub_resource type="SphereMesh" id="SphereMesh_ce7nk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01qru"]
@@ -20,8 +18,7 @@ script = ExtResource("3_cv0tx")
 interact_type = 2
 
 [node name="CollisionShape3D" parent="DropoffRegion/Area3D" parent_id_path=PackedInt32Array(1476246399, 356656927) index="0" unique_id=1934983508 groups=["Dropoff"]]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-shape = SubResource("SphereShape3D_01qru")
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=515275423]
 mesh = SubResource("SphereMesh_ce7nk")
