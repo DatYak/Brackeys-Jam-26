@@ -35,7 +35,7 @@ transform = Transform3D(2000, 0, 0, 0, 2000, 0, 0, 0, 2000, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_dvmqr")
 
 [node name="Camera3D" parent="." unique_id=2076793452 instance=ExtResource("1_x3wbd")]
-transform = Transform3D(1, 0, 0, 0, 0.61977905, 0.7847764, 0, -0.7847764, 0.61977905, 0, 21.30045, 18.946604)
+transform = Transform3D(1, 0, 0, 0, 0.61977905, 0.7847764, 0, -0.7847764, 0.61977905, 0, 10.241191, 11.65391)
 
 [node name="Terrain" type="Node3D" parent="." unique_id=1564010107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.86549187, 0)
