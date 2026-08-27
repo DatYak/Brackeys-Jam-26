@@ -1,10 +1,24 @@
 [gd_scene format=3 uid="uid://cnv4c6hshyklt"]
 
 [ext_resource type="PackedScene" uid="uid://bx0klj2a3og8x" path="res://scenes/camera.tscn" id="1_x3wbd"]
+[ext_resource type="ArrayMesh" uid="uid://fiqkwm3yjh1c" path="res://meshes/SM_Land.obj" id="2_a5d1k"]
+[ext_resource type="Shader" uid="uid://dn6xs4jqcwjdp" path="res://shaders/M_water.tres" id="4_y1iwg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gpgns"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_dvmqr"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xw8xi"]
+size = Vector2(200, 200)
+subdivide_width = 100
+subdivide_depth = 100
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lijvh"]
+render_priority = 0
+shader = ExtResource("4_y1iwg")
+shader_parameter/ColorParameter = Color(0, 0.4392157, 0.73333335, 1)
+
+[sub_resource type="Environment" id="Environment_y1iwg"]
 
 [node name="InteractiveMap" type="Node" unique_id=1772888486]
 
@@ -13,6 +27,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.536743e-07, -9.536743e-
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map" unique_id=1291352632]
 transform = Transform3D(90, 0, 0, 0, 90.00001, 0, 0, 0, 90.00001, 0, 0, 0)
+visible = false
 mesh = SubResource("PlaneMesh_gpgns")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map" unique_id=996497350]
@@ -20,4 +35,20 @@ transform = Transform3D(2000, 0, 0, 0, 2000, 0, 0, 0, 2000, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_dvmqr")
 
 [node name="Camera3D" parent="." unique_id=2076793452 instance=ExtResource("1_x3wbd")]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.7071068, 0, -0.7071068, 0.70710677, 0, 15, 10)
+transform = Transform3D(1, 0, 0, 0, 0.61977905, 0.7847764, 0, -0.7847764, 0.61977905, 0, 10.241191, 11.65391)
+
+[node name="Terrain" type="Node3D" parent="." unique_id=1564010107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.86549187, 0)
+
+[node name="Land" type="MeshInstance3D" parent="Terrain" unique_id=1916904293]
+mesh = ExtResource("2_a5d1k")
+
+[node name="Water" type="MeshInstance3D" parent="Terrain" unique_id=602717015]
+mesh = SubResource("PlaneMesh_xw8xi")
+surface_material_override/0 = SubResource("ShaderMaterial_lijvh")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2058455061]
+environment = SubResource("Environment_y1iwg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=346729538]
+transform = Transform3D(1, 0, 0, 0, 0.4435283, 0.8962605, 0, -0.8962605, 0.4435283, 0, 0, 0)

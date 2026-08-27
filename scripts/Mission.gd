@@ -54,13 +54,14 @@ func perform_mission(game:Game, general : General, party : Array[Troop]):
 			var loyalty_reward = floori(lerp(MIN_LOYALTY, MAX_LOYALTY, difficulty_percent()))
 			for troop in game.allTroops:
 				troop.stats.gain_loyalty(loyalty_reward)
+		if rewardType == MissionRewardType.VICTORY_POINTS:
+			game._on_favor_earned.emit(1)
 	else:
 		harm_troops(party)
 	spreadLoyalty(general, party)
 	
 
 func generateOutcome(general : General, party : Array[Troop]) -> bool:
-	var rng = RandomNumberGenerator.new()
 	var randomMult = randf_range(MIN_RANDOM_MULT, MAX_RANDOM_MULT)
 	
 	var generalFactor = general.stats.get_skill(skillRequired) * GENERAL_OUTCOME_WEIGHT * calculateLoyaltyMult(general)
@@ -76,9 +77,7 @@ func generateOutcome(general : General, party : Array[Troop]) -> bool:
 	return outcome > skillCheck
 
 
-func spreadLoyalty(general : General, party : Array[Troop]):
-	var maxLoyalty = CharacterStats.MAX_LOYALTY
-	
+func spreadLoyalty(general : General, party : Array[Troop]):	
 	var totalLoyalty = (general.stats.loyalty * GENERAL_LOYALTY_WEIGHT)
 	for troop in party:
 		totalLoyalty += troop.stats.loyalty
@@ -93,7 +92,7 @@ func spreadLoyalty(general : General, party : Array[Troop]):
 			troop.stats.lose_loyalty(round(impact))	
 
 func calculateLoyaltyMult(character : Character) -> float:
-	return MIN_LOYALTY_MULT + ((MAX_LOYALTY_MULT - MIN_LOYALTY_MULT) * (character.stats.loyalty / CharacterStats.MAX_LOYALTY))
+	return MIN_LOYALTY_MULT + ((MAX_LOYALTY_MULT - MIN_LOYALTY_MULT) * (character.stats.loyalty as float / CharacterStats.MAX_LOYALTY))
 
 func harm_troops(troops:Array[Troop]) -> void:
 	var penalty_chance = lerp(MIN_PENALTY_CHANCE, MAX_PENALTY_CHANCE, difficulty_percent())
@@ -102,7 +101,7 @@ func harm_troops(troops:Array[Troop]) -> void:
 			harm_troop(troop)
 
 func harm_troop(troop:Troop):
-	print("HARMED TROOP")
+	print("harmed troop")
 	if penaltyType == MissionPenaltyType.HEALTH:
 		troop.stats.take_damage(1)
 	if penaltyType == MissionPenaltyType.SANITY:
