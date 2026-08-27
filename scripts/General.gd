@@ -25,3 +25,4 @@ func _remove_troop_from_party(_troop: Troop) -> void:
 	
 	party.remove_at(party.find(_troop))
 	troop_exited_party.emit(_troop)
+	

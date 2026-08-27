@@ -1,5 +1,8 @@
 class_name Game extends Node
 
+#maybe use this signal to activate some warning ui
+signal _attempted_turn_process_without_assigned_generals
+
 const AMOUNT_OF_TROOPS = 9
 const STATS_TO_DISTRIBUTE = 50
 const MIN_STATS_PER_TROOP = 3
@@ -12,6 +15,7 @@ const LOYALTY_TO_DISTRIBUTE = 65
 const MIN_LOYALTY_PER_TROOP = 3
 const MAX_LOYALTY_PER_TROOP = 10
 
+const NUM_GENERALS = 3
 const LOYAL_GENERAL_STATS = 2
 const SKILLED_GENERAL_STATS = 10
 const DISLOYAL_GENERAL_STATS = 6
@@ -39,6 +43,8 @@ var boons = 0
 
 @onready var camera : CameraController = $InteractiveMap/Camera3D
 @onready var baseCampCollectionsParent : Node = $InteractiveMap/BaseCampCollections
+static var instance : Game = self
+
 var baseCampCollectionsByBoon : Array[BaseCampCollection] = []
 var currentBaseCampIndex = 0
 var activeBaseCamp : BaseCamp
@@ -49,6 +55,8 @@ signal _on_boon_earned
 var boon_earned_last_mission = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	instance = self
+	
 	spawn_troops(AMOUNT_OF_TROOPS, STATS_TO_DISTRIBUTE, MIN_STATS_PER_TROOP, LOYALTY_TO_DISTRIBUTE, MIN_LOYALTY_PER_TROOP)
 	spawn_generals()
 	player = player_scene.instantiate() as Player
@@ -70,19 +78,26 @@ func _process(delta: float) -> void:
 		process_turn()
 
 func process_turn()-> void:
-	for mission:Mission in allMissions:
-		if not mission.dropoff.is_occupied():
-			continue
-		var general = mission.dropoff.assigned_general
-		mission.perform_mission(self, general, general.party)
 	
+	#Check if all generals are assigned...
+	if (activeBaseCamp.are_all_generals_assigned(NUM_GENERALS)):
+		print("Must assign all generals first.")
+		_attempted_turn_process_without_assigned_generals.emit()
+		return
+	
+	# Process Missions
+	activeBaseCamp.process_missions()
+
+# Called via signal from activeBaseCamp
+func on_missions_completed() -> void:
+	#cleanup
 	for troop:Character in allTroops:
 		troop.pickupTarget.reset_position()
 		
 	for troop:Character in allGenerals:
 		troop.pickupTarget.reset_position()
 	
-	# Do this last, technically the start of next turn.
+	# start next turn
 	player.expend_turn_supplies()
 	move_to_new_base_camp()
 
@@ -90,6 +105,7 @@ func move_to_new_base_camp() -> void:
 	
 	if (activeBaseCamp != null):
 		activeBaseCamp.exit_camp()
+		activeBaseCamp._on_missions_completed.disconnect(on_missions_completed)
 	
 	if (boon_earned_last_mission):
 		boon_earned_last_mission = false
@@ -99,6 +115,7 @@ func move_to_new_base_camp() -> void:
 		currentBaseCampIndex %= baseCampCollectionsByBoon[boons].contents.size()
 	
 	activeBaseCamp = baseCampCollectionsByBoon[boons].contents[currentBaseCampIndex]
+	activeBaseCamp._on_missions_completed.connect(on_missions_completed)
 	allMissions = activeBaseCamp.spawn_missions(NUM_MISSIONS_PRESENTED, AVERAGE_MISSION_DIFFICULTY)
 	activeBaseCamp.send_to_camp(allGenerals, allTroops)
 	camera.center_on_point(activeBaseCamp.position)

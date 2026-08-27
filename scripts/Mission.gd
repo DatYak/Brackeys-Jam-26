@@ -46,19 +46,19 @@ enum MissionPenaltyType {
 func difficulty_percent() -> float:
 	return inverse_lerp(MIN_SKILL_CHECK, MAX_SKILL_CHECK, skillCheck)
 
-func perform_mission(game:Game, general : General, party : Array[Troop]):
+func perform_mission(general : General, party : Array[Troop]):
 	var success:bool = generateOutcome(general, party)
 	if success:
 		if rewardType == MissionRewardType.SUPPLIES:
 			var supplies_rewarded = lerp(MIN_SUPPLIES, MAX_SUPPLIES, difficulty_percent())
 			supplies_rewarded = ceili(supplies_rewarded)
-			game._on_supplies_found.emit(supplies_rewarded)
+			Game.instance._on_supplies_found.emit(supplies_rewarded)
 		if rewardType == MissionRewardType.LOYALTY:
 			var loyalty_reward = floori(lerp(MIN_LOYALTY, MAX_LOYALTY, difficulty_percent()))
-			for troop in game.allTroops:
+			for troop in Game.instance.allTroops:
 				troop.stats.gain_loyalty(loyalty_reward)
 		if rewardType == MissionRewardType.VICTORY_POINTS:
-			game._on_favor_earned.emit(1)
+			Game.instance._on_favor_earned.emit(1)
 	else:
 		harm_troops(party)
 	spreadLoyalty(general, party)

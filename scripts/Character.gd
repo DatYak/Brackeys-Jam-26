@@ -8,3 +8,9 @@ class_name Character extends Node
 
 func _ready() -> void:
 	character_name = NameGenerator.generate_name()
+
+func tween_global_position(target_position : Vector3, travel_time : float) -> Tween:
+	var tween = get_tree().create_tween()
+	tween.tween_property(movement, "global_position", target_position, travel_time)
+	return tween
+	
