@@ -1,6 +1,7 @@
 class_name MissionDropoff extends Dropoff
 
 @onready var mission:Mission = $".."
+@onready var ui:MissionUI = $"../MissionInspectUi"
 
 var assigned_general:General = null
 
@@ -18,3 +19,10 @@ func _drop_entity(entity:PickupTarget) -> bool:
 
 func _remove_entity(entity:PickupTarget) -> void:
 	assigned_general = null
+
+func _hover() -> void:
+	ui.display()
+	ui.visible = true
+
+func _hover_end() -> void:
+	ui.visible = false

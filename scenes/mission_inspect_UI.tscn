@@ -1,8 +1,32 @@
 [gd_scene format=3 uid="uid://c1g0eb5h3gg13"]
 
-[ext_resource type="Script" uid="uid://c61wj8mksjrql" path="res://scripts/unit_inspect_ui.gd" id="1_aeerv"]
+[ext_resource type="Script" uid="uid://c7lpfmbl8s2cj" path="res://scripts/mission_inspect_ui.gd" id="1_f2jij"]
+[ext_resource type="FontFile" uid="uid://c3x8d8b0l2qwe" path="res://fonts/CWDRKAGE.TTF" id="2_f2jij"]
+[ext_resource type="FontFile" uid="uid://dftf8lag84jc4" path="res://fonts/Cinzel-Regular.otf" id="3_bt4ul"]
 
-[node name="UnitInspectUi" type="Control" unique_id=553661356]
+[sub_resource type="LabelSettings" id="LabelSettings_bt4ul"]
+font = ExtResource("2_f2jij")
+
+[sub_resource type="LabelSettings" id="LabelSettings_f2jij"]
+font = ExtResource("2_f2jij")
+font_color = Color(0.8509804, 0.37254903, 0.007843138, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ce7nk"]
+font = ExtResource("3_bt4ul")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_d34op"]
+font = ExtResource("3_bt4ul")
+font_size = 12
+font_color = Color(0.93333334, 0.4, 0.46666667, 1)
+outline_color = Color(0.8, 0.73333335, 0.26666668, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fmci8"]
+font = ExtResource("3_bt4ul")
+font_size = 12
+font_color = Color(0.26666668, 0.46666667, 0.6666667, 1)
+
+[node name="MissionInspectUi" type="Control" unique_id=553661356]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,21 +34,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_aeerv")
+script = ExtResource("1_f2jij")
 
 [node name="Background" type="Panel" parent="." unique_id=1694667917]
-layout_mode = 0
-offset_right = 386.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -386.0
 offset_bottom = 211.0
+grow_horizontal = 0
 
-[node name="Nameplate" type="Panel" parent="Background" unique_id=2100218571]
+[node name="Name" type="Panel" parent="Background" unique_id=2100218571]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 30.0
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="Background/Nameplate" unique_id=293027759]
+[node name="Label" type="Label" parent="Background/Name" unique_id=293027759]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,10 +60,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "The Most Dangerous Mission"
+label_settings = SubResource("LabelSettings_bt4ul")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Disposition" type="Panel" parent="Background" unique_id=1648289464]
+[node name="Type" type="Panel" parent="Background" unique_id=1648289464]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -45,13 +74,47 @@ offset_top = -30.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="Background/Disposition" unique_id=235477852]
+[node name="Label" type="Label" parent="Background/Type" unique_id=235477852]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "greets you as a true friend."
+text = "______ of Might"
+label_settings = SubResource("LabelSettings_f2jij")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="Background" unique_id=770335217]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 37.0
+offset_right = 240.0
+offset_bottom = 172.0
+text = "This is a mission. It is dangerous. You will lose your mind, okay?"
+label_settings = SubResource("LabelSettings_ce7nk")
+autowrap_mode = 2
+
+[node name="Recieve" type="Label" parent="Background" unique_id=1622149709]
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 251.0
+offset_top = 37.0
+offset_right = 351.0
+offset_bottom = 74.0
+text = "+Supplies
+"
+label_settings = SubResource("LabelSettings_d34op")
+autowrap_mode = 2
+
+[node name="Lose" type="Label" parent="Background" unique_id=1989994742]
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 251.0
+offset_top = 68.0
+offset_right = 351.0
+offset_bottom = 105.0
+text = "-Sanity"
+label_settings = SubResource("LabelSettings_fmci8")
+autowrap_mode = 2

@@ -32,6 +32,9 @@ enum MissionPenaltyType {
 	SANITY
 }
 
+@export var mission_name:String = "The Most Dangerous Mission"
+@export var mission_description:String = "LOSE YOUR MIND"
+
 @export var skillCheck : int = 20
 @export var rewardType : MissionRewardType
 @export var penaltyType : MissionPenaltyType
@@ -59,7 +62,6 @@ func perform_mission(game:Game, general : General, party : Array[Troop]):
 	else:
 		harm_troops(party)
 	spreadLoyalty(general, party)
-	
 
 func generateOutcome(general : General, party : Array[Troop]) -> bool:
 	var randomMult = randf_range(MIN_RANDOM_MULT, MAX_RANDOM_MULT)

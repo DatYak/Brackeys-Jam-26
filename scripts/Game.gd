@@ -149,6 +149,7 @@ func spawn_missions() -> void:
 		total_difficulty -= difficulty
 		max_diff = max(max_diff, total_difficulty)
 		mission.rewardType = Mission.MissionRewardType.values().pick_random()
+		mission.penaltyType = Mission.MissionPenaltyType.values().pick_random()
 
 
 func assign_stats_and_loyalty(character : Character, totalStats: int, loyalty: int):
