@@ -111,5 +111,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_5r3px")
 [node name="Label3D" parent="Play" index="2" unique_id=344970038]
 text = "Play"
 
+[connection signal="on_node_clicked" from="Quit" to="." method="quit"]
+[connection signal="on_node_clicked" from="Play" to="." method="load_game"]
+
 [editable path="Quit"]
 [editable path="Play"]

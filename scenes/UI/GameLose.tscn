@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://bb8meumxhdgdh"]
+
+[ext_resource type="Script" uid="uid://ba518dd3r0obn" path="res://scripts/main_menu.gd" id="1_rakut"]
+[ext_resource type="PackedScene" uid="uid://bygpmlycgx1ax" path="res://scenes/map.tscn" id="2_wl4be"]
+[ext_resource type="Texture2D" uid="uid://cdyt437sntbyo" path="res://textures/UI_Banner_Small.png" id="3_rakut"]
+[ext_resource type="PackedScene" uid="uid://by4hahqc0135s" path="res://scenes/cursor.tscn" id="3_t40cg"]
+[ext_resource type="Texture2D" uid="uid://ppj0f2kx535p" path="res://textures/UI_Notification.png" id="4_xsktj"]
+[ext_resource type="FontFile" uid="uid://ckdwbqbtjn4qm" path="res://fonts/Cinzel-Bold.otf" id="5_yi313"]
+[ext_resource type="PackedScene" uid="uid://d1obullh27gyx" path="res://scenes/InteractNode.tscn" id="6_y0qrg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pef3y"]
+font = ExtResource("5_yi313")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_4vh8y"]
+font = ExtResource("5_yi313")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_diw2p"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0, 0, 1)
+roughness = 0.66
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rakut"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0, 0, 1)
+roughness = 0.66
+
+[node name="GameLose" type="Node" unique_id=844887520]
+script = ExtResource("1_rakut")
+
+[node name="Map" parent="." unique_id=496976104 instance=ExtResource("2_wl4be")]
+
+[node name="Lose" type="Node" parent="." unique_id=1381885730]
+
+[node name="Camera3D" type="Camera3D" parent="Lose" unique_id=2108963771]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, -13, 16, 67)
+
+[node name="Cursor" parent="Lose/Camera3D" unique_id=12422246 instance=ExtResource("3_t40cg")]
+
+[node name="UI" type="Control" parent="Lose" unique_id=1332911371]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Title" type="NinePatchRect" parent="Lose/UI" unique_id=1526720748]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 17.0
+offset_bottom = 117.0
+grow_horizontal = 2
+texture = ExtResource("3_rakut")
+patch_margin_top = 24
+patch_margin_bottom = 24
+axis_stretch_horizontal = 1
+
+[node name="Label" type="Label" parent="Lose/UI/Title" unique_id=250607216]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "DEFEAT"
+label_settings = SubResource("LabelSettings_pef3y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="TextureRect" parent="Lose/UI" unique_id=1161381579]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_xsktj")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Lose/UI/Credits" unique_id=547402446]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Art: Nelsmell | Design: Jsodell | Programming: Datyak & Luxiextra"
+label_settings = SubResource("LabelSettings_4vh8y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" parent="Lose" unique_id=1306923645 instance=ExtResource("6_y0qrg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.754639, -0.65879714, 59.72921)
+
+[node name="MeshInstance3D" parent="Lose/Quit" index="1" unique_id=942337923]
+surface_material_override/0 = SubResource("StandardMaterial3D_diw2p")
+
+[node name="Label3D" parent="Lose/Quit" index="2" unique_id=344970038]
+text = "QUIT"
+horizontal_alignment = 1
+
+[node name="Play" parent="Lose" unique_id=25041423 instance=ExtResource("6_y0qrg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7546387, -0.65879714, 50.72921)
+
+[node name="MeshInstance3D" parent="Lose/Play" index="1" unique_id=942337923]
+surface_material_override/0 = SubResource("StandardMaterial3D_rakut")
+
+[node name="Label3D" parent="Lose/Play" index="2" unique_id=344970038]
+text = "Play Again
+"
+horizontal_alignment = 1
+
+[connection signal="on_node_clicked" from="Lose/Quit" to="." method="quit"]
+[connection signal="on_node_clicked" from="Lose/Play" to="." method="load_game"]
+
+[editable path="Lose/Quit"]
+[editable path="Lose/Play"]

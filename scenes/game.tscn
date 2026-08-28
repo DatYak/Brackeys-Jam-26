@@ -11,7 +11,6 @@
 script = ExtResource("1_uwrxv")
 general_icons = Array[Texture2D]([ExtResource("2_iywne"), ExtResource("3_p57ef"), ExtResource("4_u5sy4")])
 troop_icon = ExtResource("5_p57ef")
-BOONS_TO_WIN = null
 metadata/_custom_type_script = "uid://7bf36ahbvr48"
 
 [node name="InteractiveMap" parent="." unique_id=1772888486 instance=ExtResource("2_yqjtg")]

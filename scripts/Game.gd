@@ -39,6 +39,9 @@ var player:Player
 @export var general_icons:Array[Texture2D]
 @export var troop_icon:Texture2D
 
+@export_file_path(".tscn") var victory_scene:String = "res://scenes/UI/GameWin.tscn"
+@export_file_path(".tscn") var defeat_scene:String = "res://scenes/UI/GameLose.tscn"
+
 @export var BOONS_TO_WIN:int = 3
 var boons = 0
 
@@ -248,8 +251,17 @@ func on_boon_earned() -> void:
 	if boons >= BOONS_TO_WIN:
 		#win
 		print("Victory")
+		win()
 	
 
 func on_supplies_empty() -> void:
 	#LOSE
 	print("Game OVER!")
+	lose()
+
+
+func lose()->void:
+	Global.goto_scene(defeat_scene)
+	
+func win()->void:
+	Global.goto_scene(victory_scene)
