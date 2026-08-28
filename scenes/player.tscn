@@ -2,10 +2,19 @@
 
 [ext_resource type="Script" uid="uid://btsbhtatpsmc0" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="FontFile" uid="uid://1xwmh56r4a37" path="res://fonts/CinzelDecorative-Black.otf" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://cdyt437sntbyo" path="res://textures/UI_Banner_Small.png" id="2_qhqgy"]
+[ext_resource type="FontFile" uid="uid://8mi2dayvxu3" path="res://fonts/PAC LIBERTAS font.ttf" id="4_dqkch"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sxtsd"]
 font = ExtResource("2_g2els")
 font_color = Color(0.8, 0.73333335, 0.26666668, 1)
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_qhqgy"]
+font = ExtResource("4_dqkch")
+font_size = 24
+font_color = Color(0.18039216, 0.14509805, 0.52156866, 1)
+outline_size = 2
 
 [node name="Player" type="Node" unique_id=1233535754]
 script = ExtResource("1_3vyb7")
@@ -20,21 +29,47 @@ offset_top = -40.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Panel" type="Panel" parent="UI" unique_id=208718897]
+[node name="Panel" type="NinePatchRect" parent="UI" unique_id=782864727]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -8.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_qhqgy")
+region_rect = Rect2(0, 0, 124, 124)
+patch_margin_top = 24
+patch_margin_bottom = 24
+axis_stretch_horizontal = 2
 
 [node name="Supplies" type="Label" parent="UI" unique_id=671933187]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = 10.0
+offset_top = -4.0
 offset_right = 310.0
+offset_bottom = -4.0
 grow_vertical = 2
 text = "Supplies: 200 (-24)"
 label_settings = SubResource("LabelSettings_sxtsd")
+vertical_alignment = 1
+
+[node name="Boons" type="Label" parent="UI" unique_id=1270208904]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -288.0
+offset_top = -1.0
+offset_right = -10.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Boons"
+label_settings = SubResource("LabelSettings_qhqgy")
+horizontal_alignment = 2
 vertical_alignment = 1
