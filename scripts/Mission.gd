@@ -42,8 +42,13 @@ enum MissionPenaltyType {
 #@export var statWeights : Dictionary[MissionSkillType, int] = {0:0, 1:0, 2:0}
 
 @onready var dropoff:MissionDropoff = $DropoffRegion as MissionDropoff
+@onready var map_label:Label3D = $Label3D as Label3D
 
 @onready var notif_packed = preload("res://scenes/fading_notif.tscn") as PackedScene
+
+func set_mission_name(_name:String) -> void:
+	mission_name = _name
+	map_label.text =  mission_name
 
 func difficulty_percent() -> float:
 	return inverse_lerp(MIN_SKILL_CHECK, MAX_SKILL_CHECK, skillCheck)

@@ -4,11 +4,12 @@
 [ext_resource type="Script" uid="uid://cbxlxkmdcqs6h" path="res://scripts/Mission.gd" id="1_v3nvf"]
 [ext_resource type="Script" uid="uid://16u18spi6mjk" path="res://scripts/dropoff_mission.gd" id="3_cv0tx"]
 [ext_resource type="PackedScene" uid="uid://c1g0eb5h3gg13" path="res://scenes/mission_inspect_UI.tscn" id="4_0mvd2"]
+[ext_resource type="FontFile" uid="uid://b1r44gxc5d8ho" path="res://fonts/Cinzel-Black.otf" id="5_ksxw2"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ce7nk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01qru"]
-albedo_color = Color(1, 0.48235294, 0, 1)
+albedo_color = Color(0, 0, 0, 1)
 
 [node name="Mission" type="Node3D" unique_id=1013019993]
 script = ExtResource("1_v3nvf")
@@ -28,6 +29,16 @@ mesh = SubResource("SphereMesh_ce7nk")
 surface_material_override/0 = SubResource("StandardMaterial3D_01qru")
 
 [node name="MissionInspectUi" parent="." unique_id=553661356 instance=ExtResource("4_0mvd2")]
+
+[node name="Label3D" type="Label3D" parent="." unique_id=547390015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5315957, 0)
+pixel_size = 0.01
+billboard = 1
+render_priority = 2
+outline_render_priority = 1
+text = "Mission Name"
+font = ExtResource("5_ksxw2")
+font_size = 100
 
 [connection signal="mouse_entered" from="DropoffRegion/Area3D" to="DropoffRegion" method="_hover"]
 [connection signal="mouse_exited" from="DropoffRegion/Area3D" to="DropoffRegion" method="_hover_end"]
