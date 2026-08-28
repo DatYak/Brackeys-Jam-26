@@ -4,10 +4,18 @@ const EASY_LABEL = "(E) Task of "
 const MID_LABEL = "(M) Test of "
 const HARD_LABEL = "(H) Trial of "
 
+const VERY_POOR_ODDS = "Chances: Impossible"
+const POOR_ODDS = "Chances: Dire"
+const FAIR_ODDS = "Chances: Fair"
+const GOOD_ODDS = "Chances: Possible"
+const VERY_GOOD_ODDS = "Chances: Likely"
+
+
 @onready var mission:Mission = $".."
 
 @onready var name_lbl : Label = $Background/Name/Label
 @onready var difficulty_lbl : Label = $Background/Type/Label
+@onready var odds_label : Label = $Background/Type/Odds
 @onready var desc_lbl : Label = $Background/Desc
 @onready var recieve_lbl : Label = $Background/Recieve
 @onready var lose_lbl : Label = $Background/Lose
@@ -57,3 +65,20 @@ func display():
 		diff_label += "Nerve"
 		
 	difficulty_lbl.text = diff_label
+	
+	if not mission.dropoff.assigned_general:
+		odds_label.text = POOR_ODDS
+	else:
+		var odds = mission.generateOdds(mission.dropoff.assigned_general)
+		if odds == 0.0:
+			odds_label.text = VERY_POOR_ODDS
+		else: if odds == 1.0:
+			odds_label.text = VERY_GOOD_ODDS
+		else: if odds < .33:
+			odds_label.text = POOR_ODDS
+		else: if odds < .33:
+			odds_label.text = POOR_ODDS
+		else: if odds < .66:
+			odds_label.text = FAIR_ODDS
+		else: 
+			odds_label.text = GOOD_ODDS 

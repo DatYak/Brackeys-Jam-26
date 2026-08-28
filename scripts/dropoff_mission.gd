@@ -15,9 +15,12 @@ func _drop_entity(entity:PickupTarget) -> bool:
 		return false
 	
 	assigned_general = entity.parent as General
+	assigned_general.troop_added_to_party.connect(ui.display)
 	return true
 
 func _remove_entity(entity:PickupTarget) -> void:
+	if assigned_general:
+		assigned_general.troop_added_to_party.disconnect(ui.display)
 	assigned_general = null
 
 func _hover() -> void:

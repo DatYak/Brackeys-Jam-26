@@ -85,6 +85,31 @@ func perform_mission(general : General, party : Array[Troop]):
 	notif.setup(notif_text, 2.0)
 	
 
+func generateOdds(general:General) -> float:
+	var party = general.party
+	var generalFactor = general.stats.get_skill(skillRequired) * GENERAL_OUTCOME_WEIGHT * calculateLoyaltyMult(general)
+	
+	var troopSizeFactor = 1.0 / (1.0 + abs(party.size() - IDEAL_TROOP_COUNT))
+	
+	var troopSummation = 0.0
+	for troop in party:
+		troopSummation += troop.stats.get_skill(skillRequired) * calculateLoyaltyMult(troop)
+	
+	#var avg_roll : float = (MIN_RANDOM_MULT + MAX_RANDOM_MULT) as float / 2.0
+	#var avg_outcome = MIN_RANDOM_MULT * (generalFactor + (troopSizeFactor * troopSummation))
+	var max_outcome = MAX_RANDOM_MULT * (generalFactor + (troopSizeFactor * troopSummation))
+	var min_outcome = MIN_RANDOM_MULT * (generalFactor + (troopSizeFactor * troopSummation))
+	
+	if skillCheck > max_outcome:
+		return 0.0
+	
+	if skillCheck < min_outcome:
+		return 1.0
+	
+	var overlap = inverse_lerp(min_outcome, max_outcome, skillCheck)
+	
+	return overlap
+
 func generateOutcome(general : General, party : Array[Troop]) -> bool:
 	var randomMult = randf_range(MIN_RANDOM_MULT, MAX_RANDOM_MULT)
 	
