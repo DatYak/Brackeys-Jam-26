@@ -15,8 +15,9 @@ func _drop_entity(entity:PickupTarget) -> bool:
 		return false
 	
 	assigned_general = entity.parent as General
-	entity.dragged_element.global_position = global_position + Vector3.UP * 2.0
+	entity.dragged_element.global_position = global_position + Vector3.UP * 1.5
 	assigned_general.troop_added_to_party.connect(ui.display)
+	assigned_general.pickupTarget.area3d.global_position = global_position
 	return true
 
 func _remove_entity(entity:PickupTarget) -> void:

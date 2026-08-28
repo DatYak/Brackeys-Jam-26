@@ -47,21 +47,33 @@ func _input(event: InputEvent) -> void:
 	if not hover_target:
 		return
 	
-	if not interact_type == Cursor.CursorTarget.TROOP:
-		return
-	
-	if event.is_action_pressed("assign_1"):
-		assign_to_dropoff(0)
+	if interact_type == Cursor.CursorTarget.TROOP:
+		if event.is_action_pressed("assign_1"):
+			assign_to_general(0)
+			
+		if event.is_action_pressed("assign_2"):
+			assign_to_general(1)
+			
+		if event.is_action_pressed("assign_3"):
+			assign_to_general(2)
 		
-	if event.is_action_pressed("assign_2"):
-		assign_to_dropoff(1)
+		if event.is_action_pressed("unassign"):
+			on_pick_up(interact_type)
+			reset()
+			
+	if interact_type == Cursor.CursorTarget.GENERAL:
+		if event.is_action_pressed("assign_1"):
+			assign_to_mission(0)
+			
+		if event.is_action_pressed("assign_2"):
+			assign_to_mission(1)
+			
+		if event.is_action_pressed("assign_3"):
+			assign_to_mission(2)
 		
-	if event.is_action_pressed("assign_3"):
-		assign_to_dropoff(2)
-	
-	if event.is_action_pressed("unassign"):
-		on_pick_up(interact_type)
-		reset()
+		if event.is_action_pressed("unassign"):
+			on_pick_up(interact_type)
+			reset()
 		
 
 
@@ -131,7 +143,7 @@ func reset() -> void:
 	tween.tween_property(dragged_element, "global_position", last_position, 0.3)
 	area3d.global_position = last_position
 
-func assign_to_dropoff(index:int) -> void:
+func assign_to_general(index:int) -> void:
 	if not parent.stats.can_be_used():
 			return
 			
@@ -141,6 +153,13 @@ func assign_to_dropoff(index:int) -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(dragged_element, "global_position", general.movement.global_position, 0.6)
 	tween.tween_callback(on_place.bind(interact_type))
+
+func assign_to_mission(index:int) -> void:
+	var mission = Game.instance.activeBaseCamp.missions[index]
+	on_pick_up(interact_type)
+	
+	if not mission.dropoff._drop_entity(self):
+		reset()
 
 func set_last_position() -> void:
 	last_position = global_position

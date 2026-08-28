@@ -34,7 +34,8 @@ func spawn_missions(missionsToSpawn : Array[MissionData]):
 		mission.skillRequired = data.skill_used
 		mission.rewardType = data.success_reward
 		mission.penaltyType = data.failure_penalty
-		mission.set_mission_name(data.name)
+		var mission_name = str(i+1) + ". " + data.name
+		mission.set_mission_name(mission_name)
 		mission.mission_description = data.description
 		
 		mission.skillCheck = data.skill_check
