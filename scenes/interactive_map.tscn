@@ -1,61 +1,12 @@
 [gd_scene format=3 uid="uid://cnv4c6hshyklt"]
 
+[ext_resource type="PackedScene" uid="uid://bygpmlycgx1ax" path="res://scenes/map.tscn" id="1_a5d1k"]
 [ext_resource type="PackedScene" uid="uid://bx0klj2a3og8x" path="res://scenes/camera.tscn" id="1_x3wbd"]
-[ext_resource type="ArrayMesh" uid="uid://fiqkwm3yjh1c" path="res://meshes/SM_Land.obj" id="2_a5d1k"]
-[ext_resource type="Material" uid="uid://cmv1uxy85kael" path="res://shaders/M_Land.tres" id="3_y1iwg"]
 [ext_resource type="PackedScene" uid="uid://dxdfke80qnatm" path="res://scenes/BaseCampCollection.tscn" id="4_dubcs"]
-[ext_resource type="Material" uid="uid://bojubut13x7ud" path="res://shaders/M_LandSkirt.tres" id="4_ltgke"]
-[ext_resource type="Shader" uid="uid://dn6xs4jqcwjdp" path="res://shaders/M_water.tres" id="4_y1iwg"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_gpgns"]
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_dvmqr"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_xw8xi"]
-size = Vector2(200, 200)
-subdivide_width = 100
-subdivide_depth = 100
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a5d1k"]
-render_priority = 0
-shader = ExtResource("4_y1iwg")
-
-[sub_resource type="Environment" id="Environment_y1iwg"]
 
 [node name="InteractiveMap" type="Node" unique_id=1772888486]
 
-[node name="Map" type="StaticBody3D" parent="." unique_id=716470939]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.536743e-07, -9.536743e-07)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map" unique_id=1291352632]
-transform = Transform3D(90, 0, 0, 0, 90.00001, 0, 0, 0, 90.00001, 0, 0, 0)
-visible = false
-mesh = SubResource("PlaneMesh_gpgns")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map" unique_id=996497350]
-transform = Transform3D(2000, 0, 0, 0, 2000, 0, 0, 0, 2000, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_dvmqr")
-
-[node name="Camera3D" parent="." unique_id=2076793452 instance=ExtResource("1_x3wbd")]
-transform = Transform3D(1, 0, 0, 0, 0.61977905, 0.7847764, 0, -0.7847764, 0.61977905, 0, 10.241191, 11.65391)
-
-[node name="Terrain" type="Node3D" parent="." unique_id=1564010107]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.86549187, 0)
-
-[node name="Land" type="MeshInstance3D" parent="Terrain" unique_id=1916904293]
-mesh = ExtResource("2_a5d1k")
-surface_material_override/0 = ExtResource("3_y1iwg")
-surface_material_override/1 = ExtResource("4_ltgke")
-
-[node name="Water" type="MeshInstance3D" parent="Terrain" unique_id=602717015]
-mesh = SubResource("PlaneMesh_xw8xi")
-surface_material_override/0 = SubResource("ShaderMaterial_a5d1k")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2058455061]
-environment = SubResource("Environment_y1iwg")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=346729538]
-transform = Transform3D(1, 0, 0, 0, 0.4435283, 0.8962605, 0, -0.8962605, 0.4435283, 0, 0, 0)
+[node name="Map" parent="." unique_id=496976104 instance=ExtResource("1_a5d1k")]
 
 [node name="BaseCampCollections" type="Node" parent="." unique_id=1186310622]
 
@@ -76,12 +27,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.405876, 1, 3.2053452)
 [node name="Node3D4" parent="BaseCampCollections/BaseCampCollection/BaseCamp/MissionLocations" parent_id_path=PackedInt32Array(1991588896, 1914927519) index="3" unique_id=2021190975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.344, 1, -14.106)
 
-[node name="GeneralsLocation" parent="BaseCampCollections/BaseCampCollection/BaseCamp" index="2" unique_id=1431943929]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="TroopsLocation" parent="BaseCampCollections/BaseCampCollection/BaseCamp" index="3" unique_id=1385925040]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
 [node name="BaseCamp2" parent="BaseCampCollections/BaseCampCollection" index="1" unique_id=1105519655]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.67857, 1.689064, -17.71349)
 
@@ -93,9 +38,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.472082, 1, -14.449807)
 
 [node name="Node3D3" parent="BaseCampCollections/BaseCampCollection/BaseCamp2/MissionLocations" parent_id_path=PackedInt32Array(1991588896, 1190793787) index="2" unique_id=1198034518]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.856302, 1, -19.70151)
-
-[node name="TroopsLocation" parent="BaseCampCollections/BaseCampCollection/BaseCamp2" index="3" unique_id=391561042]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="BaseCamp3" parent="BaseCampCollections/BaseCampCollection" index="2" unique_id=2091435887]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.631004, 1.5489044, -21.650005)
@@ -109,7 +51,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.010664, 1, -28.184738)
 [node name="Node3D3" parent="BaseCampCollections/BaseCampCollection/BaseCamp3/MissionLocations" parent_id_path=PackedInt32Array(1991588896, 2046263147) index="2" unique_id=537608675]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.944521, 1, -18.98872)
 
-[node name="TroopsLocation" parent="BaseCampCollections/BaseCampCollection/BaseCamp3" index="3" unique_id=523425297]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="Camera3D" parent="." unique_id=2076793452 instance=ExtResource("1_x3wbd")]
+transform = Transform3D(1, 0, 0, 0, 0.61977905, 0.7847764, 0, -0.7847764, 0.61977905, 0, 10.241191, 11.65391)
 
 [editable path="BaseCampCollections/BaseCampCollection"]

@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://b50xrw18rut7c"]
+
+[ext_resource type="PackedScene" uid="uid://bygpmlycgx1ax" path="res://scenes/map.tscn" id="1_11hie"]
+[ext_resource type="PackedScene" uid="uid://by4hahqc0135s" path="res://scenes/cursor.tscn" id="2_58fj5"]
+[ext_resource type="Texture2D" uid="uid://ppj0f2kx535p" path="res://textures/UI_Notification.png" id="3_3h7gc"]
+[ext_resource type="FontFile" uid="uid://ckdwbqbtjn4qm" path="res://fonts/Cinzel-Bold.otf" id="4_4vh8y"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pef3y"]
+font = ExtResource("4_4vh8y")
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4vh8y"]
+font = ExtResource("4_4vh8y")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Node" unique_id=844887520]
+
+[node name="Map" parent="." unique_id=496976104 instance=ExtResource("1_11hie")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2108963771]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 26, 9)
+
+[node name="Cursor" parent="Camera3D" unique_id=12422246 instance=ExtResource("2_58fj5")]
+
+[node name="UI" type="Control" parent="." unique_id=1332911371]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="TextureRect" parent="UI" unique_id=977302357]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 52.0
+offset_bottom = 152.0
+grow_horizontal = 2
+texture = ExtResource("3_3h7gc")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="UI/Title" unique_id=250607216]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME TITLE"
+label_settings = SubResource("LabelSettings_pef3y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="TextureRect" parent="UI" unique_id=1161381579]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_3h7gc")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UI/Credits" unique_id=547402446]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Art: Nelsmell | Design: Jsodell | Programming: Datyak & Luxiextra"
+label_settings = SubResource("LabelSettings_4vh8y")
+horizontal_alignment = 1
+vertical_alignment = 1
