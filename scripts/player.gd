@@ -20,7 +20,7 @@ func add_supplies(amnt:int) -> void:
 
 func add_favor(favor:int):
 	current_favor += favor
-	if current_favor > game.FAVOR_PER_BOON:
+	if current_favor >= game.FAVOR_PER_BOON:
 		current_favor -= game.FAVOR_PER_BOON
 		game._on_boon_earned.emit()
 	update_display()

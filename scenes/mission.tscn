@@ -34,12 +34,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_01qru")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5315957, 0)
 pixel_size = 0.01
 billboard = 1
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(1, 1, 1, 1)
+render_priority = 2
+outline_render_priority = 1
 text = "Mission Name"
 font = ExtResource("5_ksxw2")
 font_size = 100
-outline_size = 7
 
 [connection signal="mouse_entered" from="DropoffRegion/Area3D" to="DropoffRegion" method="_hover"]
 [connection signal="mouse_exited" from="DropoffRegion/Area3D" to="DropoffRegion" method="_hover_end"]

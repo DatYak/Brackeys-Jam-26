@@ -3,18 +3,16 @@
 [ext_resource type="Script" uid="uid://btsbhtatpsmc0" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="FontFile" uid="uid://1xwmh56r4a37" path="res://fonts/CinzelDecorative-Black.otf" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://cdyt437sntbyo" path="res://textures/UI_Banner_Small.png" id="2_qhqgy"]
-[ext_resource type="FontFile" uid="uid://8mi2dayvxu3" path="res://fonts/PAC LIBERTAS font.ttf" id="4_dqkch"]
+[ext_resource type="FontFile" uid="uid://b1r44gxc5d8ho" path="res://fonts/Cinzel-Black.otf" id="4_dqkch"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sxtsd"]
 font = ExtResource("2_g2els")
 font_color = Color(0.8, 0.73333335, 0.26666668, 1)
-outline_size = 3
 
 [sub_resource type="LabelSettings" id="LabelSettings_qhqgy"]
 font = ExtResource("4_dqkch")
 font_size = 24
 font_color = Color(0.18039216, 0.14509805, 0.52156866, 1)
-outline_size = 2
 
 [node name="Player" type="Node" unique_id=1233535754]
 script = ExtResource("1_3vyb7")
