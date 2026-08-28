@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c1g0eb5h3gg13"]
 
 [ext_resource type="Script" uid="uid://c7lpfmbl8s2cj" path="res://scripts/mission_inspect_ui.gd" id="1_f2jij"]
+[ext_resource type="Texture2D" uid="uid://cdyt437sntbyo" path="res://textures/UI_Banner_Small.png" id="2_bt4ul"]
 [ext_resource type="FontFile" uid="uid://c3x8d8b0l2qwe" path="res://fonts/CWDRKAGE.TTF" id="2_f2jij"]
 [ext_resource type="FontFile" uid="uid://dftf8lag84jc4" path="res://fonts/Cinzel-Regular.otf" id="3_bt4ul"]
 
@@ -36,7 +37,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_f2jij")
 
-[node name="Background" type="Panel" parent="." unique_id=1694667917]
+[node name="Background" type="NinePatchRect" parent="." unique_id=669231984]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -44,8 +45,12 @@ anchor_right = 1.0
 offset_left = -386.0
 offset_bottom = 211.0
 grow_horizontal = 0
+texture = ExtResource("2_bt4ul")
+patch_margin_top = 24
+patch_margin_bottom = 24
+axis_stretch_horizontal = 1
 
-[node name="Name" type="Panel" parent="Background" unique_id=2100218571]
+[node name="Name" type="Control" parent="Background" unique_id=1600746107]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -57,6 +62,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 11.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "The Most Dangerous Mission"
@@ -64,7 +71,7 @@ label_settings = SubResource("LabelSettings_bt4ul")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Type" type="Panel" parent="Background" unique_id=1648289464]
+[node name="Type" type="Control" parent="Background" unique_id=1073814987]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -79,6 +86,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -9.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Easy Task of Might"
@@ -89,9 +98,9 @@ vertical_alignment = 1
 [node name="Desc" type="Label" parent="Background" unique_id=770335217]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 37.0
+offset_top = 40.0
 offset_right = 240.0
-offset_bottom = 172.0
+offset_bottom = 175.0
 text = "This is a mission. It is dangerous. You will lose your mind, okay?"
 label_settings = SubResource("LabelSettings_ce7nk")
 autowrap_mode = 2
@@ -100,9 +109,9 @@ autowrap_mode = 2
 custom_maximum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 251.0
-offset_top = 37.0
+offset_top = 40.0
 offset_right = 351.0
-offset_bottom = 74.0
+offset_bottom = 77.0
 text = "+Supplies
 "
 label_settings = SubResource("LabelSettings_d34op")
@@ -112,9 +121,9 @@ autowrap_mode = 2
 custom_maximum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 251.0
-offset_top = 68.0
+offset_top = 71.0
 offset_right = 351.0
-offset_bottom = 105.0
+offset_bottom = 108.0
 text = "-Sanity"
 label_settings = SubResource("LabelSettings_fmci8")
 autowrap_mode = 2

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c57x0vko4e776" path="res://scripts/stat_graph.gd" id="1_83xus"]
 [ext_resource type="Script" uid="uid://c61wj8mksjrql" path="res://scripts/unit_inspect_ui.gd" id="1_ybm2m"]
 [ext_resource type="FontFile" uid="uid://c3x8d8b0l2qwe" path="res://fonts/CWDRKAGE.TTF" id="2_2vseu"]
+[ext_resource type="Texture2D" uid="uid://cdyt437sntbyo" path="res://textures/UI_Banner_Small.png" id="2_w6wvc"]
 [ext_resource type="Texture2D" uid="uid://b1nanxa0s1ogg" path="res://textures/UI_Polygraph_Background.png" id="3_tapif"]
 [ext_resource type="FontFile" uid="uid://dftf8lag84jc4" path="res://fonts/Cinzel-Regular.otf" id="4_kxpto"]
 [ext_resource type="Texture2D" uid="uid://bt1smf277uhoh" path="res://textures/Soldier.png" id="6_wckq4"]
@@ -39,18 +40,22 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_ybm2m")
 
-[node name="Background" type="Panel" parent="." unique_id=1694667917]
+[node name="Background" type="NinePatchRect" parent="." unique_id=902179835]
 layout_mode = 0
 offset_right = 386.0
 offset_bottom = 211.0
+texture = ExtResource("2_w6wvc")
+patch_margin_top = 24
+patch_margin_bottom = 24
+axis_stretch_horizontal = 1
 
-[node name="Nameplate" type="Panel" parent="Background" unique_id=2100218571]
+[node name="Nameplate" type="Control" parent="Background" unique_id=1333701548]
 propagate_maximum_size = true
 layout_mode = 1
-anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.142
-offset_bottom = 0.0379982
+offset_top = 11.0
+offset_bottom = 11.037998
 grow_horizontal = 2
 
 [node name="Label" type="Label" parent="Background/Nameplate" unique_id=293027759]
@@ -66,7 +71,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 35
 
-[node name="Disposition" type="Panel" parent="Background" unique_id=1648289464]
+[node name="Disposition" type="Control" parent="Background" unique_id=360665052]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -81,6 +86,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -12.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "greets you as a true friend."
@@ -96,9 +103,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 38.0
-offset_top = -56.5
+offset_top = -48.5
 offset_right = 138.0
-offset_bottom = 43.5
+offset_bottom = 51.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_tapif")
