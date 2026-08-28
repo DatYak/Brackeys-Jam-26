@@ -43,23 +43,23 @@ func _ready() -> void:
 		area3d = $Area
 		indicator.visible = false
 
-func _input(_event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if not hover_target:
 		return
 	
 	if not interact_type == Cursor.CursorTarget.TROOP:
 		return
 	
-	if Input.is_action_just_pressed("assign_1"):
+	if event.is_action_pressed("assign_1"):
 		assign_to_dropoff(0)
 		
-	if Input.is_action_just_pressed("assign_2"):
+	if event.is_action_pressed("assign_2"):
 		assign_to_dropoff(1)
 		
-	if Input.is_action_just_pressed("assign_3"):
+	if event.is_action_pressed("assign_3"):
 		assign_to_dropoff(2)
 	
-	if Input.is_action_just_pressed("unassign"):
+	if event.is_action_pressed("unassign"):
 		on_pick_up(interact_type)
 		reset_position()
 		
