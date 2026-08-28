@@ -8,7 +8,7 @@ const VERY_POOR_ODDS = "Chances: Impossible"
 const POOR_ODDS = "Chances: Dire"
 const FAIR_ODDS = "Chances: Fair"
 const GOOD_ODDS = "Chances: Possible"
-const VERY_GOOD_ODDS = "Chances: Likely"
+const VERY_GOOD_ODDS = "Chances: Assured"
 
 
 @onready var mission:Mission = $".."
