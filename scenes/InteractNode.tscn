@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d1obullh27gyx"]
+
+[ext_resource type="Script" uid="uid://doc6akd2og6qt" path="res://scripts/interact_node.gd" id="1_4mbca"]
+[ext_resource type="FontFile" uid="uid://1xwmh56r4a37" path="res://fonts/CinzelDecorative-Black.otf" id="2_3r1np"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ymlvt"]
+radius = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ce7nk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pef3y"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0, 0, 1)
+roughness = 0.66
+
+[node name="InteractNode" type="Node3D" unique_id=1306923645]
+script = ExtResource("1_4mbca")
+
+[node name="Area" type="Area3D" parent="." unique_id=1116160582]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area" unique_id=885258606]
+shape = SubResource("SphereShape3D_ymlvt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=942337923]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_ce7nk")
+surface_material_override/0 = SubResource("StandardMaterial3D_pef3y")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=344970038]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1, 4, 0)
+billboard = 1
+text = "TEXT"
+font = ExtResource("2_3r1np")
+font_size = 180
+horizontal_alignment = 0
+
+[connection signal="mouse_entered" from="Area" to="." method="_hover"]
+[connection signal="mouse_exited" from="Area" to="." method="_hover_end"]
