@@ -67,15 +67,13 @@ func display():
 	difficulty_lbl.text = diff_label
 	
 	if not mission.dropoff.assigned_general:
-		odds_label.text = POOR_ODDS
+		odds_label.text = VERY_POOR_ODDS
 	else:
 		var odds = mission.generateOdds(mission.dropoff.assigned_general)
 		if odds == 0.0:
 			odds_label.text = VERY_POOR_ODDS
 		else: if odds == 1.0:
 			odds_label.text = VERY_GOOD_ODDS
-		else: if odds < .33:
-			odds_label.text = POOR_ODDS
 		else: if odds < .33:
 			odds_label.text = POOR_ODDS
 		else: if odds < .66:
