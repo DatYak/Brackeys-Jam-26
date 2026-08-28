@@ -17,12 +17,12 @@ font = ExtResource("4_4vh8y")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1p1q"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7yn2"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 roughness = 0.66
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7yn2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5r3px"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 roughness = 0.66
@@ -94,10 +94,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Quit" parent="." unique_id=1306923645 instance=ExtResource("5_b1p1q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.24536, 1.1593715, 2.1063385)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.24536, 1.1593715, -3.8936615)
 
 [node name="MeshInstance3D" parent="Quit" index="1" unique_id=942337923]
-surface_material_override/0 = SubResource("StandardMaterial3D_b1p1q")
+surface_material_override/0 = SubResource("StandardMaterial3D_s7yn2")
 
 [node name="Label3D" parent="Quit" index="2" unique_id=344970038]
 text = "QUIT"
@@ -106,7 +106,7 @@ text = "QUIT"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.24536, 1.1593715, -13.8936615)
 
 [node name="MeshInstance3D" parent="Play" index="1" unique_id=942337923]
-surface_material_override/0 = SubResource("StandardMaterial3D_s7yn2")
+surface_material_override/0 = SubResource("StandardMaterial3D_5r3px")
 
 [node name="Label3D" parent="Play" index="2" unique_id=344970038]
 text = "Play"
