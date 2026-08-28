@@ -9,7 +9,7 @@ class_name PickupTarget extends Node3D
 ## Alters the pickup behaviour so that an indicator of the target is moved
 ## instead of the actual node.
 @export var is_moved_as_indicator:bool = false
-@onready var parent:Node = self.get_parent().get_parent().get_parent()
+@onready var parent:Character = self.get_parent().get_parent().get_parent() as Character
 @onready var ui:UnitUI = $"../../CharacterStats/UnitInspectUi"
 @onready var indicator:Node3D = $Indicator
 @onready var mesh:MeshInstance3D = $Mesh
@@ -81,6 +81,8 @@ func _hover_end() -> void:
 func interact(cursor: Cursor, interact_control:Cursor.CursorTarget) -> void:
 	if hover_target:
 		if interact_type == interact_control:
+				if not parent.stats.can_be_used():
+						return
 				last_position = global_position
 				collision_height = area3d.global_position.y
 				cursor.pick_up(self)
@@ -130,6 +132,9 @@ func reset() -> void:
 	area3d.global_position = last_position
 
 func assign_to_dropoff(index:int) -> void:
+	if not parent.stats.can_be_used():
+			return
+			
 	var general = Game.instance.allGenerals[index]
 	on_pick_up(interact_type)
 	area3d.global_position = general.movement.global_position

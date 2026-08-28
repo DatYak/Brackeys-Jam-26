@@ -35,6 +35,14 @@ signal gained_loyalty(amount)
 signal loyalty_updated(old_loyalty, new_loyalty)
 signal lost_all_loyalty
 
+func can_be_used() -> bool:
+	if health <= 0:
+		return false
+	if sanity <= 0: 
+		return false
+	
+	return true
+
 func set_stats(_might, _guile, _nerve, _loyalty):
 	might = _might
 	guile = _guile
