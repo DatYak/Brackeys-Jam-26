@@ -39,6 +39,7 @@ var player:Player
 @export var general_icons:Array[Texture2D]
 @export var troop_icon:Texture2D
 
+@export var BOONS_TO_WIN:int = 3
 var boons = 0
 
 @onready var camera : CameraController = $InteractiveMap/Camera3D
@@ -244,6 +245,10 @@ func on_boon_earned() -> void:
 	print ("Boon earned")
 	boons += 1
 	boon_earned_last_mission = true
+	if boons >= BOONS_TO_WIN:
+		#win
+		print("Victory")
+	
 
 func on_supplies_empty() -> void:
 	#LOSE
